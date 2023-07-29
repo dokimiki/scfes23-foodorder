@@ -1,3 +1,4 @@
+"use client";
 // メニュー一覧ページ
 
 export default function Menus() {

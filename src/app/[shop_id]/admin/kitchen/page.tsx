@@ -1,3 +1,4 @@
+"use client";
 // 厨房のページ
 
 export default function Kitchen() {

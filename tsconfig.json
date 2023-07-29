@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,6 +19,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "jsxImportSource": "@emotion/react",
     "plugins": [
       {
         "name": "next"

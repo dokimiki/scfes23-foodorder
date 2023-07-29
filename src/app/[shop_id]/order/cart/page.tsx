@@ -1,3 +1,4 @@
+"use client";
 // カートの中身を表示するページ
 
 export default function Cart() {

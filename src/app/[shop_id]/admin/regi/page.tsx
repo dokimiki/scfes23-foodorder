@@ -1,3 +1,4 @@
+"use client";
 // レジのページ
 
 export default function Regi() {

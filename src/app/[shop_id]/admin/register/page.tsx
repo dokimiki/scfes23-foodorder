@@ -1,3 +1,4 @@
+"use client";
 // adminとして登録するページ
 
 export default function Register() {

@@ -1,3 +1,4 @@
+"use client";
 // 注文確認ページ
 
 export default function Confirm() {

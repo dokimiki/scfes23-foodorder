@@ -1,3 +1,4 @@
+"use client";
 // registerしてきた人を承認するページ
 
 export default function Approval() {
