@@ -10,14 +10,18 @@ export const metadata = {
     description: "Next.js App Router + Material UI v5",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children, params }: { children: React.ReactNode; params: any }) {
     return (
         <html lang="jp">
             <Head>
-                <title>nextApp</title>
+                <title>文化祭フードオーダー</title>
             </Head>
             <body>
-                <ThemeRegistry>{children}</ThemeRegistry>
+                <ThemeRegistry>
+                    <Header title={"小林トルネード (I3)"} cartUrl={"/" + params.shop_id + "/order/cart"} cartItemCount={2} />
+                    {children}
+                    <Footer />
+                </ThemeRegistry>
             </body>
         </html>
     );
