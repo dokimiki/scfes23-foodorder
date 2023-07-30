@@ -19,7 +19,7 @@ export default function Layout({ children, params }: { children: React.ReactNode
             <body>
                 <ThemeRegistry>
                     <Header
-                        title={"小林トルネード (I3)"}
+                        title={"小林トルネード(I3)"}
                         menuLink={"/" + params.shop_id + "/order/menus"}
                         cartLink={"/" + params.shop_id + "/order/cart"}
                         cartItemCount={2}
