@@ -18,7 +18,12 @@ export default function Layout({ children, params }: { children: React.ReactNode
             </Head>
             <body>
                 <ThemeRegistry>
-                    <Header title={"小林トルネード (I3)"} cartUrl={"/" + params.shop_id + "/order/cart"} cartItemCount={2} />
+                    <Header
+                        title={"小林トルネード (I3)"}
+                        menuLink={"/" + params.shop_id + "/order/menus"}
+                        cartLink={"/" + params.shop_id + "/order/cart"}
+                        cartItemCount={2}
+                    />
                     {children}
                     <Footer />
                 </ThemeRegistry>
