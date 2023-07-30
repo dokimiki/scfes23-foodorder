@@ -23,7 +23,7 @@ export default function Header({ title, menuLink, cartLink, cartItemCount }: { t
                                     content: "メニュー";
                                     text-align: center;
                                     position: absolute;
-                                    top: 2.5em;
+                                    top: 2.3em;
                                     left: 0;
                                     right: 0;
                                     margin: auto;
@@ -32,7 +32,7 @@ export default function Header({ title, menuLink, cartLink, cartItemCount }: { t
                             `}
                         >
                             <IconButton size="large" color="inherit" component={Link} href={menuLink}>
-                                <MenuBookIcon />
+                                <MenuBookIcon sx={{ marginBottom: "0.2em" }} />
                             </IconButton>
                         </span>
                     </div>
@@ -49,7 +49,7 @@ export default function Header({ title, menuLink, cartLink, cartItemCount }: { t
                                     content: "カート";
                                     text-align: center;
                                     position: absolute;
-                                    top: 2.5em;
+                                    top: 2.3em;
                                     left: 0;
                                     right: 0;
                                     margin: auto;
@@ -59,7 +59,7 @@ export default function Header({ title, menuLink, cartLink, cartItemCount }: { t
                         >
                             <IconButton size="large" color="inherit" component={Link} href={cartLink}>
                                 <Badge badgeContent={cartItemCount} color="error">
-                                    <ShoppingCartIcon />
+                                    <ShoppingCartIcon sx={{ marginBottom: "0.2em" }} />
                                 </Badge>
                             </IconButton>
                         </span>
