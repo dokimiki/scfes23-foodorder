@@ -5,7 +5,7 @@ import style from "./style.module.css";
 export default function MenuDetail() {
     return (
         <main className={style.main}>
-
+            <span className={style.tornado}><img src="/img/menu_tornado.png" alt="トルネードポテト" /></span>
             <div className={style.position}>
                 <h1>トルネードポテト（塩）</h1>
                 <p>おいしいポテトです!!トルネードになったところを

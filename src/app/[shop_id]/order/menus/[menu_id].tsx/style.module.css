@@ -5,10 +5,18 @@
 }
 
 .position {
-    border-top: 1px solid #27acd9;
     width: 100%;
     padding: 20px;
     
+}
+
+/*トルネードポテト画像*/
+.tornado img {
+    width: 100%;
+    height: 250px;
+    background-color: white;
+    object-fit: cover;
+    object-position:60% 0%;
 }
 
 /*商品名*/
@@ -83,6 +91,10 @@
         margin: 0 auto;
     }
 
+    .tornado img {
+        height: 500px;
+    }
+
     /*題名*/
     .position h1 {
         font-size: 1.9rem;
@@ -116,4 +128,10 @@
         font-size: 1.2rem;
     }
     
+}
+
+@media (min-width: 1000px){
+    .tornado img {
+        height: 800px;
+    }
 }
