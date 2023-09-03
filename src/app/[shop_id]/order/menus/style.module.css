@@ -1,25 +1,25 @@
-
 /* 全体的なレイアウト*/
 .position {
-        border-top: 1px solid #27acd9;
-        position: absolute;
-        bottom: 0;
-        padding: 20px;
-        width: 100%;
-    }
+    border-top: 1px solid #27acd9;
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    width: 100%;
+}
 
 /* display: flex; で横並びにする */
 .display {
     display: flex;
-            justify-content: center;
-            align-items: center;
-        margin: 0 20px;
-        }
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+}
+
 .price {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-right: 5px;
-    }
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 5px;
+}
 
 .quant_p {
     font-size: 2rem;
@@ -27,34 +27,38 @@
 }
 
 .button {
-    margin:auto;
+    margin: auto;
     font-size: 0.5rem;
-	display: block;
-	text-decoration: none;
-	padding: 0.7rem 2rem;
-	font-weight: bold;
-	border: 1px solid #27acd9;
-	color: #27acd9;
-	border-radius: 10px;
+    display: block;
+    text-decoration: none;
+    padding: 0.7rem 2rem;
+    font-weight: bold;
+    border: 1px solid #27acd9;
+    color: #27acd9;
+    border-radius: 10px;
     margin-bottom: 20px;
 
 }
+
 .button:hover {
-	color: #fff;
-	background: #27acd9;
+    color: #fff;
+    background: #27acd9;
 }
+
 .quant_button {
     font-size: 1.5rem;
-	display: block;
-	text-decoration: none;
-	width: 3rem;
-	margin: auto 20px;
-	padding: 0.3rem 0.7rem;
-	font-weight: bold;
-	border: 1px solid #27acd9;
-	color: black;;
-	transition: 0.5s;
+    display: block;
+    text-decoration: none;
+    width: 3rem;
+    margin: auto 20px;
+    padding: 0.3rem 0.7rem;
+    font-weight: bold;
+    border: 1px solid #27acd9;
+    color: black;
+    ;
+    transition: 0.5s;
 }
+
 .quant_button:hover {
     color: #fff;
     background: #27acd9;
