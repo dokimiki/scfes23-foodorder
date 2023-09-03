@@ -1,7 +1,11 @@
 "use client";
+import * as React from "react";
+import { css } from "@emotion/react";
 import Image from "next/image";
 // メニュー詳細ページ
 import style from "./style.module.css";
+
+const allergenColor = { Contains: "#ff6347", Contamination: "#ffd700", NotContains: "white" };
 
 function Allergen({
     allergenName,
@@ -12,9 +16,13 @@ function Allergen({
     imgSrc: string;
     ContaminationStatus: "Contains" | "NotContains" | "Contamination";
 }) {
-    const bgColor = ContaminationStatus === "Contains" ? style.red : ContaminationStatus === "Contamination" ? style.yellow : style.white;
+    const bgColor = allergenColor[ContaminationStatus];
     return (
-        <p className={bgColor}>
+        <p
+            css={css`
+                background-color: ${bgColor};
+            `}
+        >
             <Image src={imgSrc} alt={allergenName} width={50} height={50} />
             <span>{allergenName}</span>
         </p>
@@ -25,7 +33,7 @@ export default function MenuDetail() {
     return (
         <main className={style.main}>
             <span className={style.tornado}>
-                <img src="/img/menu_tornado.png" alt="トルネードポテト" />
+                <Image src="/img/menu_tornado.png" alt="トルネードポテト" width={300} height={300} />
             </span>
             <div className={style.position}>
                 <h1>トルネードポテト（塩）</h1>
@@ -36,9 +44,27 @@ export default function MenuDetail() {
                 </p>
                 <div className={style.allergy}>
                     <h2>アレルゲン</h2>
-                    <p className={style.white}>白：ふくまれていない</p>
-                    <p className={style.yellow}>黄色：調理工程で触れている</p>
-                    <p className={style.red}>赤：含まれている</p>
+                    <p
+                        css={css`
+                            background-color: ${allergenColor["NotContains"]};
+                        `}
+                    >
+                        白：ふくまれていない
+                    </p>
+                    <p
+                        css={css`
+                            background-color: ${allergenColor["Contamination"]};
+                        `}
+                    >
+                        黄色：調理工程で触れている
+                    </p>
+                    <p
+                        css={css`
+                            background-color: ${allergenColor["Contains"]};
+                        `}
+                    >
+                        赤：含まれている
+                    </p>
                 </div>
                 <div className={style.container}>
                     <Allergen allergenName="えび" imgSrc="/img/allergen_ebi.png" ContaminationStatus="Contains" />
