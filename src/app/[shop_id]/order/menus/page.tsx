@@ -10,6 +10,8 @@ import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Badge from "@mui/material/Badge";
 
 import Link from "next/link"; //仮置き
 
@@ -37,7 +39,11 @@ export default function Menus() {
     };
 
     return (
-        <main>
+        <main
+            css={css`
+                margin-bottom: calc(${drawerBleeding}px + 1em);
+            `}
+        >
             <Global
                 styles={{
                     ".MuiDrawer-root > .MuiPaper-root": {
@@ -87,6 +93,9 @@ export default function Menus() {
                                 align-items: baseline;
                             `}
                         >
+                            <Badge badgeContent={2} color="error" sx={{ marginRight: 2 }}>
+                                <ShoppingCartIcon sx={{ marginBottom: "0.2em" }} />
+                            </Badge>
                             <Typography variant="h6" sx={{ color: "text.secondary" }}>
                                 ￥
                             </Typography>
