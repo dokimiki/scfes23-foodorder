@@ -5,7 +5,11 @@ import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import style from "./style.module.css";
 
+import Stack from '@mui/material/Stack';
+
 import Link from "next/link";//仮置き
+
+
 
 export default function Menus() {
     return (
@@ -21,6 +25,9 @@ export default function Menus() {
                         <h2 className={style.price}>490</h2>
                     </div>
                     <div className={style.display}>
+                        <Stack >
+                         <Button className={style.quant_button}>－</Button>
+                        </Stack>    
                         <a className={style.quant_button}>－</a>
                         <p className={style.quant_p}>0</p>
                     <a className={style.quant_button}>＋</a>
