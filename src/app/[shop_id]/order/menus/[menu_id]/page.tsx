@@ -2,6 +2,10 @@
 import * as React from "react";
 import { css } from "@emotion/react";
 import Image from "next/image";
+
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
 // メニュー詳細ページ
 import style from "./style.module.css";
 
@@ -75,6 +79,27 @@ export default function MenuDetail() {
                     <Allergen allergenName="ミルク" imgSrc="/img/allergen_milk.png" ContaminationStatus="NotContains" />
                     <Allergen allergenName="落花生" imgSrc="/img/allergen_peanuts.png" ContaminationStatus="NotContains" />
                     <Allergen allergenName="クルミ" imgSrc="/img/allergen_kurumi.png" ContaminationStatus="NotContains" />
+                </div>
+            </div>
+
+            <div className={style.position}>
+                <div className={style.display}>
+                    <div className={style.display}>
+                        <p className={style.price}>¥</p>
+                        <h2 className={style.price}>490</h2>
+                    </div>
+                    <div className={style.display}>
+                        <Stack >
+                         <Button className={style.quant_button}>－</Button>
+                        </Stack>    
+                        <a className={style.quant_button}>－</a>
+                        <p className={style.quant_p}>0</p>
+                         <a className={style.quant_button}>＋</a>
+                     </div>
+                    <div className={style.display}>
+                        <a className={style.button}>注文を確定する</a>
+                        <a className={style.button}>カゴへ追加する</a>
+                    </div>
                 </div>
             </div>
         </main>
