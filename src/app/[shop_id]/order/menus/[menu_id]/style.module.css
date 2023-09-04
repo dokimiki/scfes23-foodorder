@@ -1,6 +1,8 @@
 /* 全体的なレイアウト*/
 .main {
     background-color: #d3d3d3;
+    height: 100%;
+    padding-bottom: 170px;
 }
 
 .position {
@@ -57,7 +59,6 @@
     align-items: center;
     border-radius: 10px;
     margin-right: 20%;
-    ;
     padding: 5px;
 
 }
@@ -75,8 +76,80 @@
     margin: 0 auto;
 }
 
+/* --------------------------------- */
 
-@media (min-width: 720px) {
+/* 下部のレイアウト */
+.footer_position{
+    height: 160px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    padding-bottom: 10px;
+}
+/*コンテナ */
+.footer_container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+/* 価格表示*/
+.price {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    margin: 0 0 0 40px;
+}
+.price p {
+    margin-right: 5px;
+    font-size: 1.7;
+    margin: 0;
+}
+.price h2 {
+    margin: 0;
+}
+/* 数量表示*/
+.count {
+    text-align: center;
+    font-size: 1.3rem;
+}
+.count span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.count p {
+    font-size: 0.7rem;
+    font-weight: bolder;
+}
+/* ボタン*/
+.button {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+.button button {
+    padding: 0;
+}
+.button span {
+    text-align: center;
+}
+.button p {
+    font-size: 1.2rem;
+    margin: 0 2px;
+    font-weight: normal;
+    padding: 5px;
+
+}
+
+
+/* --------------------------------- */
+
+/* 画面の幅が720px以上の場合 */
+@media (min-width: 720px) { 
 
     /*全体的なレイアウト*/
     .position {
@@ -124,6 +197,8 @@
     .container span {
         font-size: 1.2rem;
     }
+
+
 
 }
 

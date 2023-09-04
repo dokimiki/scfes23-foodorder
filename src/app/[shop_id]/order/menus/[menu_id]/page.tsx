@@ -3,6 +3,8 @@ import * as React from "react";
 import { css } from "@emotion/react";
 import Image from "next/image";
 
+import Fab from '@mui/material/Fab';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -82,24 +84,34 @@ export default function MenuDetail() {
                 </div>
             </div>
 
-            <div className={style.position}>
-                <div className={style.display}>
-                    <div className={style.display}>
-                        <p className={style.price}>¥</p>
-                        <h2 className={style.price}>490</h2>
+            <div className={style.footer_position}>
+                <div className={style.footer_container}>
+                    <div className={style.price}>
+                            <p>¥</p>
+                            <h2>490</h2>
                     </div>
-                    <div className={style.display}>
-                        <Stack >
-                         <Button className={style.quant_button}>－</Button>
-                        </Stack>    
-                        <a className={style.quant_button}>－</a>
-                        <p className={style.quant_p}>0</p>
-                         <a className={style.quant_button}>＋</a>
-                     </div>
-                    <div className={style.display}>
-                        <a className={style.button}>注文を確定する</a>
-                        <a className={style.button}>カゴへ追加する</a>
-                    </div>
+                        <div className={style.count}>
+                                <Stack>
+                                    <span>
+                                        <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                                        <Fab color="primary" aria-label="add">
+                                            <p>＋</p>
+                                            </Fab>
+                                        </Box>                          
+                                        <h2>0</h2>   
+                                        <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                                        <Fab color="primary" aria-label="add">
+                                            <p>ー</p>
+                                            </Fab>
+                                        </Box>
+                                    </span>
+                                </Stack>
+                        </div>
+                </div>
+
+                <div className={style.button}>
+                    <Stack><span><Button variant="outlined"><p>注文を確定する</p></Button></span></Stack>
+                    <Stack><span><Button variant="outlined"><p>カゴへ追加する</p></Button></span></Stack>
                 </div>
             </div>
         </main>
