@@ -12,6 +12,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import gray from "@mui/material/colors/grey";
+import { Divider } from "@mui/material";
 
 const allergenColor = { Contains: "#ff6347", Contamination: "#ffd700", NotContains: "white" };
 
@@ -67,6 +68,9 @@ export default function MenuDetail() {
                         たトルネードポテト、ポテトですね。ぱりぱりうまう まですよ。あなたもおひとついかがですか？みたこと
                         がないようなきがするような新しい新感覚ぽてと
                     </Typography>
+
+                    <Divider sx={{ margin: "1em 0" }} />
+
                     <Typography variant="h5">アレルゲン</Typography>
                     <Stack
                         spacing={1}
