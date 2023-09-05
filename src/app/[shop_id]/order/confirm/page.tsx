@@ -7,7 +7,7 @@ import style from "./style.module.scss";
 function Food({
 }) {
     const foodName = {1:"トルネードポテト(塩)",2:"トルネードポテト(コンソメ)"};
-    const foodNum = {1:3,2:2}};
+    const foodNum = {1:3,2:2};
     const foodPrice = {1:300,2:300};
     return (
         <p className={style.food}>
@@ -22,6 +22,7 @@ function Food({
             </div>
         </p>
     );
+}
 
 
 
