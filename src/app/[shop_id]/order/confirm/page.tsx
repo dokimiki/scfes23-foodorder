@@ -7,22 +7,21 @@ import style from "./style.module.scss";
 function Food({
 }) {
     const foodName = {1:"トルネードポテト(塩)",2:"トルネードポテト(コンソメ)"};
-    const foodNum = {1:3,2:2};
+    const foodNum = {1:3,2:2}};
     const foodPrice = {1:300,2:300};
     return (
         <p className={style.food}>
             <div>
-                <span>{foodName}</span>
+                <span>{foodName[1]}</span>
                 <span>×</span>
-                <span>{foodNum}</span>
+                <span>{foodNum[1]}</span>
             </div>
             <div className={style.price}>
                 <span>¥</span>
-                <span>{foodPrice}</span>
+                <span>{foodPrice[1]}</span>
             </div>
         </p>
     );
-}
 
 
 
@@ -48,7 +47,6 @@ export default function Confirm() {
                     <span>900</span>
                 </div>
             </p>
-
         </main>
     );
 }
