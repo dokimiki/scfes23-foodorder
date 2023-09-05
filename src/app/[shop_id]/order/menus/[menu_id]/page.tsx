@@ -3,10 +3,15 @@ import * as React from "react";
 import { css } from "@emotion/react";
 import Image from "next/image";
 
-import Fab from '@mui/material/Fab';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import Fab from "@mui/material/Fab";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import gray from "@mui/material/colors/grey";
 
 // メニュー詳細ページ
 import style from "./style.module.css";
@@ -37,7 +42,11 @@ function Allergen({
 
 export default function MenuDetail() {
     return (
-        <main className={style.main}>
+        <main
+            css={css`
+                margin-bottom: 128px;
+            `}
+        >
             <span className={style.tornado}>
                 <Image src="/img/menu_tornado.png" alt="トルネードポテト" width={300} height={300} />
             </span>
@@ -84,35 +93,46 @@ export default function MenuDetail() {
                 </div>
             </div>
 
-            <div className={style.footer_position}>
-                <div className={style.footer_container}>
-                    <div className={style.price}>
-                            <p>¥</p>
-                            <h2>490</h2>
-                    </div>
-                        <div className={style.count}>
-                                <Stack>
-                                    <span>
-                                        <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                        <Fab color="primary" aria-label="add">
-                                            <p>＋</p>
-                                            </Fab>
-                                        </Box>                          
-                                        <h2>0</h2>   
-                                        <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                        <Fab color="primary" aria-label="add">
-                                            <p>ー</p>
-                                            </Fab>
-                                        </Box>
-                                    </span>
-                                </Stack>
-                        </div>
-                </div>
+            <div
+                css={css`
+                    width: 100%;
+                    position: fixed;
+                    bottom: 0;
+                    background-color: white;
+                `}
+            >
+                <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ margin: 2 }}>
+                    <Stack direction="row" alignItems="baseline">
+                        <Typography variant="h5">金額: </Typography>
+                        <Typography variant="h6" sx={{ color: "text.secondary" }}>
+                            ￥
+                        </Typography>
+                        <Typography variant="h4">300</Typography>
+                    </Stack>
 
-                <div className={style.button}>
-                    <Stack><span><Button variant="outlined"><p>注文を確定する</p></Button></span></Stack>
-                    <Stack><span><Button variant="outlined"><p>カゴへ追加する</p></Button></span></Stack>
-                </div>
+                    <Stack
+                        direction="row"
+                        alignItems="center"
+                        spacing={1}
+                        sx={{
+                            background: gray[300],
+                            borderRadius: 10,
+                        }}
+                    >
+                        <IconButton aria-label="remove">
+                            <RemoveIcon />
+                        </IconButton>
+                        <Typography variant="h5">1</Typography>
+                        <IconButton aria-label="add" color="primary">
+                            <AddIcon />
+                        </IconButton>
+                    </Stack>
+                </Stack>
+
+                <Stack direction="row" justifyContent="space-around" sx={{ margin: 2 }}>
+                    <Button variant="outlined">注文を確定する</Button>
+                    <Button variant="contained">カゴへ追加する</Button>
+                </Stack>
             </div>
         </main>
     );

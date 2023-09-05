@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
+import Stack from "@mui/material/Stack";
 
 import Link from "next/link"; //仮置き
 
@@ -79,20 +80,8 @@ export default function Menus() {
                     }}
                 >
                     <Puller />
-                    <div
-                        css={css`
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                        `}
-                    >
-                        <span
-                            css={css`
-                                margin-left: 16px;
-                                display: flex;
-                                align-items: baseline;
-                            `}
-                        >
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <Stack direction="row" alignItems="baseline" sx={{ marginLeft: 2 }}>
                             <Badge badgeContent={2} color="error" sx={{ marginRight: 2 }}>
                                 <ShoppingCartIcon sx={{ marginBottom: "0.2em" }} />
                             </Badge>
@@ -100,11 +89,11 @@ export default function Menus() {
                                 ￥
                             </Typography>
                             <Typography variant="h4">300</Typography>
-                        </span>
+                        </Stack>
                         <Button variant="contained" sx={{ margin: 2 }}>
                             注文する
                         </Button>
-                    </div>
+                    </Stack>
                 </StyledBox>
                 <StyledBox
                     sx={{
