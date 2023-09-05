@@ -4,11 +4,10 @@ import { css } from "@emotion/react";
 import style from "./style.module.scss";
 // 注文確認ページ
 
-function Food({
-}) {
-    const foodName = {1:"トルネードポテト(塩)",2:"トルネードポテト(コンソメ)"};
-    const foodNum = {1:3,2:2}};
-    const foodPrice = {1:300,2:300};
+function Food({}) {
+    const foodName = { 1: "トルネードポテト(塩)", 2: "トルネードポテト(コンソメ)" };
+    const foodNum = { 1: 3, 2: 2 };
+    const foodPrice = { 1: 300, 2: 300 };
     return (
         <p className={style.food}>
             <div>
@@ -22,8 +21,7 @@ function Food({
             </div>
         </p>
     );
-
-
+}
 
 export default function Confirm() {
     return (
