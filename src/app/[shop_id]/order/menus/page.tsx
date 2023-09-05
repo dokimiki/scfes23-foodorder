@@ -52,7 +52,8 @@ export default function Menus() {
                     },
                 }}
             />
-            <Link href="/I3/order/menus/[menu_id].tsx">メニュー詳細（仮置き）</Link>
+            <Link href="/I3/order/menus/[menu_id].tsx">メニュー詳細（仮置き）</Link><br></br>
+            <Link href="/I3/order/confirm" >注文確認ページ（仮置き）</Link>
             <h1>メニュー一覧</h1>
             <p>hello react</p>
 
