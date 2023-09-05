@@ -1,5 +1,25 @@
-$red-color: red;
+$main-font-size: 1.4rem;
 
-.red {
-    color: $red-color;
+.main {
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px;
+    h1 {
+        margin-left: 10px;
+        margin-bottom: 30px;
+    }
+    .food {
+        display: flex;
+        flex-direction: column;
+        font-size: $main-font-size;
+        border-bottom: 1px solid #ccc;
+        .price {
+            margin-left: 20px;
+        }
+    }
+    .total_price {
+        font-size: $main-font-size;
+        display: flex;
+        justify-content:space-between;
+    }
 }
