@@ -29,7 +29,7 @@ export default function Header({ title, homeLink }: { title: string; homeLink: s
                             `}
                         >
                             <IconButton size="large" color="inherit" component={Link} href={homeLink}>
-                                <HomeIcon sx={{ marginBottom: "0.2em" }} />
+                                <HomeIcon sx={{ marginBottom: "0.2em", color: "text.secondary" }} />
                             </IconButton>
                         </span>
                     </div>
