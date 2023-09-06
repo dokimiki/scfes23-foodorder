@@ -3,15 +3,7 @@ import * as React from "react";
 import style from "./style.module.scss";
 // 注文確認ページ
 
-function Food({
-    foodName,
-    foodNum,
-    foodPrice,
-}: {
-    foodName: string;
-    foodNum: number;
-    foodPrice: number;
-}) {
+function Food({ foodName, foodNum, foodPrice }: { foodName: string; foodNum: number; foodPrice: number }) {
     const foodTotalPrice = foodNum * foodPrice;
     return (
         <div className={style.food}>
@@ -30,11 +22,7 @@ function Food({
 }
 
 export default function Confirm() {
-    const foodName = [
-        "トルネードポテト(塩)",
-        "かば焼きくん",
-        "トルネードポテト(コンソメ)",
-    ];
+    const foodName = ["トルネードポテト(塩)", "かば焼きくん", "トルネードポテト(コンソメ)"];
     const foodNum = [3, 0, 2]; //商品の数量
     const foodPrice = [300, 10, 300]; //商品の値段
     const sum = foodPrice.map((price, i) => {
@@ -48,13 +36,7 @@ export default function Confirm() {
                 if (foodNum[i] === 0) {
                     return null;
                 } else {
-                    return (
-                        <Food
-                            foodName={name}
-                            foodNum={foodNum[i]}
-                            foodPrice={foodPrice[i]}
-                        />
-                    );
+                    return <Food key={i} foodName={name} foodNum={foodNum[i]} foodPrice={foodPrice[i]} />;
                 }
             })}
 
