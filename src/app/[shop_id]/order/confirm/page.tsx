@@ -51,10 +51,10 @@ export default function Confirm() {
                 } else {
                     return (
                         <Food
+                            key={i}
                             foodName={name}
                             foodNum={foodNum[i]}
                             foodPrice={foodPrice[i]}
-                            foodSum={foodSum[i]}
                         />
                     );
                 }
