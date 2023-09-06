@@ -55,6 +55,7 @@ export default function Confirm() {
                             foodName={name}
                             foodNum={foodNum[i]}
                             foodPrice={foodPrice[i]}
+                            foodSum={foodSum[i]}
                         />
                     );
                 }
