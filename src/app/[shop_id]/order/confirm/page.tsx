@@ -7,12 +7,13 @@ function Food({
     foodName,
     foodNum,
     foodPrice,
+    foodSum,
 }: {
     foodName: string;
     foodNum: number;
     foodPrice: number;
+    foodSum: number;
 }) {
-    const foodTotalPrice = foodNum * foodPrice;
     return (
         <div className={style.food}>
             <p>
@@ -22,7 +23,7 @@ function Food({
             </p>
             <p className={style.price}>
                 <span>
-                    ¥{foodPrice} × {foodNum} = ¥{foodTotalPrice}
+                    ¥{foodPrice} × {foodNum} = ¥{foodSum}
                 </span>
             </p>
         </div>
@@ -37,7 +38,7 @@ export default function Confirm() {
     ];
     const foodNum = [3, 0, 2]; //商品の数量
     const foodPrice = [300, 10, 300]; //商品の値段
-    const sum = foodPrice.map((price, i) => {
+    const foodSum = foodPrice.map((price, i) => {
         //各商品の合計を配列に格納
         return price * foodNum[i];
     });
@@ -53,6 +54,7 @@ export default function Confirm() {
                             foodName={name}
                             foodNum={foodNum[i]}
                             foodPrice={foodPrice[i]}
+                            foodSum={foodSum[i]}
                         />
                     );
                 }
@@ -63,7 +65,7 @@ export default function Confirm() {
                 <p>
                     <span>¥</span>
                     <span>
-                        {sum.reduce((sum, price) => {
+                        {foodSum.reduce((sum, price) => {
                             return sum + price;
                         }, 0)}
                     </span>
