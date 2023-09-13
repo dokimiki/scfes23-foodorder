@@ -158,7 +158,8 @@ export default function Regi() {
                                     sx={{
                                         transition:
                                             "max-height 2s cubic-bezier(0.2, 0.3, 0.8, 0.7)" +
-                                            (e.number > 0 ? "" : ", margin-bottom 0.2s ease-out 2.2s"),
+                                            ", margin-bottom 0.2s ease-out" +
+                                            (e.number > 0 ? "" : " 2.2s"),
                                         overflow: "hidden",
                                         height: "auto",
                                         maxHeight: e.number > 0 ? "100vh" : "0px",
