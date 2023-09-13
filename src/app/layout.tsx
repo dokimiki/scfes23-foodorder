@@ -2,8 +2,6 @@
 import * as React from "react";
 import Head from "next/head";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
-import Header from "@/components/layouts/OrderHeader";
-import Footer from "@/components/layouts/OrderFooter";
 
 export const metadata = {
     title: "Next.js App Router + Material UI v5",

@@ -9,11 +9,10 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
     return (
         <NextAppDirEmotionCacheProvider options={{ key: "mui" }}>
             <ThemeProvider theme={theme}>
-                <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                    <CssBaseline />
-                    {children}
-                </SnackbarProvider>
+                <SnackbarProvider maxSnack={4} autoHideDuration={2500} />
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                <CssBaseline />
+                {children}
             </ThemeProvider>
         </NextAppDirEmotionCacheProvider>
     );
