@@ -103,7 +103,11 @@ export default function Menus() {
             </div>
 
             <hr />
-
+            <div className={style.menu}>
+                <h2>味を選択してください！</h2>
+                <div className={style.menu_list}></div>
+            </div>
+            <hr />
             <Typography variant="h5">アレルゲン</Typography>
             <Stack
                 spacing={1}
