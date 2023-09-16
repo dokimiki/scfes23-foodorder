@@ -18,6 +18,9 @@ import Image from "next/image";
 
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { getMenuItems } from "@/libs/Items";
+import { Divider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import Stepper from "@/components/Stepper";
+import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
 
 let menus: MenuItem[];
 
@@ -33,8 +36,37 @@ export default function Menus() {
     const [cart, setCart] = React.useState([
         { id: "1", quantity: 1 },
         { id: "2", quantity: 2 },
+        { id: "3", quantity: 3 },
+        { id: "4", quantity: 2 },
     ] as CartItem[]);
     const [open, setOpen] = React.useState(false);
+
+    function addToCart(id: string) {
+        const index = cart.findIndex((e) => e.id === id);
+        if (index === -1) {
+            setCart([...cart, { id: id, quantity: 1 }]);
+        } else {
+            const newCart = cart.slice();
+            newCart[index].quantity++;
+            newCart[index].quantity = Math.min(newCart[index].quantity, MAX_CART_ITEM_QUANTITY);
+            setCart(newCart);
+        }
+    }
+
+    function removeFromCart(id: string) {
+        const index = cart.findIndex((e) => e.id === id);
+        if (index === -1) {
+            return;
+        } else {
+            const newCart = cart.slice();
+            newCart[index].quantity--;
+            newCart[index].quantity = Math.max(newCart[index].quantity, MIN_CART_ITEM_QUANTITY);
+            if (newCart[index].quantity <= MIN_CART_ITEM_QUANTITY) {
+                newCart.splice(index, 1);
+            }
+            setCart(newCart);
+        }
+    }
 
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
@@ -43,8 +75,7 @@ export default function Menus() {
     return (
         <main
             css={css`
-                margin-bottom: calc(${drawerBleeding}px + 1em);
-                padding: 0 20px;
+                margin-bottom: calc(${drawerBleeding}px);
             `}
         >
             <Global
@@ -56,43 +87,15 @@ export default function Menus() {
                 }}
             />
             <div className={style.top}>
-                <h2>小林トルネードとは？</h2>
-                <p>味の種類豊富なトルネードポテト！うまい！</p>
+                <Typography variant="h2">小林トルネードとは？</Typography>
+                <Typography variant="body1">味の種類豊富なトルネードポテト！うまい！</Typography>
             </div>
 
-            <hr />
+            <Divider />
 
             <Typography variant="h5">アレルゲン</Typography>
-            <Stack
-                spacing={1}
-                sx={{ margin: 2 }}
-                css={css`
-                    > * {
-                        border-radius: 4px;
-                        padding: 0 0.5em;
-                    }
-                `}
-            >
-                <Typography variant="h6" sx={{ background: allergenColor["NotContains"] }}>
-                    白：ふくまれていない
-                </Typography>
-                <Typography variant="h6" sx={{ background: allergenColor["Contamination"] }}>
-                    黄色：調理工程で触れている
-                </Typography>
-                <Typography variant="h6" sx={{ background: allergenColor["Contains"] }}>
-                    赤：含まれている
-                </Typography>
-            </Stack>
-            <Stack direction="row" sx={{ margin: 2 }} flexWrap="wrap" justifyContent="space-around">
-                <Allergen allergenName="えび" imgSrc="/img/allergen_ebi.png" ContaminationStatus="Contains" />
-                <Allergen allergenName="かに" imgSrc="/img/allergen_kani.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="小麦" imgSrc="/img/allergen_komugi.png" ContaminationStatus="Contamination" />
-                <Allergen allergenName="そば" imgSrc="/img/allergen_soba.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="卵" imgSrc="/img/allergen_tamago.png" ContaminationStatus="Contains" />
-                <Allergen allergenName="ミルク" imgSrc="/img/allergen_milk.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="落花生" imgSrc="/img/allergen_peanuts.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="クルミ" imgSrc="/img/allergen_kurumi.png" ContaminationStatus="NotContains" />
-            </Stack>
+            <AllAllergen />
+
             <SwipeableDrawer
                 anchor="bottom"
                 open={open}
@@ -104,7 +107,7 @@ export default function Menus() {
                     keepMounted: true,
                 }}
             >
-                <OrderDrawerContent cart={cart} />
+                <OrderDrawerContent cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />
             </SwipeableDrawer>
         </main>
     );
@@ -124,7 +127,18 @@ const Puller = styled(Box)(({ theme }) => ({
     left: "calc(50% - 15px)",
 }));
 
-function OrderDrawerContent({ cart }: { cart: CartItem[] }) {
+function OrderDrawerContent({
+    cart,
+    addToCart,
+    removeFromCart,
+}: {
+    cart: CartItem[];
+    addToCart: (id: string) => void;
+    removeFromCart: (id: string) => void;
+}) {
+    let total = cart.reduce((amount, e) => {
+        return amount + (menus.find((menu) => menu.id === e.id)?.price ?? 0) * e.quantity;
+    }, 0);
     return (
         <>
             <Box
@@ -154,11 +168,7 @@ function OrderDrawerContent({ cart }: { cart: CartItem[] }) {
                         <Typography variant="h6" sx={{ color: "text.secondary" }}>
                             ￥
                         </Typography>
-                        <Typography variant="h4">
-                            {cart.reduce((amount, e) => {
-                                return amount + (menus.find((menu) => menu.id === e.id)?.price ?? 0) * e.quantity;
-                            }, 0)}
-                        </Typography>
+                        <Typography variant="h4">{total.toLocaleString()}</Typography>
                     </Stack>
                     <Button variant="contained" sx={{ margin: 2, pointerEvents: "all" }}>
                         注文する
@@ -174,9 +184,91 @@ function OrderDrawerContent({ cart }: { cart: CartItem[] }) {
                     background: "#fff",
                 }}
             >
-                <Skeleton variant="rectangular" height="100%" />
+                <CartItemTable cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} total={total} />
             </Box>
         </>
+    );
+}
+
+function CartItemTable({
+    cart,
+    addToCart,
+    removeFromCart,
+    total,
+}: {
+    cart: CartItem[];
+    addToCart: (id: string) => void;
+    removeFromCart: (id: string) => void;
+    total: number;
+}) {
+    return (
+        <TableContainer>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="center" sx={{ minWidth: "30vw" }}>
+                            商品
+                        </TableCell>
+                        <TableCell align="center" sx={{ minWidth: "100px" }}>
+                            個数
+                        </TableCell>
+                        <TableCell align="right" sx={{ minWidth: "6rem" }}>
+                            金額
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    <Global
+                        styles={{
+                            ".cart-item-table-row-hidden": {
+                                display: "none !important",
+                            },
+                        }}
+                    />
+                    {React.useMemo(
+                        () =>
+                            menus.map((e, i) => {
+                                const cartData = cart.find((cartItem) => cartItem.id === e.id);
+                                return (
+                                    <TableRow key={i} className={(cartData?.quantity ?? 0) > 0 ? "" : " cart-item-table-row-hidden"}>
+                                        <TableCell align="center">{e.name}</TableCell>
+                                        <TableCell align="center">
+                                            <span
+                                                css={css`
+                                                    margin: 0 auto;
+                                                    display: inline-table;
+                                                `}
+                                            >
+                                                <Stepper
+                                                    num={cartData?.quantity ?? 0}
+                                                    size="small"
+                                                    onClickAdd={() => addToCart(e.id)}
+                                                    onClickRemove={() => removeFromCart(e.id)}
+                                                />
+                                            </span>
+                                        </TableCell>
+                                        <TableCell align="right">¥&nbsp;{(e.price * (cartData?.quantity ?? 0)).toLocaleString()}</TableCell>
+                                    </TableRow>
+                                );
+                            }),
+                        [cart, addToCart, removeFromCart]
+                    )}
+                    <TableRow>
+                        <TableCell rowSpan={3} />
+                        <TableCell align="right">
+                            <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                                カート合計:
+                            </Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                            <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                                ¥&nbsp;{total.toLocaleString()}
+                            </Typography>
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 }
 
@@ -213,5 +305,42 @@ function Allergen({
             <Image src={imgSrc} alt={allergenName} width={50} height={50} />
             <Typography variant="h6">{allergenName}</Typography>
         </Stack>
+    );
+}
+
+function AllAllergen() {
+    return (
+        <>
+            <Stack
+                spacing={1}
+                sx={{ margin: 2 }}
+                css={css`
+                    > * {
+                        border-radius: 4px;
+                        padding: 0 0.5em;
+                    }
+                `}
+            >
+                <Typography variant="h6" sx={{ background: allergenColor["NotContains"] }}>
+                    白：ふくまれていない
+                </Typography>
+                <Typography variant="h6" sx={{ background: allergenColor["Contamination"] }}>
+                    黄色：調理工程で触れている
+                </Typography>
+                <Typography variant="h6" sx={{ background: allergenColor["Contains"] }}>
+                    赤：含まれている
+                </Typography>
+            </Stack>
+            <Stack direction="row" sx={{ margin: 2 }} flexWrap="wrap" justifyContent="space-around">
+                <Allergen allergenName="えび" imgSrc="/img/allergen_ebi.png" ContaminationStatus="Contains" />
+                <Allergen allergenName="かに" imgSrc="/img/allergen_kani.png" ContaminationStatus="NotContains" />
+                <Allergen allergenName="小麦" imgSrc="/img/allergen_komugi.png" ContaminationStatus="Contamination" />
+                <Allergen allergenName="そば" imgSrc="/img/allergen_soba.png" ContaminationStatus="NotContains" />
+                <Allergen allergenName="卵" imgSrc="/img/allergen_tamago.png" ContaminationStatus="Contains" />
+                <Allergen allergenName="ミルク" imgSrc="/img/allergen_milk.png" ContaminationStatus="NotContains" />
+                <Allergen allergenName="落花生" imgSrc="/img/allergen_peanuts.png" ContaminationStatus="NotContains" />
+                <Allergen allergenName="クルミ" imgSrc="/img/allergen_kurumi.png" ContaminationStatus="NotContains" />
+            </Stack>
+        </>
     );
 }
