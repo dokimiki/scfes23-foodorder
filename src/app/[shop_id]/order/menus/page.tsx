@@ -91,8 +91,11 @@ export default function Menus() {
                 <Typography variant="body1">味の種類豊富なトルネードポテト！うまい！</Typography>
             </div>
 
+            <div className={style.menu}>
+                <h2>味を選択してください！</h2>
+                <div className={style.menu_list}></div>
+            </div>
             <Divider />
-
             <Typography variant="h5">アレルゲン</Typography>
             <AllAllergen />
 
