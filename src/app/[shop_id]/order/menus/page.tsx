@@ -18,9 +18,22 @@ import Image from "next/image";
 
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { getMenuItems } from "@/libs/Items";
-import { Divider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Divider,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from "@mui/material";
 import Stepper from "@/components/Stepper";
 import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 let menus: MenuItem[];
 
@@ -86,18 +99,39 @@ export default function Menus() {
                     },
                 }}
             />
-            <div className={style.top}>
-                <Typography variant="h2">小林トルネードとは？</Typography>
+            <div>
+                <Typography
+                    variant="h2"
+                    sx={{
+                        fontSize: "2rem",
+                    }}
+                >
+                    小林トルネードとは？
+                </Typography>
                 <Typography variant="body1">味の種類豊富なトルネードポテト！うまい！</Typography>
             </div>
 
-            <div className={style.menu}>
-                <h2>味を選択してください！</h2>
+            <div>
+                <Typography
+                    variant="h2"
+                    sx={{
+                        fontSize: "2rem",
+                    }}
+                >
+                    味を選択してください！
+                </Typography>
                 <div className={style.menu_list}></div>
             </div>
-            <Divider />
-            <Typography variant="h5">アレルゲン</Typography>
-            <AllAllergen />
+
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h5">アレルゲン情報</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ padding: 0 }}>
+                    <Divider />
+                    <AllAllergen />
+                </AccordionDetails>
+            </Accordion>
 
             <SwipeableDrawer
                 anchor="bottom"
@@ -277,73 +311,63 @@ function CartItemTable({
 
 /* ---------------------- アレルゲン ----------------------*/
 const allergenColor = {
-    Contains: "#ff6347",
-    Contamination: "#ffd700",
-    NotContains: "white",
+    Contains: "#ed9b9b",
+    Contamination: "#ffeb81",
+    NotContains: "#00000000",
 };
 
-function Allergen({
-    allergenName,
-    imgSrc,
-    ContaminationStatus,
-}: {
-    allergenName: string;
-    imgSrc: string;
-    ContaminationStatus: "Contains" | "NotContains" | "Contamination";
-}) {
-    const bgColor = allergenColor[ContaminationStatus];
-    return (
-        <Stack
-            direction="row"
-            alignItems="center"
-            sx={{
-                background: bgColor,
-                borderRadius: 2,
-                padding: "2px",
-                minWidth: "130px",
-                margin: 1,
-            }}
-            spacing={1}
-        >
-            <Image src={imgSrc} alt={allergenName} width={50} height={50} />
-            <Typography variant="h6">{allergenName}</Typography>
-        </Stack>
-    );
-}
-
 function AllAllergen() {
+    let allergensList: { name: string; img: string; contamination: "NotContains" | "Contamination" | "Contains" }[] = [
+        { name: "えび", img: "/img/allergen_ebi.png", contamination: "Contains" },
+        { name: "かに", img: "/img/allergen_kani.png", contamination: "NotContains" },
+        { name: "小麦", img: "/img/allergen_komugi.png", contamination: "Contamination" },
+        { name: "そば", img: "/img/allergen_soba.png", contamination: "NotContains" },
+        { name: "卵", img: "/img/allergen_tamago.png", contamination: "Contains" },
+        { name: "ミルク", img: "/img/allergen_milk.png", contamination: "NotContains" },
+        { name: "落花生", img: "/img/allergen_peanuts.png", contamination: "NotContains" },
+        { name: "クルミ", img: "/img/allergen_kurumi.png", contamination: "NotContains" },
+    ];
     return (
         <>
-            <Stack
-                spacing={1}
-                sx={{ margin: 2 }}
-                css={css`
-                    > * {
-                        border-radius: 4px;
-                        padding: 0 0.5em;
-                    }
-                `}
-            >
-                <Typography variant="h6" sx={{ background: allergenColor["NotContains"] }}>
-                    白：ふくまれていない
-                </Typography>
-                <Typography variant="h6" sx={{ background: allergenColor["Contamination"] }}>
-                    黄色：調理工程で触れている
-                </Typography>
-                <Typography variant="h6" sx={{ background: allergenColor["Contains"] }}>
-                    赤：含まれている
-                </Typography>
-            </Stack>
-            <Stack direction="row" sx={{ margin: 2 }} flexWrap="wrap" justifyContent="space-around">
-                <Allergen allergenName="えび" imgSrc="/img/allergen_ebi.png" ContaminationStatus="Contains" />
-                <Allergen allergenName="かに" imgSrc="/img/allergen_kani.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="小麦" imgSrc="/img/allergen_komugi.png" ContaminationStatus="Contamination" />
-                <Allergen allergenName="そば" imgSrc="/img/allergen_soba.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="卵" imgSrc="/img/allergen_tamago.png" ContaminationStatus="Contains" />
-                <Allergen allergenName="ミルク" imgSrc="/img/allergen_milk.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="落花生" imgSrc="/img/allergen_peanuts.png" ContaminationStatus="NotContains" />
-                <Allergen allergenName="クルミ" imgSrc="/img/allergen_kurumi.png" ContaminationStatus="NotContains" />
-            </Stack>
+            <TableContainer>
+                <Table aria-label="simple table" sx={{ width: "100%" }}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center">品名</TableCell>
+                            <TableCell align="left">混入状況</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {allergensList.map((e, i) => (
+                            <TableRow
+                                sx={{ "&:last-child td, &:last-child th": { border: 0 }, background: allergenColor[e.contamination] }}
+                                key={i}
+                            >
+                                <TableCell align="center" component="th" scope="row">
+                                    <Stack alignItems="center">
+                                        <Image alt="" src={e.img} width={50} height={50} />
+                                        <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                                            {e.name}
+                                        </Typography>
+                                    </Stack>
+                                </TableCell>
+                                <TableCell align="left">
+                                    <Typography
+                                        variant="subtitle1"
+                                        sx={{ fontWeight: e.contamination === "NotContains" ? "normal" : "bold" }}
+                                    >
+                                        {e.contamination === "Contains"
+                                            ? "含まれている"
+                                            : e.contamination === "Contamination"
+                                            ? "同じ工場で生産している"
+                                            : "含んでいない"}
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </>
     );
 }
