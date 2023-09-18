@@ -7,18 +7,34 @@ export function getCartDataFromOrderCode(orderCode: string): Promise<CartItem[]>
         JSON.stringify([
             {
                 id: "1",
-                quantity: 2,
+                quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
             },
             {
                 id: "2",
-                quantity: 1,
+                quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
             },
             {
                 id: "3",
-                quantity: 3,
+                quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
+            },
+            {
+                id: "4",
+                quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
+            },
+            {
+                id: "5",
+                quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
             },
         ])
     );
 
     return mockResponse.json();
+}
+
+export function sendCartData(cart: CartItem[], orderCode: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true);
+        }, 1000);
+    });
 }

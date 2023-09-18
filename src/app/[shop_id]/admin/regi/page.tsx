@@ -1,32 +1,32 @@
 "use client";
-import Stepper from "@/components/Stepper";
-import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY, getCartDataFromOrderCode } from "@/libs/Carts";
+import { MIN_CART_ITEM_QUANTITY, getCartDataFromOrderCode, sendCartData } from "@/libs/Carts";
 import { getMenuItems } from "@/libs/Items";
 import { CartItem, MenuItem } from "@/libs/types/item";
-import { Global, css } from "@emotion/react";
-import { Delete, Smartphone } from "@mui/icons-material";
+import { css } from "@emotion/react";
+import { Smartphone } from "@mui/icons-material";
 import AppBar from "@mui/material/AppBar";
-import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { enqueueSnackbar } from "notistack";
 import * as React from "react";
+import { MenuItemPaper } from "./MenuItemPaper";
+import { CartItemPaper } from "./CartItemPaper";
+import CircularProgress from "@mui/material/CircularProgress";
 
-// レジのページ
+const MAX_CART_ITEM_QUANTITY = 99;
 
 export default function Regi() {
     const theme = useTheme();
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
+    const [orderCode, setOrderCode] = React.useState<string>("");
+    const [isSending, setIsSending] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         getMenuItems()
@@ -125,18 +125,24 @@ export default function Regi() {
 
             <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>
                 <Stack sx={{ margin: "16px", width: `calc(100% - ${sideBarWidth}px - 32px)` }}>
+                    <Typography variant="body1" sx={{ marginBottom: 1 }}>
+                        注文コード: {orderCode === "" ? "なし" : orderCode}
+                    </Typography>
                     <form
                         noValidate
                         autoComplete="off"
                         onSubmit={(event: any) => {
                             event.preventDefault();
-                            getCartDataFromOrderCode(event.target[0].value)
+                            let barcodeInput = event.target[0].value;
+                            getCartDataFromOrderCode(barcodeInput)
                                 .then((res) => {
+                                    setOrderCode(barcodeInput);
                                     setCart(res);
                                 })
                                 .catch((err) => {
                                     console.log(err);
                                 });
+
                             event.target[0].value = "";
                             document.getElementById("barcode-input")?.blur();
                         }}
@@ -166,12 +172,11 @@ export default function Regi() {
                         position: "fixed",
                         right: 0,
                         height: `calc(100vh - ${toolbarHeight}px - 16px)`,
-                        background: (theme) => {
-                            return theme.palette.primary.main;
-                        },
+                        background: "white",
                         padding: "16px",
                         width: `${sideBarWidth}px`,
                         zIndex: 1,
+                        boxShadow: "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
                     }}
                     justifyContent="space-between"
                     spacing={2}
@@ -184,6 +189,8 @@ export default function Regi() {
                             variant="contained"
                             color="error"
                             onClick={() => {
+                                enqueueSnackbar("注文をリセットしました。", { variant: "success" });
+                                setOrderCode("");
                                 setCart([]);
                             }}
                         >
@@ -210,121 +217,44 @@ export default function Regi() {
                             margin-top: auto !important;
                         `}
                     >
+                        <Button
+                            variant="contained"
+                            fullWidth
+                            onClick={() => {
+                                setIsSending(true);
+                                sendCartData(cart, orderCode)
+                                    .then((res) => {
+                                        console.log(res);
+                                        setOrderCode("");
+                                        setCart([]);
+                                        enqueueSnackbar("会計データを送信しました。", { variant: "success" });
+                                        setIsSending(false);
+                                    })
+                                    .catch((err) => {
+                                        console.log(err);
+                                        enqueueSnackbar("会計データの送信に失敗しました。", { variant: "error" });
+                                        setIsSending(false);
+                                    });
+                            }}
+                            disabled={isSending}
+                        >
+                            {isSending ? <CircularProgress color="inherit" size={25} /> : "会計"}
+                        </Button>
                         <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
                         <Stack direction="row" justifyContent="space-between" alignItems="center">
                             <Typography variant="h5" fontWeight="bold">
                                 合計({cart.reduce((qty, cur) => qty + cur.quantity, 0)}点)
                             </Typography>
                             <Typography variant="h5" fontWeight="bold">
-                                ¥{cart.reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)}
+                                ¥
+                                {cart
+                                    .reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)
+                                    .toLocaleString()}
                             </Typography>
                         </Stack>
                     </div>
                 </Stack>
             </Stack>
         </main>
-    );
-}
-
-function MenuItemPaper({
-    itemMenuInfo,
-    itemCartInfo = { id: "", quantity: 0 },
-    addToCart,
-}: {
-    itemMenuInfo: MenuItem;
-    itemCartInfo?: CartItem;
-    addToCart: () => void;
-}) {
-    return (
-        <Button onClick={addToCart} sx={{ margin: 2, padding: 0 }}>
-            <Badge
-                badgeContent={itemCartInfo.quantity}
-                color="primary"
-                css={css`
-                    & > .MuiBadge-badge {
-                        width: 30px;
-                        height: 30px;
-                        border-radius: 15px;
-                        font-size: 17px;
-                        font-weight: 400;
-                    }
-                `}
-            >
-                <Card sx={{ width: 200 }}>
-                    <CardMedia sx={{ height: 160 }} image={itemMenuInfo.image} />
-                    <Stack sx={{ padding: "16px" }}>
-                        <Typography gutterBottom variant="body2" fontWeight="500" align="left">
-                            {itemMenuInfo.name}
-                        </Typography>
-                        <Stack direction="row" alignItems="baseline">
-                            <Typography variant="body2" fontWeight="400">
-                                売価:&nbsp;
-                            </Typography>
-                            <Typography variant="h6" fontWeight="500">
-                                ¥{itemMenuInfo.price}
-                            </Typography>
-                        </Stack>
-                    </Stack>
-                </Card>
-            </Badge>
-        </Button>
-    );
-}
-
-function CartItemPaper({
-    itemMenuInfo,
-    itemCartInfo = { id: "", quantity: 0 },
-    addToCart,
-    removeFromCart,
-    deleteFromCart,
-}: {
-    itemMenuInfo: MenuItem;
-    itemCartInfo?: CartItem;
-    addToCart: () => void;
-    removeFromCart: () => void;
-    deleteFromCart: () => void;
-}) {
-    return (
-        <div>
-            <Global
-                styles={{
-                    ".cart-item-paper": {
-                        transition: "max-height 2s cubic-bezier(0.2, 0.3, 0.8, 0.7), margin-bottom 0.2s ease-out !important",
-                        overflow: "hidden",
-                        height: "fit-content",
-                        marginBottom: "8px",
-                        maxHeight: "100vh",
-                    },
-                    ".cart-item-paper-hidden": {
-                        transition: "max-height 2s cubic-bezier(0.2, 0.3, 0.8, 0.7), margin-bottom 0.2s ease-out 2.2s !important",
-                        maxHeight: "0px",
-                        marginBottom: 0,
-                    },
-                }}
-            />
-            <Paper className={"cart-item-paper" + (itemCartInfo.quantity <= MIN_CART_ITEM_QUANTITY ? " cart-item-paper-hidden" : "")}>
-                <Stack sx={{ margin: 1 }}>
-                    <Typography variant="h6">{itemMenuInfo?.name ?? "なぞ"}</Typography>
-                </Stack>
-
-                <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ margin: 1 }}>
-                    <Stack direction="row" alignItems="flex-end">
-                        <Typography variant="subtitle1">合計:&nbsp;</Typography>
-                        <Typography variant="h5">¥{(itemMenuInfo?.price ?? 0) * itemCartInfo.quantity}</Typography>
-                    </Stack>
-                    <Stack direction="row">
-                        <IconButton aria-label="delete" onClick={() => deleteFromCart()}>
-                            <Delete fontSize="small" color="error" />
-                        </IconButton>
-                        <Stepper
-                            num={itemCartInfo.quantity}
-                            onClickAdd={() => addToCart()}
-                            onClickRemove={() => removeFromCart()}
-                            size="small"
-                        />
-                    </Stack>
-                </Stack>
-            </Paper>
-        </div>
     );
 }
