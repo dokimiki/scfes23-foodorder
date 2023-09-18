@@ -1,16 +1,31 @@
 "use client";
-import * as React from "react";
-import { Global, css } from "@emotion/react";
-import { Badge, Button, Card, CardMedia, Paper, Stack, Typography, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Stepper from "@/components/Stepper";
-import { enqueueSnackbar } from "notistack";
+import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY, getCartDataFromOrderCode } from "@/libs/Carts";
 import { getMenuItems } from "@/libs/Items";
 import { CartItem, MenuItem } from "@/libs/types/item";
-import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
+import { Global, css } from "@emotion/react";
+import { Delete, Smartphone } from "@mui/icons-material";
+import AppBar from "@mui/material/AppBar";
+import Badge from "@mui/material/Badge";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import useTheme from "@mui/material/styles/useTheme";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import * as React from "react";
+
 // レジのページ
 
 export default function Regi() {
+    const theme = useTheme();
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
     React.useEffect(() => {
@@ -22,6 +37,16 @@ export default function Regi() {
                 console.log(err);
             });
     }, []);
+
+    const numKeyDown = React.useCallback((event: any) => {
+        if (event.keyCode >= 48 && event.keyCode <= 57) {
+            document.getElementById("barcode-input")?.focus();
+        }
+    }, []);
+
+    React.useEffect(() => {
+        document.addEventListener("keydown", numKeyDown, false);
+    }, [numKeyDown]);
 
     const [cart, setCart] = React.useState([] as CartItem[]);
 
@@ -46,10 +71,6 @@ export default function Regi() {
             newCart[index].quantity--;
             newCart[index].quantity = Math.max(newCart[index].quantity, MIN_CART_ITEM_QUANTITY);
             if (newCart[index].quantity <= MIN_CART_ITEM_QUANTITY) {
-                enqueueSnackbar((menus.find((e) => e.id === newCart[index].id)?.name ?? "なぞ") + "をカートから削除しました。", {
-                    variant: "info",
-                });
-
                 newCart.splice(index, 1);
             }
             setCart(newCart);
@@ -62,64 +83,143 @@ export default function Regi() {
             return;
         } else {
             const newCart = cart.slice();
-
-            enqueueSnackbar((menus.find((e) => e.id === newCart[index].id)?.name ?? "なぞ") + "をカートから削除しました。", {
-                variant: "info",
-            });
-
             newCart.splice(index, 1);
             setCart(newCart);
         }
     }
 
+    const toolbarStyle = theme.mixins.toolbar;
+
+    const isMinWidthZero = useMediaQuery("(min-width:0px)");
+    const isMinWidth600 = useMediaQuery("(min-width:600px)");
+    const isOrientationLand = useMediaQuery("(orientation:landscape)");
+
+    const toolbarHeight = (() => {
+        if (isMinWidthZero) {
+            if (isOrientationLand) {
+                return (toolbarStyle["@media (min-width:0px)"] as any)["@media (orientation: landscape)"].minHeight;
+            }
+        }
+        if (isMinWidth600) {
+            return (toolbarStyle["@media (min-width:600px)"] as any).minHeight;
+        }
+        return toolbarStyle.minHeight;
+    })();
+
     const sideBarWidth = 350;
 
     return (
-        <main>
-            <Stack direction="row" justifyContent="space-between" sx={{ width: "100%", height: "100vh" }}>
-                <Stack
-                    sx={{ margin: 2, width: `calc(100% - ${sideBarWidth}px)` }}
-                    direction="row"
-                    flexWrap="wrap"
-                    alignContent="flex-start"
-                    justifyContent="flex-start"
-                >
-                    {menus.map((e, i) => {
-                        return (
-                            <MenuItemPaper
-                                itemMenuInfo={e}
-                                itemCartInfo={cart.find((cart) => cart.id === e.id)}
-                                addToCart={() => addToCart(e.id)}
-                                key={i}
-                            />
-                        );
-                    })}
+        <main
+            css={css`
+                min-height: 100vh;
+            `}
+        >
+            <AppBar position="fixed">
+                <Toolbar>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        レジ
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Toolbar />
+
+            <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>
+                <Stack sx={{ margin: "16px", width: `calc(100% - ${sideBarWidth}px - 32px)` }}>
+                    <form
+                        noValidate
+                        autoComplete="off"
+                        onSubmit={(event: any) => {
+                            event.preventDefault();
+                            getCartDataFromOrderCode(event.target[0].value)
+                                .then((res) => {
+                                    setCart(res);
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                            event.target[0].value = "";
+                            document.getElementById("barcode-input")?.blur();
+                        }}
+                    >
+                        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                            <Smartphone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                            <TextField id="barcode-input" label="バーコード入力" variant="standard" fullWidth />
+                        </Box>
+                    </form>
+
+                    <Stack direction="row" flexWrap="wrap" alignContent="flex-start" justifyContent="flex-start">
+                        {menus.map((e, i) => {
+                            return (
+                                <MenuItemPaper
+                                    itemMenuInfo={e}
+                                    itemCartInfo={cart.find((cart) => cart.id === e.id)}
+                                    addToCart={() => addToCart(e.id)}
+                                    key={i}
+                                />
+                            );
+                        })}
+                    </Stack>
                 </Stack>
+
                 <Stack
                     sx={{
                         position: "fixed",
                         right: 0,
-                        height: "100%",
-                        overflowY: "scroll",
+                        height: `calc(100vh - ${toolbarHeight}px - 16px)`,
                         background: (theme) => {
                             return theme.palette.primary.main;
                         },
-                        padding: 2,
+                        padding: "16px",
                         width: `${sideBarWidth}px`,
+                        zIndex: 1,
                     }}
+                    justifyContent="space-between"
+                    spacing={2}
                 >
-                    {cart.map((e, i) => {
-                        return (
-                            <CartItemPaper
-                                itemMenuInfo={menus.find((menu) => menu.id === e.id)}
-                                itemCartInfo={e}
-                                addToCart={() => addToCart(e.id)}
-                                removeFromCart={() => removeFromCart(e.id)}
-                                deleteFromCart={() => deleteFromCart(e.id)}
-                                key={i}
-                            />
-                        );
-                    })}
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <Typography variant="h5" fontWeight="bold">
+                            注文内容
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            onClick={() => {
+                                setCart([]);
+                            }}
+                        >
+                            注文リセット
+                        </Button>
+                    </Stack>
+
+                    <Stack sx={{ overflowY: "auto" }}>
+                        {menus.map((e, i) => {
+                            return (
+                                <CartItemPaper
+                                    itemMenuInfo={e}
+                                    itemCartInfo={cart.find((cart) => cart.id === e.id)}
+                                    addToCart={() => addToCart(e.id)}
+                                    removeFromCart={() => removeFromCart(e.id)}
+                                    deleteFromCart={() => deleteFromCart(e.id)}
+                                    key={i}
+                                />
+                            );
+                        })}
+                    </Stack>
+                    <div
+                        css={css`
+                            margin-top: auto !important;
+                        `}
+                    >
+                        <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
+                        <Stack direction="row" justifyContent="space-between" alignItems="center">
+                            <Typography variant="h5" fontWeight="bold">
+                                合計({cart.reduce((qty, cur) => qty + cur.quantity, 0)}点)
+                            </Typography>
+                            <Typography variant="h5" fontWeight="bold">
+                                ¥{cart.reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)}
+                            </Typography>
+                        </Stack>
+                    </div>
                 </Stack>
             </Stack>
         </main>
@@ -128,7 +228,7 @@ export default function Regi() {
 
 function MenuItemPaper({
     itemMenuInfo,
-    itemCartInfo,
+    itemCartInfo = { id: "", quantity: 0 },
     addToCart,
 }: {
     itemMenuInfo: MenuItem;
@@ -138,7 +238,7 @@ function MenuItemPaper({
     return (
         <Button onClick={addToCart} sx={{ margin: 2, padding: 0 }}>
             <Badge
-                badgeContent={itemCartInfo?.quantity ?? 0}
+                badgeContent={itemCartInfo.quantity}
                 color="primary"
                 css={css`
                     & > .MuiBadge-badge {
@@ -173,13 +273,13 @@ function MenuItemPaper({
 
 function CartItemPaper({
     itemMenuInfo,
-    itemCartInfo,
+    itemCartInfo = { id: "", quantity: 0 },
     addToCart,
     removeFromCart,
     deleteFromCart,
 }: {
-    itemMenuInfo?: MenuItem;
-    itemCartInfo: CartItem;
+    itemMenuInfo: MenuItem;
+    itemCartInfo?: CartItem;
     addToCart: () => void;
     removeFromCart: () => void;
     deleteFromCart: () => void;
@@ -188,23 +288,25 @@ function CartItemPaper({
         <div>
             <Global
                 styles={{
-                    ".cart-item-paper": {},
+                    ".cart-item-paper": {
+                        transition: "max-height 2s cubic-bezier(0.2, 0.3, 0.8, 0.7), margin-bottom 0.2s ease-out !important",
+                        overflow: "hidden",
+                        height: "fit-content",
+                        marginBottom: "8px",
+                        maxHeight: "100vh",
+                    },
+                    ".cart-item-paper-hidden": {
+                        transition: "max-height 2s cubic-bezier(0.2, 0.3, 0.8, 0.7), margin-bottom 0.2s ease-out 2.2s !important",
+                        maxHeight: "0px",
+                        marginBottom: 0,
+                    },
                 }}
             />
-            <Paper
-                className={"cart-item-paper" + (itemCartInfo.quantity <= MIN_CART_ITEM_QUANTITY ? " cart-item-paper-hidden" : "")}
-                sx={{
-                    transition:
-                        "max-height 2s cubic-bezier(0.2, 0.3, 0.8, 0.7)" +
-                        ", margin-bottom 0.2s ease-out" +
-                        (itemCartInfo.quantity > 0 ? "" : " 2.2s"),
-                    overflow: "hidden",
-                    height: "auto",
-                    maxHeight: itemCartInfo.quantity > 0 ? "100vh" : "0px",
-                    marginBottom: itemCartInfo.quantity > 0 ? 2 : 0,
-                }}
-            >
-                <Typography variant="h6">{itemMenuInfo?.name ?? "なぞ"}</Typography>
+            <Paper className={"cart-item-paper" + (itemCartInfo.quantity <= MIN_CART_ITEM_QUANTITY ? " cart-item-paper-hidden" : "")}>
+                <Stack sx={{ margin: 1 }}>
+                    <Typography variant="h6">{itemMenuInfo?.name ?? "なぞ"}</Typography>
+                </Stack>
+
                 <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ margin: 1 }}>
                     <Stack direction="row" alignItems="flex-end">
                         <Typography variant="subtitle1">合計:&nbsp;</Typography>
@@ -212,7 +314,7 @@ function CartItemPaper({
                     </Stack>
                     <Stack direction="row">
                         <IconButton aria-label="delete" onClick={() => deleteFromCart()}>
-                            <DeleteIcon fontSize="small" color="error" />
+                            <Delete fontSize="small" color="error" />
                         </IconButton>
                         <Stepper
                             num={itemCartInfo.quantity}
