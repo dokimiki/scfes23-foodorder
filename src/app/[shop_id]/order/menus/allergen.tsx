@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 
 const allergenColor = {
     Contains: "#ed9b9b",
@@ -27,7 +28,7 @@ export default function AllAllergen() {
     ];
     return (
         <>
-            <TableContainer>
+            <TableContainer component={Paper}>
                 <Table aria-label="simple table" sx={{ width: "100%" }}>
                     <TableHead>
                         <TableRow>

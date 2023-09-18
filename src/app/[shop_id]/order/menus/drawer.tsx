@@ -127,6 +127,8 @@ function CartItemTable({
                     <Global
                         styles={{
                             ".cart-item-table-row-hidden": {
+                                transitionDelay: "2s",
+                                transitionProperty: "display",
                                 display: "none !important",
                             },
                         }}

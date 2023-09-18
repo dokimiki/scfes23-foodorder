@@ -17,16 +17,18 @@ import style from "./style.module.scss";
 
 const drawerBleeding = 68.5;
 
-let menus: MenuItem[];
-
 export default function Menus() {
-    getMenuItems()
-        .then((res) => {
-            menus = res;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    const [menus, setMenus] = React.useState<MenuItem[]>([]);
+
+    React.useEffect(() => {
+        getMenuItems()
+            .then((res) => {
+                setMenus(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
     const [cart, setCart] = React.useState([
         { id: "1", quantity: 1 },
@@ -57,6 +59,7 @@ export default function Menus() {
             newCart[index].quantity--;
             newCart[index].quantity = Math.max(newCart[index].quantity, MIN_CART_ITEM_QUANTITY);
             if (newCart[index].quantity <= MIN_CART_ITEM_QUANTITY) {
+                alert((menus.find((e) => e.id === newCart[index].id)?.name ?? "なぞ") + "をカートから削除しました。");
                 newCart.splice(index, 1);
             }
             setCart(newCart);
@@ -105,15 +108,8 @@ export default function Menus() {
                 <div className={style.menu_list}></div>
             </div>
 
-            <Accordion>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <Typography variant="h5">アレルゲン情報</Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ padding: 0 }}>
-                    <Divider />
-                    <AllAllergen />
-                </AccordionDetails>
-            </Accordion>
+            <Typography variant="h5">アレルゲン情報</Typography>
+            <AllAllergen />
 
             <SwipeableDrawer
                 anchor="bottom"
@@ -126,13 +122,17 @@ export default function Menus() {
                     keepMounted: true,
                 }}
             >
-                <OrderDrawerContent
-                    menus={menus}
-                    cart={cart}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    drawerBleeding={drawerBleeding}
-                />
+                {menus === undefined ? (
+                    <></>
+                ) : (
+                    <OrderDrawerContent
+                        menus={menus}
+                        cart={cart}
+                        addToCart={addToCart}
+                        removeFromCart={removeFromCart}
+                        drawerBleeding={drawerBleeding}
+                    />
+                )}
             </SwipeableDrawer>
         </main>
     );
