@@ -10,6 +10,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import OrderDrawerContent from "./drawer";
 import style from "./style.module.scss";
 import menuItemPaper from "./menuItemPaper";
+import { allergensList } from "@/libs/types/allergen";
 
 const drawerBleeding = 68.5;
 
@@ -107,7 +108,20 @@ export default function Menus() {
             </div>
 
             <Typography variant="h5">アレルゲン情報</Typography>
-            <AllAllergen />
+            <AllAllergen
+                allergens={
+                    {
+                        ebi: "NotContains",
+                        kani: "Contains",
+                        komugi: "NotContains",
+                        kurumi: "NotContains",
+                        milk: "NotContains",
+                        peanut: "Contamination",
+                        soba: "NotContains",
+                        tamago: "NotContains",
+                    } as allergensList
+                }
+            />
 
             <SwipeableDrawer
                 anchor="bottom"

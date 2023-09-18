@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import { allergensList, allergenContaminationStatus } from "@/libs/types/allergen";
 
 const allergenColor = {
     Contains: "#ed9b9b",
@@ -15,16 +16,16 @@ const allergenColor = {
     NotContains: "#00000000",
 };
 
-export default function AllAllergen() {
-    let allergensList: { name: string; img: string; contamination: "NotContains" | "Contamination" | "Contains" }[] = [
-        { name: "えび", img: "/img/allergen_ebi.png", contamination: "Contains" },
-        { name: "かに", img: "/img/allergen_kani.png", contamination: "NotContains" },
-        { name: "小麦", img: "/img/allergen_komugi.png", contamination: "Contamination" },
-        { name: "そば", img: "/img/allergen_soba.png", contamination: "NotContains" },
-        { name: "卵", img: "/img/allergen_tamago.png", contamination: "Contains" },
-        { name: "ミルク", img: "/img/allergen_milk.png", contamination: "NotContains" },
-        { name: "落花生", img: "/img/allergen_peanuts.png", contamination: "NotContains" },
-        { name: "クルミ", img: "/img/allergen_kurumi.png", contamination: "NotContains" },
+export default function AllAllergen({ allergens }: { allergens: allergensList }) {
+    let allergensInfo: { name: string; img: string; contamination: allergenContaminationStatus }[] = [
+        { name: "えび", img: "/img/allergen_ebi.png", contamination: allergens.ebi },
+        { name: "かに", img: "/img/allergen_kani.png", contamination: allergens.kani },
+        { name: "小麦", img: "/img/allergen_komugi.png", contamination: allergens.komugi },
+        { name: "クルミ", img: "/img/allergen_kurumi.png", contamination: allergens.kurumi },
+        { name: "ミルク", img: "/img/allergen_milk.png", contamination: allergens.milk },
+        { name: "落花生", img: "/img/allergen_peanuts.png", contamination: allergens.peanut },
+        { name: "そば", img: "/img/allergen_soba.png", contamination: allergens.soba },
+        { name: "卵", img: "/img/allergen_tamago.png", contamination: allergens.tamago },
     ];
     return (
         <>
@@ -37,7 +38,7 @@ export default function AllAllergen() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {allergensList.map((e, i) => (
+                        {allergensInfo.map((e, i) => (
                             <TableRow
                                 sx={{ "&:last-child td, &:last-child th": { border: 0 }, background: allergenColor[e.contamination] }}
                                 key={i}
