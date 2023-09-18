@@ -9,6 +9,7 @@ import AllAllergen from "./allergen";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import OrderDrawerContent from "./drawer";
 import style from "./style.module.scss";
+import menuItemPaper from "./menuItemPaper";
 
 const drawerBleeding = 68.5;
 
@@ -100,7 +101,9 @@ export default function Menus() {
                 >
                     味を選択してください！
                 </Typography>
-                <div className={style.menu_list}></div>
+                <div className={style.menu_list}>
+                    <menuItemPaper />
+                </div>
             </div>
 
             <Typography variant="h5">アレルゲン情報</Typography>
