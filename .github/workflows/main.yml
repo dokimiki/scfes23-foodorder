@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: yarn install
+    - name: git pull
       # ssh接続のための接続
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
