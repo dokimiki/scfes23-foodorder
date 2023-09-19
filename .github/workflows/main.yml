@@ -12,11 +12,11 @@ jobs:
       run: |
         mkdir -p ~/.ssh
         echo "-----BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
-QyNTUxOQAAACBn71+DDXEN0j6jR7/J/bCSx3VvzmhZAlbXDkr4DatG3gAAAJgoFQdEKBUH
-RAAAAAtzc2gtZWQyNTUxOQAAACBn71+DDXEN0j6jR7/J/bCSx3VvzmhZAlbXDkr4DatG3g
-AAAEA8j93z/7LnUzJO6oTY11M2PbO6kE6OXO0JYF72t1Cxx2fvX4MNcQ3SPqNHv8n9sJLH
-dW/OaFkCVtcOSvgNq0beAAAAFGxtem5kNnlpZXdAZ21haWwuY29tAQ==
------END OPENSSH PRIVATE KEY-----" | tr -d '\r' > ~/.ssh/id_ed25519
+        b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+        QyNTUxOQAAACBn71+DDXEN0j6jR7/J/bCSx3VvzmhZAlbXDkr4DatG3gAAAJgoFQdEKBUH
+        RAAAAAtzc2gtZWQyNTUxOQAAACBn71+DDXEN0j6jR7/J/bCSx3VvzmhZAlbXDkr4DatG3g
+        AAAEA8j93z/7LnUzJO6oTY11M2PbO6kE6OXO0JYF72t1Cxx2fvX4MNcQ3SPqNHv8n9sJLH
+        dW/OaFkCVtcOSvgNq0beAAAAFGxtem5kNnlpZXdAZ21haWwuY29tAQ==
+        -----END OPENSSH PRIVATE KEY-----" | tr -d '\r' > ~/.ssh/id_ed25519
         chmod 700 ~/.ssh/id_ed25519
         ssh -i ~/.ssh/id_ed25519 -p 53939 nao@dynktr.com "cd ~/scfes23-foodorder && git pull"
