@@ -124,7 +124,7 @@ export default function Regi() {
             <Toolbar />
 
             <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>
-                <Stack sx={{ padding: "16px", width: `calc(100% - ${sideBarWidth}px - 32px)`,height: `calc(100vh - ${toolbarHeight}px - 16px)`, }}>
+                <Stack sx={{ padding: "16px 0 16px 16px", width: `calc(100% - ${sideBarWidth}px)`,height: `calc(100vh - ${toolbarHeight}px - 16px)`, }}>
                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
                         注文コード: {orderCode === "" ? "なし" : orderCode}
                     </Typography>
