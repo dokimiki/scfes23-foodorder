@@ -11,6 +11,7 @@ import OrderDrawerContent from "./drawer";
 import style from "./style.module.scss";
 import MenuItemPaper from "./menuItemPaper";
 import { allergensList } from "@/libs/types/allergen";
+import { Map } from "@mui/icons-material";
 
 const drawerBleeding = 68.5;
 
@@ -103,7 +104,9 @@ export default function Menus() {
                     味を選択してください！
                 </Typography>
                 <div className={style.menu_list}>
-                    <MenuItemPaper />
+                    {menus.map((e, i) => {
+                        return <MenuItemPaper name={e.name} key={i} />;
+                    })}
                 </div>
             </div>
 
