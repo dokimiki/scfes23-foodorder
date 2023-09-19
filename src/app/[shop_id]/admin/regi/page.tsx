@@ -153,7 +153,7 @@ export default function Regi() {
                         </Box>
                     </form>
 
-                    <Stack direction="row" flexWrap="wrap" alignContent="flex-start" justifyContent="flex-start">
+                    <Stack direction="row" flexWrap="wrap" alignContent="flex-start" justifyContent="flex-start" sx={{overflowY: "auto"}}>
                         {menus.map((e, i) => {
                             return (
                                 <MenuItemPaper
