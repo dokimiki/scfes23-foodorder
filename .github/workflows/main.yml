@@ -1,0 +1,18 @@
+name: GitHub Actions CI
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: yarn install
+      # ssh接続のための接続
+      env:
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+        chmod 700 ~/.ssh/id_ed25519
+        ssh -i ~/.ssh/id_ed25519 -p 53939 nao@dynktr.com cd ~/scfes23-foodorder && git pull
