@@ -124,7 +124,7 @@ export default function Regi() {
             <Toolbar />
 
             <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>
-                <Stack sx={{ margin: "16px", width: `calc(100% - ${sideBarWidth}px - 32px)`,height: `calc(100vh - ${toolbarHeight}px - 16px)`, }}>
+                <Stack sx={{ padding: "16px", width: `calc(100% - ${sideBarWidth}px - 32px)`,height: `calc(100vh - ${toolbarHeight}px - 16px)`, }}>
                     <Typography variant="body1" sx={{ marginBottom: 1 }}>
                         注文コード: {orderCode === "" ? "なし" : orderCode}
                     </Typography>
@@ -149,7 +149,7 @@ export default function Regi() {
                     >
                         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                             <Smartphone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                            <TextField id="barcode-input" label="バーコード入力" variant="standard" fullWidth />
+                            <TextField id="barcode-input" label="バーコード入力" variant="standard" fullWidth sx={{marginBottom: 1}} />
                         </Box>
                     </form>
 
