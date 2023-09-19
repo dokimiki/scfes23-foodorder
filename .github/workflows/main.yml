@@ -11,6 +11,6 @@ jobs:
       # ssh接続のための接続
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.PRIVATE_KEY }}"  > ~/.ssh/id_ed25519
+        echo "${{ secrets.PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_ed25519
         chmod 700 ~/.ssh/id_ed25519
-        ssh -i ~/.ssh/test -p 53939 nao@dynktr.com "cd ~/scfes23-foodorder && git pull"
+        ssh -i ~/.ssh/id_ed25519 -p 53939 nao@dynktr.com "cd ~/scfes23-foodorder && git pull"
