@@ -35,7 +35,7 @@ export default function MenuItemPaper({ name }: { name: string }) {
                     <Avatar>
                         <ImageIcon />
                     </Avatar>
-                    <InfoIcon fontSize="small" htmlColor="#808080" />
+                    <InfoIcon fontSize="large" htmlColor="#808080" />
                 </ListItemAvatar>
                 <ListItemText primary={name} secondary="300円" />
             </ListItem>
