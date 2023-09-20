@@ -39,7 +39,7 @@ export default function MenuItemPaper({ name }: { name: string }) {
                 </ListItemAvatar>
                 <ListItemText primary={name} secondary="400円" />
             </ListItem>
-            <Divider variant="inset" component="li" />
+            <Divider component="li" />
         </List>
     );
 }
