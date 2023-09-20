@@ -114,7 +114,7 @@ export default function Menus() {
                         bgcolor: "background.paper",
                         margin: "0 auto",
                     }}
-                 >
+                >
                     {menus.map((e, i) => {
                         return <MenuItemPaper name={e.name} price={e.price} key={i} />;
                     })}
