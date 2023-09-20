@@ -40,7 +40,7 @@ export default function MenuItemPaper({ name }: { name: string }) {
                 </ListItemAvatar>
                 <ListItem>
                     <Button size="medium">
-                        アレルギー情報<InfoIcon fontSize="large" htmlColor="#808080" />
+                        アレルギー情報<InfoIcon fontSize="medium" htmlColor="#ffd700" />
                     </Button> 
                 </ListItem>
                 <ListItemText primary={name} secondary="300円" />
