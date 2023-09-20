@@ -32,12 +32,11 @@ export default function MenuItemPaper({ name }: { name: string }) {
         >
             <ListItem>
                 <ListItemAvatar>
-                    <Avatar>
+                    <Avatar sx={{paddingBottom: "5px",}}>
                         <ImageIcon />
                     </Avatar>
-                    
+                    <InfoIcon fontSize="large" htmlColor="#808080" />
                 </ListItemAvatar>
-                <InfoIcon fontSize="large" htmlColor="#808080" />
                 <ListItemText primary={name} secondary="400円" />
             </ListItem>
             <Divider variant="inset" component="li" />
