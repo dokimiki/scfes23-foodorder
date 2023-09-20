@@ -38,7 +38,7 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                         <ImageIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItem sx={{display: "flex",flexDirection:"colum",padding: "none",}}>
+                <ListItem sx={{display: "flex",flexDirection:"colum",padding:"0 20px",}}>
                     <Typography>{name}</Typography>
                     <Typography>{price}円</Typography>
                     <Button size="medium">
