@@ -12,6 +12,10 @@ import style from "./style.module.scss";
 import MenuItemPaper from "./menuItemPaper";
 import { allergensList } from "@/libs/types/allergen";
 import { Map } from "@mui/icons-material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
 
 const drawerBleeding = 68.5;
 
@@ -103,11 +107,17 @@ export default function Menus() {
                 >
                     味を選択してください！
                 </Typography>
-                <div className={style.menu_list}>
+                <List
+                    sx={{
+                        width: "100%",
+                        maxWidth: 360,
+                        bgcolor: "background.paper",
+                    }}
+                 >
                     {menus.map((e, i) => {
                         return <MenuItemPaper name={e.name} key={i} />;
                     })}
-                </div>
+                </List>
             </div>
 
             <Typography variant="h5">アレルゲン情報</Typography>
