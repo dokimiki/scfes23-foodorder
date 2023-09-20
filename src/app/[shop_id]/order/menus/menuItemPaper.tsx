@@ -37,9 +37,11 @@ export default function MenuItemPaper({ name }: { name: string }) {
                         <ImageIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <IconButton aria-label="delete">
-                    <InfoIcon fontSize="large" htmlColor="#808080" />
-                </IconButton>   
+                <ListItem>
+                    <IconButton aria-label="delete">
+                        <InfoIcon fontSize="large" htmlColor="#808080" />
+                    </IconButton> 
+                </ListItem>
                 <ListItemText primary={name} secondary="300円" />
             </ListItem>
             <Divider sx={{padding:"0 50px",}} component="li" />
