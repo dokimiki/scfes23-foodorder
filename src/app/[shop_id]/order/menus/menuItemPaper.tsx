@@ -33,7 +33,7 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                         <ImageIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <Stack  sx={{flexDirection:"colum",padding:"0 20px",}}>
+                <Stack  sx={{flexDirection:"colum",}}>
                     <ListItem>
                         <Typography>{name}</Typography>
                         <Typography>{price}円</Typography>

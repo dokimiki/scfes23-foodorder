@@ -111,7 +111,6 @@ export default function Menus() {
                     sx={{
                         width: "100%",
                         maxWidth: "500px",
-                        height : "500px",
                         bgcolor: "background.paper",
                         margin: "0 auto",
                     }}
