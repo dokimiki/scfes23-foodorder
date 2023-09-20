@@ -116,7 +116,7 @@ export default function Menus() {
                     }}
                  >
                     {menus.map((e, i) => {
-                        return <MenuItemPaper name={e.name} key={i} />;
+                        return <MenuItemPaper name={e.name} price={e.price} key={i} />;
                     })}
                 </List>
             </div>

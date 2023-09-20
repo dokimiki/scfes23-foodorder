@@ -23,7 +23,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
-export default function MenuItemPaper({ name }: { name: string }) {
+export default function MenuItemPaper({ name , price}: { name: string ,price: number}) {
     return (
         <List
             sx={{
@@ -39,6 +39,8 @@ export default function MenuItemPaper({ name }: { name: string }) {
                     </Avatar>
                 </ListItemAvatar>
                 <ListItem>
+                    <Typography>{name}</Typography>
+                    <Typography>{price}</Typography>
                     <Button size="medium">
                         アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
                     </Button> 
