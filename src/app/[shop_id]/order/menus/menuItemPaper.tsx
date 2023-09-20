@@ -38,14 +38,13 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                         <ImageIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItem>
+                <ListItem sx={{display: "flex",justifyContent: "center"}}>
                     <Typography>{name}</Typography>
-                    <Typography>{price}</Typography>
+                    <Typography>{price}円</Typography>
                     <Button size="medium">
                         アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
                     </Button> 
                 </ListItem>
-                <ListItemText primary={name} secondary="300円" />
             </ListItem>
             <Divider sx={{padding:"0 50px",}} component="li" />
         </List>
