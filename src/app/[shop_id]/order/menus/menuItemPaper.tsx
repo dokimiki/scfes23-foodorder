@@ -29,17 +29,16 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
             sx={{
                 width: "100%",
                 maxWidth: 360,
-                height: "300px",
                 bgcolor: "background.paper",
             }}
         >
             <ListItem>
                 <ListItemAvatar>
-                    <Avatar sx={{paddingBottom: "5px",}}>
+                    <Avatar>
                         <ImageIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItem sx={{display: "flex",flexDirection:"colum"}}>
+                <ListItem sx={{display: "flex",flexDirection:"colum",padding: "none",}}>
                     <Typography>{name}</Typography>
                     <Typography>{price}円</Typography>
                     <Button size="medium">
