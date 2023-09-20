@@ -29,6 +29,7 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
             sx={{
                 width: "100%",
                 maxWidth: 360,
+                height: "300px",
                 bgcolor: "background.paper",
             }}
         >
