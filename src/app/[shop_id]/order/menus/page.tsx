@@ -113,7 +113,7 @@ export default function Menus() {
                         maxWidth: "500px",
                         height : "100px",
                         bgcolor: "background.paper",
-                        margin: "100px auto",
+                        margin: "auto auto",
                     }}
                  >
                     {menus.map((e, i) => {
