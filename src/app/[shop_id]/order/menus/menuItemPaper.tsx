@@ -34,7 +34,7 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                     </Avatar>
                 </ListItemAvatar>
                     
-                    <ListItemText primary={name} secondary={price} /><p>円</p>
+                    <ListItemText  secondary={price} primary={name} /><p>円</p>
 
                         <Button size="medium" sx={{fontSize: "0.7rem",}}>
                             アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
