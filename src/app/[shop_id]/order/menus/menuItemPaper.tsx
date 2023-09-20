@@ -22,23 +22,18 @@ import Divider from "@mui/material/Divider";
 import InfoIcon from "@mui/icons-material/Info";
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
+import { Directions } from "@mui/icons-material";
 
 export default function MenuItemPaper({ name , price}: { name: string ,price: number}) {
     return (
-        <List
-            sx={{
-                width: "100%",
-                maxWidth: 360,
-                bgcolor: "background.paper",
-            }}
-        >
+        <>
             <ListItem>
                 <ListItemAvatar>
                     <Avatar>
                         <ImageIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItem sx={{display: "flex",flexDirection:"colum",padding:"0 20px",}}>
+                <ListItem sx={{padding:"0 20px",}}>
                     <Typography>{name}</Typography>
                     <Typography>{price}円</Typography>
                     <Button size="medium">
@@ -47,6 +42,6 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                 </ListItem>
             </ListItem>
             <Divider sx={{padding:"0 50px",}} component="li" />
-        </List>
+        </>
     );
 }
