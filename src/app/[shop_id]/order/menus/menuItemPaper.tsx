@@ -20,6 +20,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import Divider from "@mui/material/Divider";
 import InfoIcon from "@mui/icons-material/Info";
+import IconButton from '@mui/material/IconButton';
 
 export default function MenuItemPaper({ name }: { name: string }) {
     return (
@@ -35,9 +36,12 @@ export default function MenuItemPaper({ name }: { name: string }) {
                     <Avatar sx={{paddingBottom: "5px",}}>
                         <ImageIcon />
                     </Avatar>
-                    <InfoIcon fontSize="large" htmlColor="#808080" />
+                    <IconButton aria-label="delete">
+                        <InfoIcon fontSize="large" htmlColor="#808080" />
+                    </IconButton>
+                    
                 </ListItemAvatar>
-                <ListItemText primary={name} secondary="400円" />
+                <ListItemText primary={name} secondary="300円" />
             </ListItem>
             <Divider sx={{padding:"0 50px",}} component="li" />
         </List>
