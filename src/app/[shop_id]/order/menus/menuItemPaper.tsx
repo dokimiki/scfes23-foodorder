@@ -21,6 +21,7 @@ import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import Divider from "@mui/material/Divider";
 import InfoIcon from "@mui/icons-material/Info";
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 
 export default function MenuItemPaper({ name }: { name: string }) {
     return (
@@ -38,9 +39,9 @@ export default function MenuItemPaper({ name }: { name: string }) {
                     </Avatar>
                 </ListItemAvatar>
                 <ListItem>
-                    <IconButton aria-label="delete">
+                    <Button size="medium">
                         <InfoIcon fontSize="large" htmlColor="#808080" />
-                    </IconButton> 
+                    </Button> 
                 </ListItem>
                 <ListItemText primary={name} secondary="300円" />
             </ListItem>
