@@ -25,7 +25,6 @@ import Button from '@mui/material/Button';
 import { Directions } from "@mui/icons-material";
 
 export default function MenuItemPaper({ name , price}: { name: string ,price: number}) {
-    name +="円";
     return (
         <>
             <ListItem>
@@ -35,7 +34,7 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                     </Avatar>
                 </ListItemAvatar>
                     
-                    <ListItemText primary={name} secondary={price} />
+                    <ListItemText primary={name} secondary={price} /><p>円</p>
 
                         <Button size="medium" sx={{fontSize: "0.7rem",}}>
                             アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
