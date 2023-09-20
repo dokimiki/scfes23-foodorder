@@ -110,7 +110,7 @@ export default function Menus() {
                 <List
                     sx={{
                         width: "100%",
-                        maxWidth: 360,
+                        maxWidth: 500,
                         bgcolor: "background.paper",
                         margin: "0 auto",
                     }}
