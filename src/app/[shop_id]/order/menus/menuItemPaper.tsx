@@ -23,6 +23,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { Directions } from "@mui/icons-material";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 export default function MenuItemPaper({ name , price}: { name: string ,price: number}) {
     return (
@@ -35,10 +36,10 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                 </ListItemAvatar>
                     
                     <ListItemText primary={name} secondary={price} />
-
-                        <Button size="medium" sx={{fontSize: "0.7rem",}}>
-                            アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
-                        </Button> 
+                    <Button variant="outlined"><AddShoppingCartIcon/></Button>
+                    <Button size="medium" sx={{fontSize: "0.7rem",}}>
+                        アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
+                    </Button> 
             </ListItem>
 
             <Divider sx={{padding:"0 50px",}} component="li" />
