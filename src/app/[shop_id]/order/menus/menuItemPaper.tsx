@@ -33,15 +33,12 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                         <ImageIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <Stack  sx={{flexDirection:"colum",}}>
                     
                     <ListItemText primary={name} secondary={price}/>
 
                         <Button size="medium">
                             アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
                         </Button> 
-                    
-                </Stack>
             </ListItem>
 
             <Divider sx={{padding:"0 50px",}} component="li" />
