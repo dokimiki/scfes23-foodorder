@@ -37,7 +37,7 @@ export default function MenuItemPaper({ name , price}: { name: string ,price: nu
                     
                     <ListItemText primary={name} secondary={price} />
                     <Box>
-                        <Button variant="contained"  disableElevation sx={{color:"white",boxShadow:"none",}} >カートに追加<AddShoppingCartIcon fontSize="small"/></Button>
+                        <Button variant="contained"  disableElevation sx={{boxShadow:"none",}} ><Typography sx={{color: "white"}}>カートに追加</Typography><AddShoppingCartIcon fontSize="small"/></Button>
                         <Button size="medium" sx={{fontSize: "0.7rem",}}>
                             アレルギー情報<InfoIcon fontSize="medium" htmlColor="#FECC4E" />
                         </Button>
