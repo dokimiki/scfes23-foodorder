@@ -33,8 +33,8 @@ export default function PotatoTable() {
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell >Calories</TableCell>
-            <TableCell >Fat&nbsp;(g)</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,8 +46,8 @@ export default function PotatoTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell >{row.calories}</TableCell>
-              <TableCell >{row.fat}</TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
             </TableRow>
           ))}
         </TableBody>
