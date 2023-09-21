@@ -40,13 +40,8 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
                     <AllergenModal />
                 </Box>
 
-<<<<<<< HEAD
                 <Box sx={{ marginLeft: "auto" }}>
                     <Button size="small" variant="contained" color="info" onClick={onClickAddToCart} disableElevation endIcon={<AddShoppingCartIcon />} sx={{ boxShadow: "none" }} >
-=======
-                <Box sx={{ marginLeft: "auto",width:"auto" }}>
-                    <Button fullWidth variant="contained" color="info" disableElevation sx={{ boxShadow: "none" }}>
->>>>>>> 169f095 (wip)
                         <Typography color={"#EEE"}>カートに追加</Typography>
                     </Button>
                 </Box>
