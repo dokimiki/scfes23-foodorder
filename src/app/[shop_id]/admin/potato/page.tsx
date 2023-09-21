@@ -28,13 +28,13 @@ const rows = [
 
 export default function PotatoTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell >Calories</TableCell>
+            <TableCell >Fat&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,8 +46,8 @@ export default function PotatoTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell >{row.calories}</TableCell>
+              <TableCell >{row.fat}</TableCell>
             </TableRow>
           ))}
         </TableBody>
