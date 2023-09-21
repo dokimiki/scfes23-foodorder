@@ -25,10 +25,7 @@ export default function AllergenModal() {
 
     return (
         <div>
-            <Box sx={{ textAlign: "left" }}>
-                
-            </Box>
-            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+            <Modal open={open} onClose={handleClose}>
                 <Box sx={style}>
                     <AllAllergen
                         allergens={{

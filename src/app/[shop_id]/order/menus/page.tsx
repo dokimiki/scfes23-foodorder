@@ -19,6 +19,8 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 
 const drawerBleeding = 68.5;
 
+const iOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
 export default function Menus() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
@@ -116,7 +118,16 @@ export default function Menus() {
                     }}
                 >
                     {menus.map((e, i) => {
-                        return <MenuItemPaper name={e.name} price={e.price} onClickAddToCart={() => {addToCart(e.id)}} key={i} />;
+                        return (
+                            <MenuItemPaper
+                                name={e.name}
+                                price={e.price}
+                                onClickAddToCart={() => {
+                                    addToCart(e.id);
+                                }}
+                                key={i}
+                            />
+                        );
                     })}
                 </List>
             </div>
@@ -147,6 +158,8 @@ export default function Menus() {
                 ModalProps={{
                     keepMounted: true,
                 }}
+                disableBackdropTransition={!iOS}
+                disableDiscovery={iOS}
             >
                 {menus === undefined ? (
                     <></>
