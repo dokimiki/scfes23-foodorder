@@ -42,7 +42,10 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
 
                 <Box sx={{ marginLeft: "auto" }}>
                     <Button size="small" variant="contained" color="info" onClick={onClickAddToCart} disableElevation endIcon={<AddShoppingCartIcon />} sx={{ boxShadow: "none" }} >
-                        <Typography color={"#EEE"}>カートに追加</Typography>
+                        <Stack>
+                        <Typography color={"#EEE"}>カートに</Typography>
+                        <Typography color={"#EEE"}>追加</Typography>
+                        </Stack>
                     </Button>
                 </Box>
             </ListItem>
