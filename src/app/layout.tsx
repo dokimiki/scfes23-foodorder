@@ -1,7 +1,8 @@
 "use client";
 import * as React from "react";
 import Head from "next/head";
-import style from "./style.module.scss";
+import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
+import { css } from "@emotion/react";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -11,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <title>nextApp</title>
                     <meta name="apple-mobile-web-app-capable" content="yes" />
                 </Head>
-                {children}
+                <ThemeRegistry>{children}</ThemeRegistry>
             </body>
         </html>
     );
