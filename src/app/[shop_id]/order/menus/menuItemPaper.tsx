@@ -37,11 +37,11 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
                 </ListItemAvatar>
                 <Box>
                     <Typography fontSize={"1.2rem"}>{name}</Typography>
-                    <Button size="small">
+                    <Button size="small" sx={{color: "#808080"}}>
                     <Typography color={"#808080"} fontSize={"0.8rem"} borderBottom={"1px solid #808080"} textAlign={"right"}>
                         商品情報詳細
-                    </Typography>
-                </Button>
+                        </Typography>
+                    </Button>
                     <AllergenModal />
                 </Box>
 
