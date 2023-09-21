@@ -116,7 +116,7 @@ export default function Menus() {
                     }}
                 >
                     {menus.map((e, i) => {
-                        return <MenuItemPaper name={e.name} price={e.price} key={i} />;
+                        return <MenuItemPaper name={e.name} price={e.price} onClickAddToCart={() => {addToCart(e.id)}} key={i} />;
                     })}
                 </List>
             </div>
