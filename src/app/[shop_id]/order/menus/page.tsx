@@ -16,6 +16,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Head from "next/head";
 
 const drawerBleeding = 68.5;
 
@@ -80,6 +81,10 @@ export default function Menus() {
                 margin-bottom: calc(${drawerBleeding}px);
             `}
         >
+            <Head>
+                <title>nextApp</title>
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+            </Head>
             <Global
                 styles={{
                     ".MuiDrawer-root > .MuiPaper-root": {
