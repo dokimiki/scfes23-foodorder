@@ -43,8 +43,6 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
                     <Button
                         size="small"
                         sx={{
-                            color: theme.palette.getContrastText(grey[300]),
-                            backgroundColor: grey[300],
                             "&:hover": {
                                 backgroundColor: grey[500],
                             },
