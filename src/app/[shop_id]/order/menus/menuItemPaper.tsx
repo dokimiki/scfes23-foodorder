@@ -24,7 +24,7 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import { Directions, PhotoSizeSelectActual } from "@mui/icons-material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import AllergenModal from "./madal";
+import AllergenModal from "./modal";
 
 export default function MenuItemPaper({ name, price, onClickAddToCart }: { name: string; price: number; onClickAddToCart: () => void }) {
     return (
