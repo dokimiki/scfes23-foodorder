@@ -19,6 +19,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <meta name="apple-mobile-web-app-capable" content="yes" />
                 </Head>
                 <ThemeRegistry>{children}</ThemeRegistry>
+                <div
+                    css={css`
+                        background: black;
+                        position: fixed;
+                        bottom: 0;
+                    `}
+                >
+                    test
+                </div>
             </body>
         </html>
     );
