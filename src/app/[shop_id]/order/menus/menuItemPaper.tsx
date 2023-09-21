@@ -25,8 +25,11 @@ import Button from "@mui/material/Button";
 import { Directions, PhotoSizeSelectActual } from "@mui/icons-material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AllergenModal from "./modal";
+import grey from "@mui/material/colors/grey";
+import { useTheme } from "@mui/material";
 
 export default function MenuItemPaper({ name, price, onClickAddToCart }: { name: string; price: number; onClickAddToCart: () => void }) {
+    const theme = useTheme();
     return (
         <>
             <ListItem>
@@ -37,16 +40,31 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
                 </ListItemAvatar>
                 <Box>
                     <Typography fontSize={"1.2rem"}>{name}</Typography>
-                    <Button size="small" sx={{color: "#808080"}}>
-                    <Typography color={"#808080"} fontSize={"0.8rem"} borderBottom={"1px solid #808080"} textAlign={"right"}>
+                    <Button
+                        size="small"
+                        sx={{
+                            color: theme.palette.getContrastText(grey[300]),
+                            backgroundColor: grey[300],
+                            "&:hover": {
+                                backgroundColor: grey[500],
+                            },
+                        }}
+                    >
                         商品情報詳細
-                        </Typography>
                     </Button>
                     <AllergenModal />
                 </Box>
 
                 <Box sx={{ marginLeft: "auto" }}>
-                    <Button size="medium" variant="contained" color="info" onClick={onClickAddToCart} disableElevation endIcon={<AddShoppingCartIcon />} sx={{ boxShadow: "none" }} >
+                    <Button
+                        size="medium"
+                        variant="contained"
+                        color="info"
+                        onClick={onClickAddToCart}
+                        disableElevation
+                        endIcon={<AddShoppingCartIcon />}
+                        sx={{ boxShadow: "none" }}
+                    >
                         <Typography color={"#EEE"}>追加 </Typography>
                     </Button>
                 </Box>
