@@ -26,11 +26,7 @@ export default function AllergenModal() {
     return (
         <div>
             <Box sx={{ textAlign: "left" }}>
-                <Button onClick={handleOpen} size="small">
-                    <Typography color={"#808080"} fontSize={"0.8rem"} borderBottom={"1px solid #808080"} textAlign={"right"}>
-                        商品情報詳細
-                    </Typography>
-                </Button>
+                
             </Box>
             <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                 <Box sx={style}>
