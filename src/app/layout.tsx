@@ -1,17 +1,11 @@
 import * as React from "react";
 import Head from "next/head";
-import { css } from "@emotion/react";
+import style from "./style.module.scss";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="jp">
-            <body
-                css={css`
-                    height: 100vh;
-                    overflow: scroll;
-                    -webkit-overflow-scrolling: touch;
-                `}
-            >
+            <body>
                 <Head>
                     <title>nextApp</title>
                     <meta name="apple-mobile-web-app-capable" content="yes" />
