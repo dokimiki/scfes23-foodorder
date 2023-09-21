@@ -26,7 +26,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function PotatoTable() {
+export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -35,6 +35,8 @@ export default function PotatoTable() {
             <TableCell>Dessert (100g serving)</TableCell>
             <TableCell align="right">Calories</TableCell>
             <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell align="right">Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -48,6 +50,8 @@ export default function PotatoTable() {
               </TableCell>
               <TableCell align="right">{row.calories}</TableCell>
               <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
             </TableRow>
           ))}
         </TableBody>
