@@ -33,8 +33,8 @@ export default function BasicTable() {
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="center">Calories</TableCell>
-            <TableCell align="center">Fat&nbsp;(g)</TableCell>
+            <TableCell align="left">Calories</TableCell>
+            <TableCell align="left">Fat&nbsp;(g)</TableCell>
 
           </TableRow>
         </TableHead>
@@ -47,8 +47,8 @@ export default function BasicTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="center">{row.calories}</TableCell>
-              <TableCell align="center">{row.fat}</TableCell>
+              <TableCell align="left">{row.calories}</TableCell>
+              <TableCell align="left">{row.fat}</TableCell>
 
             </TableRow>
           ))}
