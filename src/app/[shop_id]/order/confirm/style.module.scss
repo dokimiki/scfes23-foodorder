@@ -1,0 +1,30 @@
+$main-font-size: 1.4rem;
+
+.main {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px;
+    p {
+        margin: 10px 0;       }
+    h1 {
+        margin-left: 10px;
+        margin-bottom: 30px;
+    }
+    .food {
+        display: flex;
+        flex-direction: column;
+        font-size: $main-font-size;
+        border-bottom: 1px solid #ccc;
+        .price {
+            margin-left: 20px;
+        }
+    }
+    .total_price {
+        font-size: $main-font-size;
+        display: flex;
+        justify-content:space-between;
+        margin-right: 20px;
+        align-items: center;
+    }
+}
