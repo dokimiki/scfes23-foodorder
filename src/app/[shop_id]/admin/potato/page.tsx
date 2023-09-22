@@ -19,8 +19,8 @@ function createData(
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('11:20', 159, 6.0, 24, 4.0),
+  createData('11:25', 237, 9.0, 37, 4.3),
 ];
 
 export default function BasicTable() {
@@ -29,7 +29,7 @@ export default function BasicTable() {
       <Table sx={{ minWidth: 650 ,width: 700,margin: "50px auto 0 auto",}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell>受付時間 (100g serving)</TableCell>
             <TableCell align="left">本数</TableCell>
             <TableCell align="left">完成時間</TableCell>
 
