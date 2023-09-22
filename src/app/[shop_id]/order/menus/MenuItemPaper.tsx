@@ -45,7 +45,7 @@ export default function MenuItemPaper({
                         onClick={openModal}
                         startIcon={<InfoIcon />}
                     >
-                        アレルゲン
+                        アレルゲン情報
                     </Button>
                 </Box>
 

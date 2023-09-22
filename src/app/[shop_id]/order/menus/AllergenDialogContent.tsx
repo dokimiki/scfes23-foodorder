@@ -30,7 +30,10 @@ export default function AllergenDialogContent({
 }) {
     return (
         <>
-            <DialogTitle>{itemInfo.name}のアレルゲン情報</DialogTitle>
+            <DialogTitle>
+                {itemInfo.name}
+                <Typography variant="body1">のアレルゲン情報</Typography>
+            </DialogTitle>
             <AllAllergen allergens={allergens} />
         </>
     );
