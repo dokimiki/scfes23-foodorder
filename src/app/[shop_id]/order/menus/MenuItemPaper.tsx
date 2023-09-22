@@ -52,7 +52,6 @@ export default function MenuItemPaper({
                 <Button
                     size="medium"
                     variant="contained"
-                    color="info"
                     onClick={onClickAddToCart}
                     endIcon={<AddShoppingCartIcon />}
                     sx={{ marginLeft: "auto" }}
