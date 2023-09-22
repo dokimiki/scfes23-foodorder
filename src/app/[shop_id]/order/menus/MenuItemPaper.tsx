@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import ImageIcon from "@mui/icons-material/Image";
+import InfoIcon from "@mui/icons-material/Info";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
@@ -42,16 +43,22 @@ export default function MenuItemPaper({
                             backgroundColor: "#0000",
                         }}
                         onClick={openModal}
+                        startIcon={<InfoIcon />}
                     >
                         アレルゲン
                     </Button>
                 </Box>
 
-                <Box sx={{ marginLeft: "auto" }}>
-                    <Button size="medium" variant="contained" color="info" onClick={onClickAddToCart} endIcon={<AddShoppingCartIcon />}>
-                        追加
-                    </Button>
-                </Box>
+                <Button
+                    size="medium"
+                    variant="contained"
+                    color="info"
+                    onClick={onClickAddToCart}
+                    endIcon={<AddShoppingCartIcon />}
+                    sx={{ marginLeft: "auto" }}
+                >
+                    追加
+                </Button>
             </ListItem>
 
             <Divider sx={{ padding: "0 50px" }} component="li" />
