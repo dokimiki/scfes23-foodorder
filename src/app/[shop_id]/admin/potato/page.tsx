@@ -29,7 +29,7 @@ export default function BasicTable() {
       <Table sx={{ minWidth: 650 ,width: 700,margin: "50px auto 0 auto",}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>受付時間 (100g serving)</TableCell>
+            <TableCell>受付時間 </TableCell>
             <TableCell align="left">本数</TableCell>
             <TableCell align="left">完成時間</TableCell>
 
