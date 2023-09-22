@@ -130,6 +130,7 @@ export default function Menus() {
                                 onClickAddToCart={() => {
                                     addToCart(e.id);
                                 }}
+                                openModal={() => {}}
                                 key={i}
                             />
                         );

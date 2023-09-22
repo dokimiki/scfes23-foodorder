@@ -24,23 +24,21 @@ export default function AllergenModal() {
     const handleClose = () => setOpen(false);
 
     return (
-        <div>
-            <Modal open={open} onClose={handleClose}>
-                <Box sx={style}>
-                    <AllAllergen
-                        allergens={{
-                            ebi: "NotContains",
-                            kani: "Contains",
-                            komugi: "NotContains",
-                            kurumi: "NotContains",
-                            milk: "NotContains",
-                            peanut: "Contamination",
-                            soba: "NotContains",
-                            tamago: "NotContains",
-                        }}
-                    />
-                </Box>
-            </Modal>
-        </div>
+        <Modal open={open} onClose={handleClose}>
+            <Box sx={style}>
+                <AllAllergen
+                    allergens={{
+                        ebi: "NotContains",
+                        kani: "Contains",
+                        komugi: "NotContains",
+                        kurumi: "NotContains",
+                        milk: "NotContains",
+                        peanut: "Contamination",
+                        soba: "NotContains",
+                        tamago: "NotContains",
+                    }}
+                />
+            </Box>
+        </Modal>
     );
 }

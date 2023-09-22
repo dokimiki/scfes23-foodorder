@@ -1,34 +1,27 @@
-import * as React from "react";
-import style from "./style.module.scss";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import ImageIcon from "@mui/icons-material/Image";
-import WorkIcon from "@mui/icons-material/Work";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
-import Divider from "@mui/material/Divider";
-import InfoIcon from "@mui/icons-material/Info";
-import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
-import { Directions, PhotoSizeSelectActual } from "@mui/icons-material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import AllergenModal from "./AllergenModal";
-import grey from "@mui/material/colors/grey";
 import { useTheme } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import ImageIcon from "@mui/icons-material/Image";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Typography from "@mui/material/Typography";
+import { grey } from "@mui/material/colors";
+import * as React from "react";
 
-export default function MenuItemPaper({ name, price, onClickAddToCart }: { name: string; price: number; onClickAddToCart: () => void }) {
+export default function MenuItemPaper({
+    name,
+    price,
+    onClickAddToCart,
+    openModal,
+}: {
+    name: string;
+    price: number;
+    onClickAddToCart: () => void;
+    openModal: () => void;
+}) {
     const theme = useTheme();
     return (
         <>
@@ -42,30 +35,21 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
                     <Typography fontSize={"1.2rem"}>{name}</Typography>
                     <Button
                         size="small"
-                        startIcon={<InfoIcon />}
                         variant="text"
                         sx={{
                             padding: 0,
                             color: grey[500],
                             backgroundColor: "#0000",
                         }}
+                        onClick={openModal}
                     >
-                        商品情報詳細
+                        アレルゲン
                     </Button>
-                    <AllergenModal />
                 </Box>
 
                 <Box sx={{ marginLeft: "auto" }}>
-                    <Button
-                        size="medium"
-                        variant="contained"
-                        color="info"
-                        onClick={onClickAddToCart}
-                        disableElevation
-                        endIcon={<AddShoppingCartIcon />}
-                        sx={{ boxShadow: "none" }}
-                    >
-                        <Typography color={"#EEE"}>追加 </Typography>
+                    <Button size="medium" variant="contained" color="info" onClick={onClickAddToCart} endIcon={<AddShoppingCartIcon />}>
+                        追加
                     </Button>
                 </Box>
             </ListItem>
