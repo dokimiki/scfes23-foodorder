@@ -150,7 +150,7 @@ export default function Menus() {
                 </List>
             </div>
 
-            <Dialog open={true}>
+            <Dialog open={false}>
                 <AllergenDialogContent
                     allergens={
                         {
