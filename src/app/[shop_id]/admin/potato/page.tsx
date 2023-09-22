@@ -21,7 +21,6 @@ function createData(
 const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
 ];
 
 export default function BasicTable() {
@@ -31,8 +30,8 @@ export default function BasicTable() {
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="left">Calories</TableCell>
-            <TableCell align="left">Fat&nbsp;(g)</TableCell>
+            <TableCell align="left">本数</TableCell>
+            <TableCell align="left">完成時間</TableCell>
 
           </TableRow>
         </TableHead>
