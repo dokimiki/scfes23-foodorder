@@ -21,7 +21,13 @@ const style = {
     p: 4,
 };
 
-export default function AllergenDialogContent({ allergens, itemInfo }: { allergens: allergensList; itemInfo: MenuItem }) {
+export default function AllergenDialogContent({
+    allergens,
+    itemInfo = { id: "", name: "", price: 0, image: "" },
+}: {
+    allergens: allergensList;
+    itemInfo?: MenuItem;
+}) {
     return (
         <>
             <DialogTitle>{itemInfo.name}のアレルゲン情報</DialogTitle>

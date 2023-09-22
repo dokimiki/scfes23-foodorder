@@ -37,13 +37,10 @@ export default function Menus() {
             });
     }, []);
 
-    const [cart, setCart] = React.useState([
-        { id: "1", quantity: 1 },
-        { id: "2", quantity: 2 },
-        { id: "3", quantity: 3 },
-        { id: "4", quantity: 2 },
-    ] as CartItem[]);
-    const [open, setOpen] = React.useState(false);
+    const [cart, setCart] = React.useState([] as CartItem[]);
+    const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+    const [selectedModalItemID, SelectModalItemID] = React.useState("");
 
     function addToCart(id: string) {
         const index = cart.findIndex((e) => e.id === id);
@@ -74,7 +71,7 @@ export default function Menus() {
     }
 
     const toggleDrawer = (newOpen: boolean) => () => {
-        setOpen(newOpen);
+        setIsDrawerOpen(newOpen);
     };
 
     if (menus.length <= 0) {
@@ -142,7 +139,10 @@ export default function Menus() {
                                 onClickAddToCart={() => {
                                     addToCart(e.id);
                                 }}
-                                openModal={() => {}}
+                                openModal={() => {
+                                    setIsDialogOpen(true);
+                                    SelectModalItemID(e.id);
+                                }}
                                 key={i}
                             />
                         );
@@ -150,7 +150,12 @@ export default function Menus() {
                 </List>
             </div>
 
-            <Dialog open={false}>
+            <Dialog
+                onClose={() => {
+                    setIsDialogOpen(false);
+                }}
+                open={isDialogOpen}
+            >
                 <AllergenDialogContent
                     allergens={
                         {
@@ -164,13 +169,13 @@ export default function Menus() {
                             tamago: "NotContains",
                         } as allergensList
                     }
-                    itemInfo={menus[1]}
+                    itemInfo={menus.find((e) => e.id === selectedModalItemID)}
                 />
             </Dialog>
 
             <SwipeableDrawer
                 anchor="bottom"
-                open={open}
+                open={isDrawerOpen}
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
                 swipeAreaWidth={drawerBleeding}
