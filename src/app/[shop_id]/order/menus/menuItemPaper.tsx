@@ -24,7 +24,7 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import { Directions, PhotoSizeSelectActual } from "@mui/icons-material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import AllergenModal from "./modal";
+import AllergenModal from "./AllergenModal";
 import grey from "@mui/material/colors/grey";
 import { useTheme } from "@mui/material";
 
@@ -42,6 +42,8 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
                     <Typography fontSize={"1.2rem"}>{name}</Typography>
                     <Button
                         size="small"
+                        startIcon={<InfoIcon />}
+                        variant="text"
                         sx={{
                             "&:hover": {
                                 backgroundColor: grey[500],

@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import InfoIcon from "@mui/icons-material/Info";
-import AllAllergen from "./allergen";
+import AllAllergen from "./AllAllergen";
 
 const style = {
     position: "absolute" as "absolute",
