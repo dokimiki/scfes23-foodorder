@@ -17,6 +17,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Head from "next/head";
+import { Dialog } from "@mui/material";
+import AllergenDialogContent from "./AllergenDialogContent";
 
 const drawerBleeding = 68.5;
 
@@ -153,6 +155,10 @@ export default function Menus() {
                     } as allergensList
                 }
             />
+
+            <Dialog open={true}>
+                <AllergenDialogContent />
+            </Dialog>
 
             <SwipeableDrawer
                 anchor="bottom"
