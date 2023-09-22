@@ -9,21 +9,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
+  reception_time: string,
+  quant: number,
+  completion_time: number,
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { 
+    reception_time, quant,completion_time, };
 }
 
 const rows = [
-  createData('11:20', 159, 6.0, 24, 4.0),
-  createData('11:25', 237, 9.0, 37, 4.3),
+  createData('11:20', 159,6.0),
 ];
 
-export default function BasicTable() {
+function  content(){
+    
+}
+
+export default function Potato() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ width: 700,margin: "50px auto 0 auto",}} aria-label="simple table">
@@ -38,14 +40,14 @@ export default function BasicTable() {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.reception_time}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.reception_time}
               </TableCell>
-              <TableCell align="left">{row.calories}</TableCell>
-              <TableCell align="left">{row.fat}</TableCell>
+              <TableCell align="left">{row.quant}</TableCell>
+              <TableCell align="left">{row.completion_time}</TableCell>
 
             </TableRow>
           ))}
