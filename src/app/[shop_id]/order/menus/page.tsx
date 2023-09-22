@@ -157,7 +157,21 @@ export default function Menus() {
             />
 
             <Dialog open={true}>
-                <AllergenDialogContent />
+                <AllergenDialogContent
+                    allergens={
+                        {
+                            ebi: "NotContains",
+                            kani: "Contains",
+                            komugi: "NotContains",
+                            kurumi: "NotContains",
+                            milk: "NotContains",
+                            peanut: "Contamination",
+                            soba: "NotContains",
+                            tamago: "NotContains",
+                        } as allergensList
+                    }
+                    itemInfo={menus[1]}
+                />
             </Dialog>
 
             <SwipeableDrawer

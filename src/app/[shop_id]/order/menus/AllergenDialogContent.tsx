@@ -5,6 +5,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import InfoIcon from "@mui/icons-material/Info";
 import AllAllergen from "./AllAllergen";
+import { allergensList } from "@/libs/types/allergen";
+import { MenuItem } from "@/libs/types/item";
+import { DialogTitle } from "@mui/material";
 
 const style = {
     position: "absolute" as "absolute",
@@ -18,19 +21,11 @@ const style = {
     p: 4,
 };
 
-export default function AllergenDialogContent() {
+export default function AllergenDialogContent({ allergens, itemInfo }: { allergens: allergensList; itemInfo: MenuItem }) {
     return (
-        <AllAllergen
-            allergens={{
-                ebi: "NotContains",
-                kani: "Contains",
-                komugi: "NotContains",
-                kurumi: "NotContains",
-                milk: "NotContains",
-                peanut: "Contamination",
-                soba: "NotContains",
-                tamago: "NotContains",
-            }}
-        />
+        <>
+            <DialogTitle>{itemInfo.name}のアレルゲン情報</DialogTitle>
+            <AllAllergen allergens={allergens} />
+        </>
     );
 }
