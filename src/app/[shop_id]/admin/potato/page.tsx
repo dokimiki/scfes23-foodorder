@@ -26,7 +26,7 @@ const rows = [
 export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 ,width: 700,margin: "50px auto 0 auto",}} aria-label="simple table">
+      <Table sx={{ width: 700,margin: "50px auto 0 auto",}} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>受付時間 </TableCell>
