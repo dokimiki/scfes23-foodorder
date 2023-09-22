@@ -45,6 +45,8 @@ export default function MenuItemPaper({ name, price, onClickAddToCart }: { name:
                         startIcon={<InfoIcon />}
                         variant="text"
                         sx={{
+                            color: theme.palette.getContrastText(grey[300]),
+                            backgroundColor: grey[300],
                             "&:hover": {
                                 backgroundColor: grey[500],
                             },
