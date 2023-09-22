@@ -17,7 +17,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Head from "next/head";
-import { Dialog } from "@mui/material";
+import { Backdrop, CircularProgress, Dialog } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
 
 const drawerBleeding = 68.5;
@@ -76,6 +76,16 @@ export default function Menus() {
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
     };
+
+    if (menus.length <= 0) {
+        return (
+            <main>
+                <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            </main>
+        );
+    }
 
     return (
         <main
@@ -139,22 +149,6 @@ export default function Menus() {
                     })}
                 </List>
             </div>
-
-            <Typography variant="h5">アレルゲン情報</Typography>
-            <AllAllergen
-                allergens={
-                    {
-                        ebi: "NotContains",
-                        kani: "Contains",
-                        komugi: "NotContains",
-                        kurumi: "NotContains",
-                        milk: "NotContains",
-                        peanut: "Contamination",
-                        soba: "NotContains",
-                        tamago: "NotContains",
-                    } as allergensList
-                }
-            />
 
             <Dialog open={true}>
                 <AllergenDialogContent
