@@ -11,10 +11,22 @@ import OrderDrawerContent from "./OrderDrawerContent";
 import MenuItemPaper from "./MenuItemPaper";
 import { allergensList } from "@/libs/types/allergen";
 import List from "@mui/material/List";
-import { Backdrop, CircularProgress, Dialog, Divider } from "@mui/material";
+import { Backdrop, Button, CircularProgress, Dialog, Divider, Stack } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
 
 const drawerBleeding = 68.5;
+
+function Bold({ children }: { children: React.ReactNode }) {
+    return (
+        <span
+            css={css`
+                font-weight: bold;
+            `}
+        >
+            {children}
+        </span>
+    );
+}
 
 export default function Menus() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -97,7 +109,7 @@ export default function Menus() {
                         fontSize: "2rem",
                     }}
                 >
-                    トルネードポテト小林
+                    <Bold>トルネードポテト小林</Bold>
                 </Typography>
                 <Typography variant="body1">
                     I3のトルネードポテト・ネット支店へようこそ！
@@ -105,8 +117,32 @@ export default function Menus() {
                     予約してくれた人の中から抽選で割引もあるよ！
                     <br /> このサイトで注文をして、お得に待ち時間なしでポテトを受け取ろう！
                     <br />
-                    使い方は簡単！ 1. 下のメニューから好きな味を選ぼう！
+                    <br />
+                    使い方は簡単！
+                    <br />
                 </Typography>
+                <ol
+                    css={css`
+                        margin: 0;
+                        padding-inline: 1rem;
+                    `}
+                >
+                    <li>
+                        下のメニューから<Bold>好きな味</Bold>を選ぼう！
+                    </li>
+                    <li>
+                        <Bold>「注文する」</Bold>ボタンを押そう！
+                    </li>
+                    <li>
+                        注文の<Bold>確認・送信</Bold>をしよう！
+                    </li>
+                    <li>
+                        金券とこのアプリをもって、<Bold>ポテト</Bold>を受け取りに来よう！
+                    </li>
+                    <li>
+                        <Bold>おいしく</Bold>食べよう！
+                    </li>
+                </ol>
             </div>
 
             <Divider sx={{ margin: "20px 0" }} />
@@ -118,7 +154,7 @@ export default function Menus() {
                         fontSize: "2rem",
                     }}
                 >
-                    味を選択してください！
+                    好きな味をえらぼう！
                 </Typography>
                 <List
                     sx={{
@@ -146,6 +182,12 @@ export default function Menus() {
                     })}
                 </List>
             </div>
+
+            <Stack sx={{ marginY: 2 }}>
+                <Button variant="contained" color="inherit" onClick={toggleDrawer(true)}>
+                    カートを開く
+                </Button>
+            </Stack>
 
             <Dialog
                 onClose={() => {
