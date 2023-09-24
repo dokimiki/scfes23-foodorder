@@ -1,4 +1,3 @@
-"use client";
 import Stepper from "@/components/Stepper";
 import { MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
 import { CartItem, MenuItem } from "@/libs/types/item";

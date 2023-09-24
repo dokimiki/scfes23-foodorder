@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import * as React from "react";
 import Stepper from "@/components/Stepper";
 import { CartItem, MenuItem } from "@/libs/types/item";
@@ -6,7 +7,6 @@ import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
-import InfoIcon from "@mui/icons-material/Info";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";

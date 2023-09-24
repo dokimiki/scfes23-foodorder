@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 "use client";
 import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
 import { getMenuItems } from "@/libs/Items";
