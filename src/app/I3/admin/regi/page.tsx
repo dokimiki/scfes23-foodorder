@@ -284,7 +284,7 @@ function SendingDialogContent({ total, onSend, onClose }: { total: number; onSen
                 <DialogContentText>
                     お客さんから金券をもらってください。
                     <br />
-                    支払いが完了したら、会計データを送信してください。
+                    金券の受け取りが完了したら、支払い完了ボタンを押してください。
                 </DialogContentText>
                 <Typography variant="h5" fontWeight="bold" sx={{ marginTop: 2 }}>
                     番号札を選択してください:
