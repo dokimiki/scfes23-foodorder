@@ -238,7 +238,6 @@ export default function Menus() {
                     removeFromCart={removeFromCart}
                     onOrder={() => {
                         sendCartData();
-                        console.log("test");
                     }}
                     drawerBleeding={drawerBleeding}
                 />
