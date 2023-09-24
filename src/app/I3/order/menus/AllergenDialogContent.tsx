@@ -3,21 +3,37 @@ import Typography from "@mui/material/Typography";
 import AllAllergen from "./AllAllergen";
 import { allergensList } from "@/libs/types/allergen";
 import { MenuItem } from "@/libs/types/item";
-import { DialogTitle } from "@mui/material";
+import { Divider, IconButton, Stack } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function AllergenDialogContent({
     allergens,
     itemInfo = { id: "", name: "", price: 0, image: "" },
+    onClose,
 }: {
     allergens: allergensList;
     itemInfo?: MenuItem;
+    onClose: () => void;
 }) {
     return (
         <>
-            <DialogTitle>
-                {itemInfo.name}
-                <Typography variant="body1">のアレルゲン情報</Typography>
-            </DialogTitle>
+            <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ padding: "16px 8px 16px 16px", minWidth: "100%", width: "70vw", maxWidth: "600px" }}
+            >
+                <Stack direction="row" alignItems="baseline" flexWrap="wrap">
+                    <Typography variant="inherit" sx={{ fontWeight: "500", fontSize: "1.25rem" }}>
+                        {itemInfo.name}
+                    </Typography>
+                    <Typography variant="body2">のアレルゲン情報</Typography>
+                </Stack>
+                <IconButton onClick={onClose}>
+                    <CloseIcon />
+                </IconButton>
+            </Stack>
+            <Divider />
             <AllAllergen allergens={allergens} />
         </>
     );

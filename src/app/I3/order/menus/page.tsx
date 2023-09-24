@@ -6,18 +6,11 @@ import { CartItem, MenuItem } from "@/libs/types/item";
 import { Global, css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import AllAllergen from "./AllAllergen";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import OrderDrawerContent from "./OrderDrawerContent";
-import style from "./style.module.scss";
 import MenuItemPaper from "./MenuItemPaper";
 import { allergensList } from "@/libs/types/allergen";
-import { Map } from "@mui/icons-material";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Head from "next/head";
 import { Backdrop, CircularProgress, Dialog } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
 
@@ -89,10 +82,6 @@ export default function Menus() {
                 margin-bottom: calc(${drawerBleeding}px);
             `}
         >
-            <Head>
-                <title>nextApp</title>
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-            </Head>
             <Global
                 styles={{
                     ".MuiDrawer-root > .MuiPaper-root": {
@@ -169,6 +158,9 @@ export default function Menus() {
                         } as allergensList
                     }
                     itemInfo={menus.find((e) => e.id === selectedModalItemID)}
+                    onClose={() => {
+                        setIsDialogOpen(false);
+                    }}
                 />
             </Dialog>
 
@@ -198,5 +190,3 @@ export default function Menus() {
         </main>
     );
 }
-
-/* ---------------------- ドロワー ----------------------*/
