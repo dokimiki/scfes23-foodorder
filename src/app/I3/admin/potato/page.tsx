@@ -8,25 +8,33 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
+import { ReserveItem } from "@/libs/types/reserve";
+import { Toolbar } from "@mui/material";
 
 export default function Potato() {
-    const reserveList: {
-        receptionTime: string;
-        qty: number;
-        completionTime: string;
-    }[] = [
-        {
-            receptionTime: "10:00",
-            qty: 1,
-            completionTime: "10:10",
-        },
-    ];
+    const reserveLists: ReserveItem[] = Array(20)
+        .fill(1)
+        .map((e, i) => {
+            let data: ReserveItem = {
+                receptionTime: new Date(new Date("2023/9/30 10:00").setMinutes(i * 5)),
+                completionTime: new Date(new Date("2023/9/30 10:00").setMinutes(i * 5 + 10)),
+                qty: Math.floor(Math.random() * 5) + 1,
+            };
+            return data;
+        });
+
     return (
         <>
-            <AppBar position="fixed" sx={{ top: "auto", bottom: 0, padding: "20px" }}>
-                <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
-                    合計: {reserveList.map((e, sum) => sum + e.qty)}本
-                </Typography>
+            <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
+                <Toolbar>
+                    <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
+                        合計:
+                        {reserveLists.reduce((sum, e) => {
+                            return sum + e.qty;
+                        }, 0)}
+                        本
+                    </Typography>
+                </Toolbar>
             </AppBar>
 
             <TableContainer component={Paper}>
@@ -50,30 +58,36 @@ export default function Potato() {
                     </TableHead>
 
                     <TableBody>
-                        {reserveList.map((e, i) => (
-                            <ReserveTable key={i} />
+                        {reserveLists.map((e, i) => (
+                            <ReserveTable key={i} reserveItem={e} />
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            <Toolbar></Toolbar>
         </>
     );
 }
 
-function ReserveTable() {
+function ReserveTable({ reserveItem }: { reserveItem: ReserveItem }) {
+    const receptionTime =
+        ("00" + reserveItem.receptionTime.getHours()).slice(-2) + ":" + ("00" + reserveItem.receptionTime.getMinutes()).slice(-2);
+    const completionTime =
+        ("00" + reserveItem.completionTime.getHours()).slice(-2) + ":" + ("00" + reserveItem.completionTime.getMinutes()).slice(-2);
     return (
         <TableRow>
             <TableCell>
-                <Typography fontSize={"1.7rem"}>{}</Typography>
+                <Typography fontSize={"1.7rem"}>{receptionTime}</Typography>
             </TableCell>
             <TableCell>
                 <Typography fontSize={"1.7rem"} align="center">
-                    {}本
+                    {reserveItem.qty}本
                 </Typography>
             </TableCell>
             <TableCell>
                 <Typography fontSize={"1.7rem"} align="center">
-                    {}分後
+                    {completionTime}
                 </Typography>
             </TableCell>
         </TableRow>
