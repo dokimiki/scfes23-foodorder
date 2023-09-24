@@ -10,6 +10,7 @@ export default function Completed() {
             text: barcode.split("").reduce((str, char, i) => {
                 return str + char + (i % 4 === 3 ? " " : "");
             }, ""),
+            fontSize: 16,
             background: "#00000000",
         },
     });
