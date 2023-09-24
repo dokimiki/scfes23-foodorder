@@ -46,7 +46,7 @@ export default function Potato() {
                 </TableHead>
                 <TableBody>
                     {reception_time.map((e, i) => (
-                        <TableRow>
+                        <TableRow key={i}>
                             <TableCell>
                                 <Typography fontSize={"1.7rem"}>{e}</Typography>
                             </TableCell>
