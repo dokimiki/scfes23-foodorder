@@ -21,6 +21,8 @@ import * as React from "react";
 import { MenuItemPaper } from "./MenuItemPaper";
 import { CartItemPaper } from "./CartItemPaper";
 import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 const MAX_CART_ITEM_QUANTITY = 99;
 
@@ -29,6 +31,7 @@ export default function Regi() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [orderCode, setOrderCode] = React.useState<string>("");
     const [isSending, setIsSending] = React.useState<boolean>(false);
+    const [isSendingDialogOpen, setIsSendingDialogOpen] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         getMenuItems()
@@ -75,17 +78,6 @@ export default function Regi() {
             if (newCart[index].quantity <= MIN_CART_ITEM_QUANTITY) {
                 newCart.splice(index, 1);
             }
-            setCart(newCart);
-        }
-    }
-
-    function deleteFromCart(id: string) {
-        const index = cart.findIndex((e) => e.id === id);
-        if (index === -1) {
-            return;
-        } else {
-            const newCart = cart.slice();
-            newCart.splice(index, 1);
             setCart(newCart);
         }
     }
@@ -201,6 +193,7 @@ export default function Regi() {
                                 setOrderCode("");
                                 setCart([]);
                             }}
+                            disabled={isSending}
                         >
                             注文リセット
                         </Button>
@@ -214,7 +207,6 @@ export default function Regi() {
                                     itemCartInfo={cart.find((cart) => cart.id === e.id)}
                                     addToCart={() => addToCart(e.id)}
                                     removeFromCart={() => removeFromCart(e.id)}
-                                    deleteFromCart={() => deleteFromCart(e.id)}
                                     key={i}
                                 />
                             );
@@ -229,20 +221,7 @@ export default function Regi() {
                             variant="contained"
                             fullWidth
                             onClick={() => {
-                                setIsSending(true);
-                                sendCartData(cart, orderCode)
-                                    .then((res) => {
-                                        console.log(res);
-                                        setOrderCode("");
-                                        setCart([]);
-                                        enqueueSnackbar("会計データを送信しました。", { variant: "success" });
-                                        setIsSending(false);
-                                    })
-                                    .catch((err) => {
-                                        console.log(err);
-                                        enqueueSnackbar("会計データの送信に失敗しました。", { variant: "error" });
-                                        setIsSending(false);
-                                    });
+                                setIsSendingDialogOpen(true);
                             }}
                             disabled={isSending}
                         >
@@ -263,6 +242,98 @@ export default function Regi() {
                     </div>
                 </Stack>
             </Stack>
+            <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isSending}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
+            <Dialog onClose={() => setIsSendingDialogOpen(false)} open={isSendingDialogOpen}>
+                <SendingDialogContent
+                    total={cart.reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)}
+                    onSend={() => {
+                        setIsSending(true);
+                        sendCartData(cart, orderCode)
+                            .then((res) => {
+                                console.log(res);
+                                setOrderCode("");
+                                setCart([]);
+                                enqueueSnackbar("会計データを送信しました。", { variant: "success" });
+                                setIsSending(false);
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                                enqueueSnackbar("会計データの送信に失敗しました。", { variant: "error" });
+                                setIsSending(false);
+                            });
+                    }}
+                    onClose={() => {
+                        setIsSendingDialogOpen(false);
+                    }}
+                />
+            </Dialog>
         </main>
+    );
+}
+
+function SendingDialogContent({ total, onSend, onClose }: { total: number; onSend: () => void; onClose: () => void }) {
+    return (
+        <>
+            <DialogTitle>{total}円の支払いを完了させてください。</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    お客さんから金券をもらってください。
+                    <br />
+                    支払いが完了したら、会計データを送信してください。
+                </DialogContentText>
+                <Typography variant="h5" fontWeight="bold" sx={{ marginTop: 2 }}>
+                    番号札を選択してください:
+                </Typography>
+                <Stack direction="row" flexWrap="wrap">
+                    <RadioGroup row defaultValue={0}>
+                        {Array(21)
+                            .fill(1)
+                            .map((e, i) => {
+                                return (
+                                    <FormControlLabel
+                                        key={i}
+                                        value={i}
+                                        control={
+                                            <Radio
+                                                sx={{
+                                                    "& .MuiSvgIcon-root": {
+                                                        fontSize: 28,
+                                                    },
+                                                }}
+                                            />
+                                        }
+                                        label={i > 0 ? ("00" + i).slice(-2) : "無"}
+                                        sx={{
+                                            background: "#bebebe",
+                                            borderRadius: "5px",
+                                            margin: "5px",
+                                            paddingRight: "9px",
+                                            minWidth: "5rem",
+                                        }}
+                                    />
+                                );
+                            })}
+                    </RadioGroup>
+                </Stack>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={onClose} color="warning" size="large" sx={{ marginRight: 2 }}>
+                    会計中断
+                </Button>
+                <Button
+                    onClick={() => {
+                        onSend();
+                        onClose();
+                    }}
+                    autoFocus
+                    color="success"
+                    size="large"
+                >
+                    支払い完了
+                </Button>
+            </DialogActions>
+        </>
     );
 }

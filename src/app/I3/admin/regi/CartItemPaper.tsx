@@ -14,13 +14,11 @@ export function CartItemPaper({
     itemCartInfo = { id: "", quantity: 0 },
     addToCart,
     removeFromCart,
-    deleteFromCart,
 }: {
     itemMenuInfo: MenuItem;
     itemCartInfo?: CartItem;
     addToCart: () => void;
     removeFromCart: () => void;
-    deleteFromCart: () => void;
 }) {
     return (
         <div>
@@ -50,17 +48,13 @@ export function CartItemPaper({
                         <Typography variant="subtitle1">合計:&nbsp;</Typography>
                         <Typography variant="h5">¥{((itemMenuInfo?.price ?? 0) * itemCartInfo.quantity).toLocaleString()}</Typography>
                     </Stack>
-                    <Stack direction="row">
-                        <IconButton aria-label="delete" onClick={() => deleteFromCart()}>
-                            <Delete fontSize="small" color="error" />
-                        </IconButton>
-                        <Stepper
-                            num={itemCartInfo.quantity}
-                            onClickAdd={() => addToCart()}
-                            onClickRemove={() => removeFromCart()}
-                            size="small"
-                        />
-                    </Stack>
+
+                    <Stepper
+                        num={itemCartInfo.quantity}
+                        onClickAdd={() => addToCart()}
+                        onClickRemove={() => removeFromCart()}
+                        size="medium"
+                    />
                 </Stack>
             </Paper>
         </div>
