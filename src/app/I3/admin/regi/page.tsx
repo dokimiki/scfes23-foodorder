@@ -138,9 +138,11 @@ export default function Regi() {
                                 .then((res) => {
                                     setOrderCode(barcodeInput);
                                     setCart(res);
+                                    setIsSendingDialogOpen(true);
                                 })
                                 .catch((err) => {
                                     console.log(err);
+                                    enqueueSnackbar("注文コードが見つかりませんでした。", { variant: "error" });
                                 });
 
                             event.target[0].value = "";
@@ -221,6 +223,7 @@ export default function Regi() {
                             variant="contained"
                             fullWidth
                             onClick={() => {
+                                if (cart.length === 0) return;
                                 setIsSendingDialogOpen(true);
                             }}
                             disabled={isSending}
@@ -245,7 +248,7 @@ export default function Regi() {
             <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isSending}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Dialog onClose={() => setIsSendingDialogOpen(false)} open={isSendingDialogOpen}>
+            <Dialog onClose={() => setIsSendingDialogOpen(false)} open={isSendingDialogOpen} keepMounted>
                 <SendingDialogContent
                     total={cart.reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)}
                     onSend={() => {
