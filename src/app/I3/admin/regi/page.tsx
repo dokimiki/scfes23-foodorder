@@ -1,4 +1,6 @@
+/** @jsxImportSource @emotion/react */
 "use client";
+
 import { MIN_CART_ITEM_QUANTITY, getCartDataFromOrderCode, sendCartData } from "@/libs/Carts";
 import { getMenuItems } from "@/libs/Items";
 import { CartItem, MenuItem } from "@/libs/types/item";
