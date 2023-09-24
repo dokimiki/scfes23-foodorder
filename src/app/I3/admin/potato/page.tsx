@@ -7,7 +7,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 
@@ -48,7 +47,7 @@ export default function Potato() {
 
                     <TableBody>
                         {reception_time.map((e, i) => (
-                            <TableRow>
+                            <TableRow key={i}>
                                 <TableCell>
                                     <Typography fontSize={"1.7rem"}>{e}</Typography>
                                 </TableCell>
