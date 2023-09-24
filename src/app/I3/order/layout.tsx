@@ -4,7 +4,7 @@ import Header from "@/components/layouts/OrderHeader";
 import Footer from "@/components/layouts/OrderFooter";
 import { Global } from "@emotion/react";
 
-export default function Layout({ children, params }: { children: React.ReactNode; params: any }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <Global
@@ -14,7 +14,7 @@ export default function Layout({ children, params }: { children: React.ReactNode
                     },
                 }}
             />
-            <Header title={"小林トルネード(I3)"} homeLink={"/" + params.shop_id + "/order/menus"} />
+            <Header title={"小林トルネード(I3)"} homeLink={"/I3/order/menus"} />
             {children}
             <Footer />
         </>

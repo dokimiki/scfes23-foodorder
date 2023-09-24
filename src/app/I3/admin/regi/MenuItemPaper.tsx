@@ -1,4 +1,3 @@
-"use client";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { css } from "@emotion/react";
 import Badge from "@mui/material/Badge";
