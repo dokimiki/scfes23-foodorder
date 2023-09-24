@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 function createData(reception_time: string, quant: number, completion_time: number) {
     return {
@@ -17,29 +18,65 @@ function createData(reception_time: string, quant: number, completion_time: numb
 
 const rows = [createData("11:20", 159, 6.0)];
 
-function content() {}
-
 export default function Potato() {
+    const reception_time = ["11:20", "11:25", "12:34"];
+    const quant = [3, 4, 2]; //商品の数量
+    const completion_time = [1, 10, 30];
+    const total_quant = quant.reduce((a, b) => a + b);
+    const total_completion_time = completion_time.reduce((a, b) => a + b);
     return (
         <TableContainer component={Paper}>
             <Table sx={{ width: 700, margin: "50px auto 0 auto" }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>受付時間 </TableCell>
-                        <TableCell align="left">本数</TableCell>
-                        <TableCell align="left">完成時間</TableCell>
+                        <TableCell>
+                            <Typography fontSize={"1.7rem"}>受付時間</Typography>
+                        </TableCell>
+                        <TableCell align="left">
+                            <Typography fontSize={"1.7rem"} align="center">
+                                本数
+                            </Typography>
+                        </TableCell>
+                        <TableCell align="left">
+                            <Typography fontSize={"1.7rem"} align="center">
+                                完成時間(目安)
+                            </Typography>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.reception_time} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                            <TableCell component="th" scope="row">
-                                {row.reception_time}
+                    {reception_time.map((e, i) => (
+                        <TableRow>
+                            <TableCell>
+                                <Typography fontSize={"1.7rem"}>{e}</Typography>
                             </TableCell>
-                            <TableCell align="left">{row.quant}</TableCell>
-                            <TableCell align="left">{row.completion_time}</TableCell>
+                            <TableCell>
+                                <Typography fontSize={"1.7rem"} align="center">
+                                    {quant[i]}本
+                                </Typography>
+                            </TableCell>
+                            <TableCell>
+                                <Typography fontSize={"1.7rem"} align="center">
+                                    {completion_time[i]}分
+                                </Typography>
+                            </TableCell>
                         </TableRow>
                     ))}
+                    <TableRow>
+                        <TableCell>
+                            <Typography fontSize={"1.7rem"}>合計:</Typography>
+                        </TableCell>
+                        <TableCell>
+                            <Typography fontSize={"1.7rem"} align="center">
+                                {total_quant}本
+                            </Typography>
+                        </TableCell>
+                        <TableCell>
+                            <Typography fontSize={"1.7rem"} align="center">
+                                {total_completion_time}分
+                            </Typography>
+                        </TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
         </TableContainer>
