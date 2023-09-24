@@ -18,7 +18,7 @@ export default function Potato() {
     const total_quant = quant.reduce((a, b) => a + b);
     return (
         <>
-            <AppBar position="fixed">
+            <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
                 <Toolbar>
                     <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
                         合計: {total_quant}本
