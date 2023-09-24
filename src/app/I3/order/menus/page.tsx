@@ -23,8 +23,6 @@ import AllergenDialogContent from "./AllergenDialogContent";
 
 const drawerBleeding = 68.5;
 
-const iOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
-
 export default function Menus() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
@@ -184,8 +182,6 @@ export default function Menus() {
                 ModalProps={{
                     keepMounted: true,
                 }}
-                disableBackdropTransition={!iOS}
-                disableDiscovery={iOS}
             >
                 {menus === undefined ? (
                     <></>
