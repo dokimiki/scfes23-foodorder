@@ -11,7 +11,7 @@ import OrderDrawerContent from "./OrderDrawerContent";
 import MenuItemPaper from "./MenuItemPaper";
 import { allergensList } from "@/libs/types/allergen";
 import List from "@mui/material/List";
-import { Backdrop, CircularProgress, Dialog } from "@mui/material";
+import { Backdrop, CircularProgress, Dialog, Divider } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
 
 const drawerBleeding = 68.5;
@@ -97,10 +97,19 @@ export default function Menus() {
                         fontSize: "2rem",
                     }}
                 >
-                    小林トルネードとは？
+                    トルネードポテト小林
                 </Typography>
-                <Typography variant="body1">味の種類豊富なトルネードポテト！うまい！</Typography>
+                <Typography variant="body1">
+                    I3のトルネードポテト・ネット支店へようこそ！
+                    <br />
+                    予約してくれた人の中から抽選で割引もあるよ！
+                    <br /> このサイトで注文をして、お得に待ち時間なしでポテトを受け取ろう！
+                    <br />
+                    使い方は簡単！ 1. 下のメニューから好きな味を選ぼう！
+                </Typography>
             </div>
+
+            <Divider sx={{ margin: "20px 0" }} />
 
             <div>
                 <Typography
