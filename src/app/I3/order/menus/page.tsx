@@ -13,6 +13,7 @@ import { allergensList } from "@/libs/types/allergen";
 import List from "@mui/material/List";
 import { Backdrop, Button, CircularProgress, Dialog, Divider, Stack } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
+import { useRouter } from "next/navigation";
 
 const drawerBleeding = 68.5;
 
@@ -29,6 +30,7 @@ function Bold({ children }: { children: React.ReactNode }) {
 }
 
 export default function Menus() {
+    const router = useRouter();
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
     React.useEffect(() => {
@@ -72,6 +74,10 @@ export default function Menus() {
             }
             setCart(newCart);
         }
+    }
+
+    function sendCartData() {
+        router.push("/I3/order/confirm");
     }
 
     const toggleDrawer = (newOpen: boolean) => () => {
@@ -225,17 +231,17 @@ export default function Menus() {
                     keepMounted: true,
                 }}
             >
-                {menus === undefined ? (
-                    <></>
-                ) : (
-                    <OrderDrawerContent
-                        menus={menus}
-                        cart={cart}
-                        addToCart={addToCart}
-                        removeFromCart={removeFromCart}
-                        drawerBleeding={drawerBleeding}
-                    />
-                )}
+                <OrderDrawerContent
+                    menus={menus}
+                    cart={cart}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                    onOrder={() => {
+                        sendCartData();
+                        console.log("test");
+                    }}
+                    drawerBleeding={drawerBleeding}
+                />
             </SwipeableDrawer>
         </main>
     );

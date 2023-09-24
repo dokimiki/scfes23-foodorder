@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import style from "./style.module.scss";
+import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 // 注文確認ページ
 
 function Food({ foodName, foodNum, foodPrice, foodSum }: { foodName: string; foodNum: number; foodPrice: number; foodSum: number }) {
@@ -22,6 +24,8 @@ function Food({ foodName, foodNum, foodPrice, foodSum }: { foodName: string; foo
 }
 
 export default function Confirm() {
+    const router = useRouter();
+
     const foodName = ["トルネードポテト(塩)", "かば焼きくん", "トルネードポテト(コンソメ)"];
     const foodNum = [3, 0, 2]; //商品の数量
     const foodPrice = [300, 10, 300]; //商品の値段
@@ -51,6 +55,14 @@ export default function Confirm() {
                     </span>
                 </p>
             </div>
+            <Button
+                variant="contained"
+                onClick={() => {
+                    router.push("/I3/order/completed");
+                }}
+            >
+                確定
+            </Button>
         </main>
     );
 }

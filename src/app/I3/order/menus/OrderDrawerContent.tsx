@@ -33,12 +33,14 @@ export default function OrderDrawerContent({
     cart,
     addToCart,
     removeFromCart,
+    onOrder,
     drawerBleeding,
 }: {
     menus: MenuItem[];
     cart: CartItem[];
     addToCart: (id: string) => void;
     removeFromCart: (id: string) => void;
+    onOrder: () => void;
     drawerBleeding: number;
 }) {
     let total = cart.reduce((amount, e) => {
@@ -75,7 +77,7 @@ export default function OrderDrawerContent({
                         </Typography>
                         <Typography variant="h4">{total.toLocaleString()}</Typography>
                     </Stack>
-                    <Button variant="contained" sx={{ margin: 2, pointerEvents: "all" }}>
+                    <Button variant="contained" sx={{ margin: 2, pointerEvents: "all" }} onClick={onOrder}>
                         注文する
                     </Button>
                 </Stack>

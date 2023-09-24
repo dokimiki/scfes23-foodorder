@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         },
                     }}
                 />
-                <Header title={"小林トルネード(I3)"} homeLink={"/I3/order/menus"} />
+                <Header title={"小林トルネード(I3)"} />
                 {children}
 
                 <Footer />
