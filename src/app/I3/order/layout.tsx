@@ -8,16 +8,19 @@ import { Global } from "@emotion/react";
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <Global
-                styles={{
-                    main: {
-                        padding: "20px",
-                    },
-                }}
-            />
-            <Header title={"小林トルネード(I3)"} homeLink={"/I3/order/menus"} />
-            <ThemeRegistry>{children}</ThemeRegistry>
-            <Footer />
+            <ThemeRegistry>
+                <Global
+                    styles={{
+                        main: {
+                            padding: "20px",
+                        },
+                    }}
+                />
+                <Header title={"小林トルネード(I3)"} homeLink={"/I3/order/menus"} />
+                {children}
+
+                <Footer />
+            </ThemeRegistry>
         </>
     );
 }

@@ -7,9 +7,11 @@ import Footer from "@/components/layouts/AdminFooter";
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <Header />
-            <ThemeRegistry>{children}</ThemeRegistry>
-            <Footer />
+            <ThemeRegistry>
+                <Header />
+                {children}
+                <Footer />
+            </ThemeRegistry>
         </>
     );
 }
