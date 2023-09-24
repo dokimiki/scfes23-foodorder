@@ -105,13 +105,16 @@ export default function Page() {
                 ))}
             </Box>
             <Dialog open={open} onClose={handleClose}>
+                <DialogContentText>注文を完了しますか？</DialogContentText>
                 <DialogTitle>
-                    <Typography>注文を完了しますか？</Typography>
+                    <Typography>12</Typography>
                 </DialogTitle>
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
+                    <Button onClick={handleClose}>
+                        <Typography color={"red"}>キャンセル</Typography>
+                    </Button>
                     <Button onClick={handleClose} autoFocus>
-                        Agree
+                        <Typography color={"blue"}>完了</Typography>
                     </Button>
                 </DialogActions>
             </Dialog>
