@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { seasoning } from "@/libs/types/seasoning";
 import { orderContent } from "@/libs/types/orderContent";
 import { Stack } from "@mui/material";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 export default function SeasoningPaper({ seases, order }: { seases: seasoning[]; order: orderContent }) {
     return (
@@ -18,7 +19,7 @@ export default function SeasoningPaper({ seases, order }: { seases: seasoning[];
                     ))}
                 </Stack>
 
-                <Box width={"120px"} textAlign={"center"}>
+                <Box width={"130px"} textAlign={"center"}>
                     {order.isMobilOrder ? (
                         <Typography fontSize={"1.2rem"} borderBottom={"1px solid black"} marginTop={"10px"}>
                             モバイル注文
@@ -28,9 +29,10 @@ export default function SeasoningPaper({ seases, order }: { seases: seasoning[];
                             店内注文
                         </Typography>
                     )}
-                    <Typography fontSize={"1.0rem"}>お客様番号 : {order.orderNumber}</Typography>
-                    <Button variant="contained" size="small" sx={{ margin: "20px 0" }}>
+                    <Typography fontSize={"1.1rem"}>お客様番号 : {order.orderNumber}</Typography>
+                    <Button variant="contained" size="medium" sx={{ margin: "10px 0" }}>
                         <Typography fontSize={"1.2rem"}>完了</Typography>
+                        <TaskAltIcon />
                     </Button>
                 </Box>
             </Stack>
