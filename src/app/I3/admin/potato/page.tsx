@@ -8,25 +8,29 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 
 export default function Potato() {
-    const reception_time = ["11:20", "11:25", "12:34", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10"];
-    const quant = [3, 4, 2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]; //商品の数量
-    const completion_time = [1, 10, 30, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
-    const total_quant = quant.reduce((a, b) => a + b);
+    const reserveList: {
+        receptionTime: string;
+        qty: number;
+        completionTime: string;
+    }[] = [
+        {
+            receptionTime: "10:00",
+            qty: 1,
+            completionTime: "10:10",
+        },
+    ];
     return (
         <>
-            <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
-                <Toolbar>
-                    <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
-                        合計: {total_quant}本
-                    </Typography>
-                </Toolbar>
+            <AppBar position="fixed" sx={{ top: "auto", bottom: 0, padding: "20px" }}>
+                <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
+                    合計: {reserveList.map((e, sum) => sum + e.qty)}本
+                </Typography>
             </AppBar>
 
             <TableContainer component={Paper}>
-                <Table sx={{ width: 700, margin: "80px auto 0 auto" }} aria-label="simple table">
+                <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>
@@ -46,26 +50,32 @@ export default function Potato() {
                     </TableHead>
 
                     <TableBody>
-                        {reception_time.map((e, i) => (
-                            <TableRow key={i}>
-                                <TableCell>
-                                    <Typography fontSize={"1.7rem"}>{e}</Typography>
-                                </TableCell>
-                                <TableCell>
-                                    <Typography fontSize={"1.7rem"} align="center">
-                                        {quant[i]}本
-                                    </Typography>
-                                </TableCell>
-                                <TableCell>
-                                    <Typography fontSize={"1.7rem"} align="center">
-                                        {completion_time[i]}分後
-                                    </Typography>
-                                </TableCell>
-                            </TableRow>
+                        {reserveList.map((e, i) => (
+                            <ReserveTable key={i} />
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
         </>
+    );
+}
+
+function ReserveTable() {
+    return (
+        <TableRow>
+            <TableCell>
+                <Typography fontSize={"1.7rem"}>{}</Typography>
+            </TableCell>
+            <TableCell>
+                <Typography fontSize={"1.7rem"} align="center">
+                    {}本
+                </Typography>
+            </TableCell>
+            <TableCell>
+                <Typography fontSize={"1.7rem"} align="center">
+                    {}分後
+                </Typography>
+            </TableCell>
+        </TableRow>
     );
 }
