@@ -27,7 +27,7 @@ export default function Potato() {
             </AppBar>
 
             <TableContainer component={Paper}>
-                <Table sx={{ width: 700, margin: "50px auto 0 auto" }} aria-label="simple table">
+                <Table sx={{ width: 700, margin: "80px auto 0 auto" }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>
