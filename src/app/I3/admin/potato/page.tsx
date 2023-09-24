@@ -19,9 +19,9 @@ function createData(reception_time: string, quant: number, completion_time: numb
 const rows = [createData("11:20", 159, 6.0)];
 
 export default function Potato() {
-    const reception_time = ["11:20", "11:25", "12:34"];
-    const quant = [3, 4, 2]; //商品の数量
-    const completion_time = [1, 10, 30];
+    const reception_time = ["11:20", "11:25", "12:34", "10", "10", "10", "10", "10", "10", "10", "10", "10"];
+    const quant = [3, 4, 2, 10, 10, 10, 10, 10, 10, 10, 10, 10]; //商品の数量
+    const completion_time = [1, 10, 30, 10, 10, 10, 10, 10, 10, 10, 10, 10];
     const total_quant = quant.reduce((a, b) => a + b);
     const total_completion_time = completion_time.reduce((a, b) => a + b);
     return (
