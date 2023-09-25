@@ -46,6 +46,7 @@ export default function OrderDrawerContent({
     let total = cart.reduce((amount, e) => {
         return amount + (menus.find((menu) => menu.id === e.id)?.price ?? 0) * e.quantity;
     }, 0);
+    console.log(cart);
     return (
         <>
             <Box
