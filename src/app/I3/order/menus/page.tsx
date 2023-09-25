@@ -43,7 +43,7 @@ export default function Menus() {
             });
     }, []);
 
-    const [cart, setCart] = React.useState([] as CartItem[]);
+    const [cart, setCart] = React.useState<CartItem[]>(JSON.parse(localStorage.getItem("cart-item") ?? ""));
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
     const [selectedModalItemID, SelectModalItemID] = React.useState("");
@@ -52,11 +52,13 @@ export default function Menus() {
         const index = cart.findIndex((e) => e.id === id);
         if (index === -1) {
             setCart([...cart, { id: id, quantity: 1 }]);
+            localStorage.setItem("cart-item", JSON.stringify([...cart, { id: id, quantity: 1 }]));
         } else {
             const newCart = cart.slice();
             newCart[index].quantity++;
             newCart[index].quantity = Math.min(newCart[index].quantity, MAX_CART_ITEM_QUANTITY);
             setCart(newCart);
+            localStorage.setItem("cart-item", JSON.stringify(newCart));
         }
     }
 
@@ -73,6 +75,7 @@ export default function Menus() {
                 newCart.splice(index, 1);
             }
             setCart(newCart);
+            localStorage.setItem("cart-item", JSON.stringify(newCart));
         }
     }
 
