@@ -55,6 +55,15 @@ export default function Confirm() {
                     </span>
                 </p>
             </div>
+
+            <Button
+                variant="contained"
+                onClick={() => {
+                    router.push("/I3/order/page");
+                }}
+            >
+                戻る
+            </Button>
             <Button
                 variant="contained"
                 onClick={() => {

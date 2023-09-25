@@ -46,7 +46,6 @@ export default function OrderDrawerContent({
     let total = cart.reduce((amount, e) => {
         return amount + (menus.find((menu) => menu.id === e.id)?.price ?? 0) * e.quantity;
     }, 0);
-    console.log(cart);
     return (
         <>
             <Box
@@ -79,7 +78,7 @@ export default function OrderDrawerContent({
                         <Typography variant="h4">{total.toLocaleString()}</Typography>
                     </Stack>
                     <Button variant="contained" sx={{ margin: 2, pointerEvents: "all" }} onClick={onOrder} disabled={cart.length <= 0}>
-                        注文する
+                        {cart.length <= 0 ? "カートが空です" : "注文する"}
                     </Button>
                 </Stack>
             </Box>
