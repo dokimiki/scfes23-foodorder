@@ -106,10 +106,11 @@ export default function Page() {
                     </>
                 ))}
             </Box>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose} sx={{margin: "50px"}}>
                 <DialogContentText>注文を完了しますか？</DialogContentText>
                 <DialogTitle>
-                    <Typography>{dialogOrderNumber}</Typography>
+                    <Typography fontSize={"1.2rem"}>お客様番号：</Typography>
+                    <Typography fontSize={"1.6rem"}>{dialogOrderNumber}</Typography>
                 </DialogTitle>
                 <DialogActions>
                     <Button onClick={handleClose}>
