@@ -77,7 +77,7 @@ export default function OrderDrawerContent({
                         </Typography>
                         <Typography variant="h4">{total.toLocaleString()}</Typography>
                     </Stack>
-                    <Button variant="contained" sx={{ margin: 2, pointerEvents: "all" }} onClick={onOrder}>
+                    <Button variant="contained" sx={{ margin: 2, pointerEvents: "all" }} onClick={onOrder} disabled={cart.length <= 0}>
                         注文する
                     </Button>
                 </Stack>
