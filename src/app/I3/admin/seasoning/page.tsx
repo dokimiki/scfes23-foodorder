@@ -4,10 +4,6 @@ import SeasoningPaper from "./SeasoningPaper";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { type } from "os";
-import { Key } from "@mui/icons-material";
-import { seasoning } from "@/libs/types/seasoning";
-import { orderContent } from "@/libs/types/orderContent";
 import { Stack } from "@mui/material";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import Button from "@mui/material/Button";
@@ -19,58 +15,72 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { MenuItem } from "@/libs/types/item";
+import { getMenuItems } from "@/libs/Items";
+import { Cart } from "@/libs/types/cart";
 
-export default function Page() {
-    const seasoningReservations: {
-        seasonings: seasoning[];
-        orderContents: orderContent;
-    }[] = [
+function getReservationCarts(): Cart[] {
+    return [
         {
-            seasonings: [
+            id: "1",
+            isMobileOrder: false,
+            numberTag: 15,
+            items: [
                 {
-                    seasoningName: "塩",
-                    qty: 1,
+                    id: "1",
+                    quantity: 2,
                 },
                 {
-                    seasoningName: "コショウ",
-                    qty: 1,
+                    id: "2",
+                    quantity: 1,
+                },
+                {
+                    id: "3",
+                    quantity: 4,
                 },
             ],
-            orderContents: { isMobilOrder: true, orderNumber: 1 },
         },
         {
-            seasonings: [
+            id: "2",
+            isMobileOrder: true,
+            numberTag: 0,
+            items: [
                 {
-                    seasoningName: "塩",
-                    qty: 2,
-                },
-                {
-                    seasoningName: "コショウ",
-                    qty: 2,
-                },
-                {
-                    seasoningName: "醤油",
-                    qty: 4,
-                },
-                {
-                    seasoningName: "バーベキュー",
-                    qty: 1,
+                    id: "4",
+                    quantity: 2,
                 },
             ],
-            orderContents: { isMobilOrder: false, orderNumber: 90 },
         },
     ];
+}
+
+export default function Page() {
     const [open, setOpen] = React.useState(false);
     const [dialogOrderNumber, setDialogOrderNumber] = React.useState(0);
 
-    const handleDrawerOpen = (num: number) => {
-        setOpen(true);
-        setDialogOrderNumber(num);
-    };
+    const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
-    const handleClose = () => {
+    React.useEffect(() => {
+        getMenuItems()
+            .then((res) => {
+                setMenus(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    function handleDialogClose() {
         setOpen(false);
-    };
+    }
+
+    function handleDialogOpen(orderNumber: number) {
+        setOpen(true);
+        setDialogOrderNumber(orderNumber);
+    }
+
+    const reservations: Cart[] = getReservationCarts();
+
     return (
         <main>
             <AppBar position="sticky" sx={{ marginBottom: "30px" }}>
@@ -81,42 +91,21 @@ export default function Page() {
                 </Toolbar>
             </AppBar>
             <Box sx={{ width: "100%", maxWidth: 800, bgcolor: "background.paper", margin: "0 auto" }}>
-                {seasoningReservations.map((e, i) => (
-                    <>
-                        <Stack direction="row" justifyContent={"space-between"} alignItems="center">
-                            <SeasoningPaper seases={e.seasonings} order={e.orderContents} />
-                            <Box width={"20%"} textAlign={"center"}>
-                                {e.orderContents.isMobilOrder ? (
-                                    <Typography fontSize={"1.2rem"} borderBottom={"1px solid black"} marginTop={"10px"}>
-                                        モバイル注文
-                                    </Typography>
-                                ) : (
-                                    <Typography fontSize={"1.2rem"} borderBottom={"1px solid black"} marginTop={"10px"}>
-                                        店内注文
-                                    </Typography>
-                                )}
-                                <Typography fontSize={"1.1rem"}>お客様番号 : {e.orderContents.orderNumber}</Typography>
-                                <Button variant="contained" size="medium" onClick={() => handleDrawerOpen(e.orderContents.orderNumber)} sx={{ margin: "10px 0" }}>
-                                    <Typography fontSize={"1.2rem"}>完了</Typography>
-                                    <TaskAltIcon />
-                                </Button>
-                            </Box>
-                        </Stack>
-                        <Divider variant="middle" />
-                    </>
+                {reservations.map((e, i) => (
+                    <SeasoningPaper key={i} />
                 ))}
             </Box>
-            <Dialog open={open} onClose={handleClose} sx={{margin: "50px"}}>
+            <Dialog open={open} onClose={handleDialogClose} sx={{ margin: "50px" }}>
                 <DialogContentText>注文を完了しますか？</DialogContentText>
                 <DialogTitle>
                     <Typography fontSize={"1.2rem"}>お客様番号：</Typography>
                     <Typography fontSize={"1.6rem"}>{dialogOrderNumber}</Typography>
                 </DialogTitle>
                 <DialogActions>
-                    <Button onClick={handleClose}>
+                    <Button onClick={handleDialogClose}>
                         <Typography color={"red"}>キャンセル</Typography>
                     </Button>
-                    <Button onClick={handleClose} autoFocus>
+                    <Button onClick={handleDialogClose} autoFocus>
                         <Typography color={"blue"}>完了</Typography>
                     </Button>
                 </DialogActions>

@@ -1,1 +1,0 @@
-export  type orderContent = { isMobilOrder: boolean; orderNumber: number };

@@ -1,1 +1,0 @@
-export type seasoning = { seasoningName: string; qty: number;};
