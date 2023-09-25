@@ -61,9 +61,11 @@ export default function Page() {
         },
     ];
     const [open, setOpen] = React.useState(false);
+    const [dialogOrderNumber, setDialogOrderNumber] = React.useState(0);
 
-    const handleClickOpen = () => {
+    const handleDrawerOpen = (num: number) => {
         setOpen(true);
+        setDialogOrderNumber(num);
     };
 
     const handleClose = () => {
@@ -94,7 +96,7 @@ export default function Page() {
                                     </Typography>
                                 )}
                                 <Typography fontSize={"1.1rem"}>お客様番号 : {e.orderContents.orderNumber}</Typography>
-                                <Button variant="contained" size="medium" onClick={handleClickOpen} sx={{ margin: "10px 0" }}>
+                                <Button variant="contained" size="medium" onClick={() => handleDrawerOpen(e.orderContents.orderNumber)} sx={{ margin: "10px 0" }}>
                                     <Typography fontSize={"1.2rem"}>完了</Typography>
                                     <TaskAltIcon />
                                 </Button>
@@ -107,7 +109,7 @@ export default function Page() {
             <Dialog open={open} onClose={handleClose}>
                 <DialogContentText>注文を完了しますか？</DialogContentText>
                 <DialogTitle>
-                    <Typography>12</Typography>
+                    <Typography>{dialogOrderNumber}</Typography>
                 </DialogTitle>
                 <DialogActions>
                     <Button onClick={handleClose}>
