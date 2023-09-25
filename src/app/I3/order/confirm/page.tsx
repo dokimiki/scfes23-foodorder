@@ -59,7 +59,7 @@ export default function Confirm() {
             <Button
                 variant="contained"
                 onClick={() => {
-                    router.push("/I3/order/page");
+                    router.push("/I3/order/menus");
                 }}
             >
                 戻る
