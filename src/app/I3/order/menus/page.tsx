@@ -43,7 +43,7 @@ export default function Menus() {
             });
     }, []);
 
-    const [cart, setCart] = React.useState<CartItem[]>(JSON.parse(localStorage.getItem("cart-item") ?? ""));
+    const [cart, setCart] = React.useState<CartItem[]>(JSON.parse(localStorage.getItem("cart-item") ?? "[]"));
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
     const [selectedModalItemID, SelectModalItemID] = React.useState("");
