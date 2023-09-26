@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { CartItem, MenuItem } from "@/libs/types/item";
-import { getMenuItems } from "@/libs/apis/Items";
+import { getMenuItems } from "@/libs/apis/Menus";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Stack from "@mui/material/Stack";

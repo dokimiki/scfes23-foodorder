@@ -47,6 +47,7 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                                         margin: "8px",
                                         height: "fit-content",
                                     }}
+                                    key={i}
                                 >
                                     <Avatar sx={{ width: "32px", height: "32px" }} />
                                     <Typography

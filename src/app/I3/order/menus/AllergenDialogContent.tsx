@@ -1,7 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import AllAllergen from "./AllAllergen";
-import { allergensList } from "@/libs/types/allergen";
+import { AllergensList } from "@/libs/types/allergen";
 import { MenuItem } from "@/libs/types/item";
 import { Divider, IconButton, Stack } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,7 +11,7 @@ export default function AllergenDialogContent({
     itemInfo = { id: "", name: "", price: 0, image: "" },
     onClose,
 }: {
-    allergens: allergensList;
+    allergens: AllergensList;
     itemInfo?: MenuItem;
     onClose: () => void;
 }) {

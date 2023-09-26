@@ -1,12 +1,12 @@
-export type allergenContaminationStatus = "NotContains" | "Contamination" | "Contains";
+export type AllergenContaminationStatus = "NotContains" | "Contamination" | "Contains";
 
-export type allergensList = {
-    ebi: allergenContaminationStatus;
-    kani: allergenContaminationStatus;
-    komugi: allergenContaminationStatus;
-    kurumi: allergenContaminationStatus;
-    milk: allergenContaminationStatus;
-    peanut: allergenContaminationStatus;
-    soba: allergenContaminationStatus;
-    tamago: allergenContaminationStatus;
+export type AllergensList = {
+    ebi: AllergenContaminationStatus;
+    kani: AllergenContaminationStatus;
+    komugi: AllergenContaminationStatus;
+    kurumi: AllergenContaminationStatus;
+    milk: AllergenContaminationStatus;
+    peanut: AllergenContaminationStatus;
+    soba: AllergenContaminationStatus;
+    tamago: AllergenContaminationStatus;
 };

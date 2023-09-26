@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 "use client";
-import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/apis/admin/Carts";
-import { getMenuItems } from "@/libs/apis/Items";
+import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
+import { getMenuItems } from "@/libs/apis/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { Global, css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
@@ -9,7 +9,7 @@ import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import OrderDrawerContent from "./OrderDrawerContent";
 import MenuItemPaper from "./MenuItemPaper";
-import { allergensList } from "@/libs/types/allergen";
+import { AllergensList } from "@/libs/types/allergen";
 import List from "@mui/material/List";
 import { Backdrop, Button, CircularProgress, Dialog, Divider, Stack } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
@@ -221,7 +221,7 @@ export default function Menus() {
                             peanut: "Contamination",
                             soba: "NotContains",
                             tamago: "NotContains",
-                        } as allergensList
+                        } as AllergensList
                     }
                     itemInfo={menus.find((e) => e.id === selectedModalItemID)}
                     onClose={() => {

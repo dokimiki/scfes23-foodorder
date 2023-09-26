@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { allergensList, allergenContaminationStatus } from "@/libs/types/allergen";
+import { AllergensList, AllergenContaminationStatus } from "@/libs/types/allergen";
 
 const allergenColor = {
     Contains: "#ed9b9b",
@@ -16,8 +16,8 @@ const allergenColor = {
     NotContains: "#00000000",
 };
 
-export default function AllAllergen({ allergens }: { allergens: allergensList }) {
-    let allergensInfo: { name: string; img: string; contamination: allergenContaminationStatus }[] = [
+export default function AllAllergen({ allergens }: { allergens: AllergensList }) {
+    let allergensInfo: { name: string; img: string; contamination: AllergenContaminationStatus }[] = [
         { name: "えび", img: "/img/allergen_ebi.png", contamination: allergens.ebi },
         { name: "かに", img: "/img/allergen_kani.png", contamination: allergens.kani },
         { name: "小麦", img: "/img/allergen_komugi.png", contamination: allergens.komugi },
