@@ -2,14 +2,15 @@
 import Bold from "@/components/Bold";
 import { getMenuItems } from "@/libs/apis/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
-import Avatar from "@mui/material/Avatar";
 import Backdrop from "@mui/material/Backdrop";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { execSync } from "child_process";
 import * as React from "react";
+import { cartMenu } from "./cartMenu";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -47,43 +48,7 @@ export default function Confirm() {
             </Typography>
 
             {cart.map((e, i) => {
-                const menu: MenuItem = menus.find((m) => m.id === e.id) || { id: "", name: "", price: 0, image: "" };
-                return (
-                    <div key={i}>
-                        <Stack
-                            direction="row"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            sx={{
-                                marginY: "0.5rem",
-                            }}
-                        >
-                            <Stack
-                                direction="row"
-                                alignItems="center"
-                                justifyContent="space-between"
-                                sx={{ width: "-webkit-fill-available" }}
-                            >
-                                <Stack direction="row" spacing={1} alignItems="center">
-                                    <Avatar src={menu.image} sx={{ width: "4.3rem", height: "4.3rem" }} />
-                                    <Stack>
-                                        <Typography variant="body1">{menu.name}</Typography>
-                                        <Typography variant="h6">¥{menu.price.toLocaleString()}</Typography>
-                                    </Stack>
-                                </Stack>
-
-                                <Typography variant="h6" sx={{ marginRight: "8px" }}>
-                                    ✕ {e.quantity}
-                                </Typography>
-                            </Stack>
-
-                            <Typography variant="h5" sx={{ width: "6rem" }} align="right">
-                                ¥{(menu.price * e.quantity).toLocaleString()}
-                            </Typography>
-                        </Stack>
-                        <Divider />
-                    </div>
-                );
+                return cartMenu(menus, e);
             })}
 
             <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ margin: "8px" }}>
