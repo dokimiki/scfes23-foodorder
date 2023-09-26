@@ -11,14 +11,14 @@ import Chip from "@mui/material/Chip";
 export default function SeasoningPaper({ order, onOpenModal }: { order: order; onOpenModal: () => void }) {
     return (
         <>
-            <Paper elevation={12} sx={{ padding: 2 }}>
+            <Paper elevation={6} sx={{ padding: 2 }}>
                 <Stack direction="row" justifyContent="space-between">
                     <Stack direction="row">
                         {order.items.map((e, i) => {
                             return <Chip label={e.id} avatar={<Avatar />} key={i} />;
                         })}
                     </Stack>
-                    <Stack direction="column" alignItems="center">
+                    <Stack direction="column" alignItems="center" sx={{ minWidth: "12rem" }}>
                         <Typography>{order.isMobileOrder ? "モバイル注文" : "店内注文"}</Typography>
                         <Divider sx={{ width: "100%" }} />
                         <Typography>番号札: {order.numberTag}</Typography>
