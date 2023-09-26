@@ -20,7 +20,16 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                             const menuName = menus.find((menu) => menu.id === item.id)?.name;
                             return (
                                 <Box
-                                    sx={{ borderRadius: "16px", background: "rgba(0, 0, 0, 0.08)", display: "flex", flexDirection: "row" }}
+                                    sx={{
+                                        borderRadius: "16px",
+                                        background: "rgba(0, 0, 0, 0.08)",
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        alignItem: "center",
+                                        minWidth: "5rem",
+                                        padding: "8px",
+                                        height: "fit-content",
+                                    }}
                                 >
                                     <Avatar sx={{ width: "32px", height: "32px" }} />
                                     <Typography>{menuName}</Typography>
