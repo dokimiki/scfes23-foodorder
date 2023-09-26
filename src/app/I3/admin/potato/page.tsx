@@ -19,6 +19,8 @@ import { getPotatoData } from "@/libs/apis/admin/Potato";
 
 export default function Potato() {
     const [orderedPotatoList, setOrderedPotatoList] = React.useState<OrderedPotato[]>([]);
+    const [isDialogOpen, setIsDialogOpen] = React.useState<boolean>(false);
+    const [selectedPotatoId, selectPotatoId] = React.useState<string>("");
 
     React.useEffect(() => {
         getPotatoData()
@@ -63,31 +65,44 @@ export default function Potato() {
                     <TableHead>
                         <TableRow>
                             <TableCell align="left">
-                                <Typography fontSize={"1.7rem"}>#</Typography>
+                                <Typography fontSize={"1.5rem"}>#</Typography>
                             </TableCell>
                             <TableCell align="center">
-                                <Typography fontSize={"1.2rem"}>注文方法</Typography>
+                                <Typography fontSize={"1.5rem"}>注文方法</Typography>
                             </TableCell>
                             <TableCell align="center">
-                                <Typography fontSize={"1.7rem"} align="center">
+                                <Typography fontSize={"1.5rem"} align="center">
                                     本数
                                 </Typography>
                             </TableCell>
                             <TableCell align="center">
-                                <Typography fontSize={"1.7rem"}>受付時間</Typography>
+                                <Typography fontSize={"1.5rem"}>受付時間</Typography>
                             </TableCell>
                             <TableCell align="center">
-                                <Typography fontSize={"1.7rem"} align="center">
+                                <Typography fontSize={"1.5rem"} align="center">
                                     完成予定
                                 </Typography>
                             </TableCell>
-                            <TableCell></TableCell>
+                            <TableCell align="center">
+                                <Typography fontSize={"1.5rem"} align="center">
+                                    ボタン
+                                </Typography>
+                            </TableCell>
                         </TableRow>
                     </TableHead>
 
                     <TableBody>
                         {orderedPotatoList.map((orderedPotato, i) => {
-                            return <PotatoTable key={i} orderedPotato={orderedPotato} />;
+                            return (
+                                <PotatoTable
+                                    key={i}
+                                    orderedPotato={orderedPotato}
+                                    onDone={() => {
+                                        selectPotatoId(orderedPotato.order.id);
+                                        setIsDialogOpen(true);
+                                    }}
+                                />
+                            );
                         })}
                     </TableBody>
                 </Table>

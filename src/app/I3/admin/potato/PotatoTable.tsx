@@ -19,19 +19,19 @@ export function PotatoTable({ orderedPotato, onDone }: { orderedPotato: OrderedP
                     <Bold>No. {orderedPotato.order.id}</Bold>
                 </Typography>
             </TableCell>
-            <TableCell align="center" sx={{ background: orderedPotato.order.isMobileOrder ? "#8bd1cfcc" : "#0000" }}>
+            <TableCell align="center" sx={{ background: orderedPotato.order.isMobileOrder ? "#0000" : "#fc6c" }}>
                 <Typography fontSize={"1.2rem"}>{orderedPotato.order.isMobileOrder ? "モバイル" : "店内"}</Typography>
             </TableCell>
             <TableCell align="center">
-                <Typography fontSize={"1.7rem"} align="center">
+                <Typography fontSize={"1.8rem"} align="center">
                     {orderedPotato.qty}本
                 </Typography>
             </TableCell>
             <TableCell align="center">
-                <Typography fontSize={"1.7rem"}>{receptionTime}</Typography>
+                <Typography fontSize={"1.5rem"}>{receptionTime}</Typography>
             </TableCell>
             <TableCell align="center">
-                <Typography fontSize={"1.7rem"} align="center">
+                <Typography fontSize={"1.5rem"} align="center">
                     {completionTime}
                 </Typography>
             </TableCell>
