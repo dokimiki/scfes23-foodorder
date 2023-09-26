@@ -1,6 +1,6 @@
 import { CartItem } from "./item"
 
-export type Cart = {
+export type order = {
     id: string;
     isMobileOrder: boolean;
     numberTag: number;

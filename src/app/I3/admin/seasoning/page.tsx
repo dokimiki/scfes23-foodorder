@@ -17,9 +17,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { MenuItem } from "@/libs/types/item";
 import { getMenuItems } from "@/libs/Items";
-import { Cart } from "@/libs/types/cart";
+import { order } from "@/libs/types/order";
 
-function getReservationCarts(): Cart[] {
+function getOrderedCarts(): order[] {
     return [
         {
             id: "1",
@@ -56,7 +56,7 @@ function getReservationCarts(): Cart[] {
 
 export default function Page() {
     const [open, setOpen] = React.useState(false);
-    const [dialogOrderNumber, setDialogOrderNumber] = React.useState(0);
+    const [dialogOrderId, setDialogOrderId] = React.useState("");
 
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
@@ -74,12 +74,12 @@ export default function Page() {
         setOpen(false);
     }
 
-    function handleDialogOpen(orderNumber: number) {
+    function handleDialogOpen(orderNumber: string) {
         setOpen(true);
-        setDialogOrderNumber(orderNumber);
+        setDialogOrderId(orderNumber);
     }
 
-    const reservations: Cart[] = getReservationCarts();
+    const orders: order[] = getOrderedCarts();
 
     return (
         <main>
@@ -91,15 +91,16 @@ export default function Page() {
                 </Toolbar>
             </AppBar>
             <Box sx={{ width: "100%", maxWidth: 800, bgcolor: "background.paper", margin: "0 auto" }}>
-                {reservations.map((e, i) => (
-                    <SeasoningPaper key={i} />
+                {orders.map((e, i) => (
+                    <SeasoningPaper order={e} onOpenModal={() => handleDialogOpen(e.id)} key={i} />
                 ))}
             </Box>
+
             <Dialog open={open} onClose={handleDialogClose} sx={{ margin: "50px" }}>
                 <DialogContentText>注文を完了しますか？</DialogContentText>
                 <DialogTitle>
                     <Typography fontSize={"1.2rem"}>お客様番号：</Typography>
-                    <Typography fontSize={"1.6rem"}>{dialogOrderNumber}</Typography>
+                    <Typography fontSize={"1.6rem"}>{}</Typography>
                 </DialogTitle>
                 <DialogActions>
                     <Button onClick={handleDialogClose}>
