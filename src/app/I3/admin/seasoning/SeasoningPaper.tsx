@@ -21,12 +21,12 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                             return (
                                 <Box
                                     sx={{
-                                        borderRadius: "16px",
+                                        borderRadius: "35px",
                                         background: "rgba(0, 0, 0, 0.08)",
                                         display: "flex",
                                         flexDirection: "row",
-                                        alignItem: "center",
-                                        minWidth: "5rem",
+                                        alignItems: "center",
+                                        minWidth: "9rem",
                                         padding: "8px",
                                         height: "fit-content",
                                     }}
