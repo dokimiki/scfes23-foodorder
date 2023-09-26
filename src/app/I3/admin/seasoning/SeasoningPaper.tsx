@@ -22,7 +22,7 @@ export default function SeasoningPaper({ order, onOpenModal }: { order: order; o
                         <Typography>{order.isMobileOrder ? "モバイル注文" : "店内注文"}</Typography>
                         <Divider sx={{ width: "100%" }} />
                         <Typography variant="h5">番号札: {order.numberTag}</Typography>
-                        <Button onClick={onOpenModal} size="large" fullWidth variant="contained">
+                        <Button onClick={onOpenModal} size="large" fullWidth variant="contained" sx={{ margin: 1 }}>
                             完了
                         </Button>
                     </Stack>

@@ -90,7 +90,7 @@ export default function Page() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Stack spacing={2}>
+            <Stack>
                 {orders.map((e, i) => (
                     <SeasoningPaper order={e} onOpenModal={() => handleDialogOpen(e.id)} key={i} />
                 ))}
