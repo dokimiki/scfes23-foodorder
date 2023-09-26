@@ -13,9 +13,9 @@ export default function SeasoningPaper({ order, onOpenModal }: { order: order; o
         <>
             <Paper>
                 <Stack direction="row">
-                    <Stack direction="column">
+                    <Stack direction="row">
                         {order.items.map((e, i) => {
-                            return <Chip label={e.id} avatar={<Avatar src="/allergen_ebi.png" />} key={i} />;
+                            return <Chip label={e.id} avatar={<Avatar />} key={i} />;
                         })}
                     </Stack>
                     <Stack direction="column">

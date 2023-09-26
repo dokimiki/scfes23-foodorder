@@ -90,11 +90,11 @@ export default function Page() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Box sx={{ width: "100%", maxWidth: 800, bgcolor: "background.paper", margin: "0 auto" }}>
+            <Stack spacing={2}>
                 {orders.map((e, i) => (
                     <SeasoningPaper order={e} onOpenModal={() => handleDialogOpen(e.id)} key={i} />
                 ))}
-            </Box>
+            </Stack>
 
             <Dialog open={open} onClose={handleDialogClose} sx={{ margin: "50px" }}>
                 <DialogContentText>注文を完了しますか？</DialogContentText>
