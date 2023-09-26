@@ -11,7 +11,7 @@ import Chip from "@mui/material/Chip";
 export default function SeasoningPaper({ order, onOpenModal }: { order: order; onOpenModal: () => void }) {
     return (
         <>
-            <Paper elevation={6} sx={{ padding: 2 }}>
+            <Paper elevation={6} sx={{ padding: 2, margin: 4 }}>
                 <Stack direction="row" justifyContent="space-between">
                     <Stack direction="row">
                         {order.items.map((e, i) => {
