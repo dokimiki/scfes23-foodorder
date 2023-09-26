@@ -11,29 +11,26 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Typography from "@mui/material/Typography";
 import { grey } from "@mui/material/colors";
 import * as React from "react";
+import { MenuItem } from "@/libs/types/item";
 
 export default function MenuItemPaper({
-    name,
-    price,
+    menu,
     onClickAddToCart,
     openModal,
 }: {
-    name: string;
-    price: number;
+    menu: MenuItem;
     onClickAddToCart: () => void;
     openModal: () => void;
 }) {
     const theme = useTheme();
     return (
         <>
-            <ListItem>
+            <ListItem sx={{ paddingX: 0 }}>
                 <ListItemAvatar>
-                    <Avatar>
-                        <ImageIcon />
-                    </Avatar>
+                    <Avatar src={menu.image} sx={{ height: "3.5rem", width: "3.5rem", marginRight: "8px" }} />
                 </ListItemAvatar>
                 <Box>
-                    <Typography fontSize={"1.2rem"}>{name}</Typography>
+                    <Typography fontSize={"1.2rem"}>{menu.name}</Typography>
                     <Button
                         size="small"
                         variant="text"

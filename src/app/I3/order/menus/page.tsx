@@ -43,22 +43,30 @@ export default function Menus() {
             });
     }, []);
 
-    const [cart, setCart] = React.useState<CartItem[]>(JSON.parse(localStorage.getItem("cart-item") || "[]"));
+    const [cart, setCart] = React.useState<CartItem[]>([]);
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
     const [selectedModalItemID, SelectModalItemID] = React.useState("");
+
+    React.useEffect(() => {
+        setCart(JSON.parse(localStorage.getItem("cart-item") || "[]"));
+    }, []);
+
+    function setLocalStorageCart(cart: CartItem[]) {
+        localStorage.setItem("cart-item", JSON.stringify(cart.filter((e) => e.quantity > 0)));
+    }
 
     function addToCart(id: string) {
         const index = cart.findIndex((e) => e.id === id);
         if (index === -1) {
             setCart([...cart, { id: id, quantity: 1 }]);
-            localStorage.setItem("cart-item", JSON.stringify([...cart, { id: id, quantity: 1 }]));
+            setLocalStorageCart([...cart, { id: id, quantity: 1 }]);
         } else {
             const newCart = cart.slice();
             newCart[index].quantity++;
             newCart[index].quantity = Math.min(newCart[index].quantity, MAX_CART_ITEM_QUANTITY);
             setCart(newCart);
-            localStorage.setItem("cart-item", JSON.stringify(newCart));
+            setLocalStorageCart(newCart);
         }
     }
 
@@ -75,7 +83,7 @@ export default function Menus() {
                 newCart.splice(index, 1);
             }
             setCart(newCart);
-            localStorage.setItem("cart-item", JSON.stringify(newCart));
+            setLocalStorageCart(newCart);
         }
     }
 
@@ -172,17 +180,16 @@ export default function Menus() {
                         margin: "0 auto",
                     }}
                 >
-                    {menus.map((e, i) => {
+                    {menus.map((menu, i) => {
                         return (
                             <MenuItemPaper
-                                name={e.name}
-                                price={e.price}
+                                menu={menu}
                                 onClickAddToCart={() => {
-                                    addToCart(e.id);
+                                    addToCart(menu.id);
                                 }}
                                 openModal={() => {
                                     setIsDialogOpen(true);
-                                    SelectModalItemID(e.id);
+                                    SelectModalItemID(menu.id);
                                 }}
                                 key={i}
                             />

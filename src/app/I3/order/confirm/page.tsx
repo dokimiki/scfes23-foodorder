@@ -1,77 +1,130 @@
+/** @jsxImportSource @emotion/react */
 "use client";
 
 import * as React from "react";
-import style from "./style.module.scss";
-import { Button } from "@mui/material";
+import { css } from "@emotion/react";
 import { useRouter } from "next/navigation";
-// 注文確認ページ
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { CartItem, MenuItem } from "@/libs/types/item";
+import { getMenuItems } from "@/libs/Items";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Stack from "@mui/material/Stack";
+import { Avatar, Divider } from "@mui/material";
 
-function Food({ foodName, foodNum, foodPrice, foodSum }: { foodName: string; foodNum: number; foodPrice: number; foodSum: number }) {
+function Bold({ children }: { children: React.ReactNode }) {
     return (
-        <div className={style.food}>
-            <p>
-                <span>{foodName}</span>
-                <span>×</span>
-                <span>{foodNum}</span>
-            </p>
-            <p className={style.price}>
-                <span>
-                    ¥{foodPrice} × {foodNum} = ¥{foodSum}
-                </span>
-            </p>
-        </div>
+        <span
+            css={css`
+                font-weight: bold;
+            `}
+        >
+            {children}
+        </span>
     );
 }
 
 export default function Confirm() {
     const router = useRouter();
+    const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
-    const foodName = ["トルネードポテト(塩)", "かば焼きくん", "トルネードポテト(コンソメ)"];
-    const foodNum = [3, 0, 2]; //商品の数量
-    const foodPrice = [300, 10, 300]; //商品の値段
-    const foodSum = foodPrice.map((price, i) => {
-        //各商品の合計を配列に格納
-        return price * foodNum[i];
-    });
+    React.useEffect(() => {
+        getMenuItems()
+            .then((res) => {
+                setMenus(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    if (menus.length <= 0) {
+        return (
+            <main>
+                <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            </main>
+        );
+    }
+
+    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
     return (
-        <main className={style.main}>
-            <h1>注文内容の最終確認</h1>
-            {foodName.map((name, i) => {
-                if (foodNum[i] === 0) {
-                    return null;
-                } else {
-                    return <Food key={i} foodName={name} foodNum={foodNum[i]} foodPrice={foodPrice[i]} foodSum={foodSum[i]} />;
-                }
+        <main>
+            <Typography
+                variant="h2"
+                sx={{
+                    fontSize: "2rem",
+                }}
+            >
+                <Bold>注文確認</Bold>
+            </Typography>
+
+            {cart.map((e, i) => {
+                const menu: MenuItem = menus.find((m) => m.id === e.id) || { id: "", name: "", price: 0, image: "" };
+                return (
+                    <div key={i}>
+                        <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            sx={{
+                                marginY: "0.5rem",
+                            }}
+                        >
+                            <Stack direction="row" alignItems="center" justifyContent="space-between" width="inherit">
+                                <Stack direction="row" spacing={1} alignItems="center">
+                                    <Avatar src={menu.image} sx={{ width: "4.3rem", height: "4.3rem" }} />
+                                    <Stack>
+                                        <Typography variant="body1">{menu.name}</Typography>
+                                        <Typography variant="h6">{menu.price}円</Typography>
+                                    </Stack>
+                                </Stack>
+
+                                <Typography variant="h6" sx={{ marginRight: "8px" }}>
+                                    ✕ {e.quantity}
+                                </Typography>
+                            </Stack>
+
+                            <Typography variant="h5" width="8rem" align="right">
+                                {(menu.price * e.quantity).toLocaleString()}¥
+                            </Typography>
+                        </Stack>
+                        <Divider />
+                    </div>
+                );
             })}
 
-            <div className={style.total_price}>
-                <span>合計金額</span>
-                <p>
-                    <span>¥</span>
-                    <span>
-                        {foodSum.reduce((sum, price) => {
-                            return sum + price;
-                        }, 0)}
-                    </span>
-                </p>
-            </div>
+            <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ margin: "8px" }}>
+                <Typography variant="h4">合計</Typography>
+                <Typography variant="h3">
+                    {cart.reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0).toLocaleString()}円
+                </Typography>
+            </Stack>
+            <Divider sx={{ marginBottom: "16px" }} />
 
-            <Button
-                variant="contained"
-                onClick={() => {
-                    router.push("/I3/order/menus");
-                }}
-            >
-                戻る
-            </Button>
-            <Button
-                variant="contained"
-                onClick={() => {
-                    router.push("/I3/order/completed");
-                }}
-            >
-                確定
-            </Button>
+            <Stack direction="row">
+                <Button
+                    variant="contained"
+                    color="inherit"
+                    onClick={() => {
+                        router.push("/I3/order/menus");
+                    }}
+                    size="large"
+                >
+                    戻る
+                </Button>
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                        router.push("/I3/order/completed");
+                    }}
+                    size="large"
+                >
+                    注文を確定する
+                </Button>
+            </Stack>
         </main>
     );
 }
