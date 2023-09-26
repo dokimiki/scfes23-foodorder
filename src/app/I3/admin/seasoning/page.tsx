@@ -16,7 +16,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { MenuItem } from "@/libs/types/item";
-import { getMenuItems } from "@/libs/Items";
+import { getMenuItems } from "@/libs/apis/Items";
 import { Order } from "@/libs/types/order";
 
 function getOrderedCarts(): Order[] {

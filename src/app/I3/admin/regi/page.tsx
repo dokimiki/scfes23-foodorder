@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 "use client";
 
-import { MIN_CART_ITEM_QUANTITY, getCartDataFromOrderCode, sendCartData } from "@/libs/Carts";
-import { getMenuItems } from "@/libs/Items";
+import { MIN_CART_ITEM_QUANTITY, getCartDataFromOrderCode, sendCartData } from "@/libs/apis/admin/Carts";
+import { getMenuItems } from "@/libs/apis/Items";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { css } from "@emotion/react";
 import { Smartphone } from "@mui/icons-material";

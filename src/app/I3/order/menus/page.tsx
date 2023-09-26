@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 "use client";
-import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
-import { getMenuItems } from "@/libs/Items";
+import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/apis/admin/Carts";
+import { getMenuItems } from "@/libs/apis/Items";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { Global, css } from "@emotion/react";
 import Typography from "@mui/material/Typography";

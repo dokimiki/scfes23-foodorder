@@ -1,5 +1,5 @@
 import Stepper from "@/components/Stepper";
-import { MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
+import { MIN_CART_ITEM_QUANTITY } from "@/libs/apis/admin/Carts";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { Global } from "@emotion/react";
 import { Delete } from "@mui/icons-material";

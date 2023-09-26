@@ -1,4 +1,4 @@
-import { ReserveItem } from "./types/reserve";
+import { ReserveItem } from "../../types/reserve";
 
 export function getPotatoDate() {
     const data: ReserveItem[] = [
