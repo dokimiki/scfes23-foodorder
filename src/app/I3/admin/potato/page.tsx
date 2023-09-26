@@ -11,23 +11,34 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
-import { ReserveItem } from "@/libs/types/reserve";
-import { Toolbar } from "@mui/material";
+import { OrderedPotato } from "@/libs/types/potato";
+import { Backdrop, CircularProgress, Toolbar } from "@mui/material";
 import { css } from "@emotion/react";
-import { ReserveTable } from "./ReserveTable";
-import { getPotatoDate } from "@/libs/apis/admin/Potato";
+import { PotatoTable } from "./PotatoTable";
+import { getPotatoData } from "@/libs/apis/admin/Potato";
 
 export default function Potato() {
-    const reserveLists: ReserveItem[] = Array(20)
-        .fill(1)
-        .map((e, i) => {
-            let data: ReserveItem = {
-                receptionTime: new Date(new Date("2023/9/30 10:00").setMinutes(i * 5)),
-                completionTime: new Date(new Date("2023/9/30 10:00").setMinutes(i * 5 + 10)),
-                qty: ((i * 39) % 4) + 1,
-            };
-            return data;
-        });
+    const [orderedPotatoList, setOrderedPotatoList] = React.useState<OrderedPotato[]>([]);
+
+    React.useEffect(() => {
+        getPotatoData()
+            .then((res) => {
+                setOrderedPotatoList(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    if (orderedPotatoList.length <= 0) {
+        return (
+            <main>
+                <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            </main>
+        );
+    }
 
     return (
         <main
@@ -39,7 +50,7 @@ export default function Potato() {
                 <Toolbar>
                     <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
                         合計:
-                        {reserveLists.reduce((sum, e) => {
+                        {orderedPotatoList.reduce((sum, e) => {
                             return sum + e.qty;
                         }, 0)}
                         本
@@ -68,19 +79,9 @@ export default function Potato() {
                     </TableHead>
 
                     <TableBody>
-                        <ReserveTable
-                            reserveItem={() => {
-                                const data = getPotatoDate()
-                                    .then(() => {
-                                        data.map((e) => {
-                                            return e;
-                                        });
-                                    })
-                                    .catch(() => {
-                                        console.log("error");
-                                    });
-                            }}
-                        />
+                        {orderedPotatoList.map((orderedPotato, i) => {
+                            return <PotatoTable key={i} orderedPotato={orderedPotato} />;
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>
