@@ -1,28 +1,21 @@
 import { OrderedPotato } from "../../types/potato";
 
 export function getPotatoData(): Promise<OrderedPotato[]> {
-    const data: OrderedPotato[] = [
-        {
-            receptionTime: new Date(new Date("2023/9/30 10:00").setMinutes(0, 0)),
-            completionTime: new Date(new Date("2023/9/30 10:00").setMinutes(0, 0)),
-            qty: 5,
-            order: {
-                id: "1",
-                isMobileOrder: false,
-                numberTag: 1,
-            },
-        },
-        {
-            receptionTime: new Date(),
-            completionTime: new Date(),
-            qty: 1,
-            order: {
-                id: "2",
-                isMobileOrder: true,
-                numberTag: 2,
-            },
-        },
-    ];
+    const data: OrderedPotato[] = Array(20)
+        .fill(1)
+        .map((e, i) => {
+            let data: OrderedPotato = {
+                receptionTime: new Date(new Date("2023/9/30 10:00").setMinutes(i * 5)),
+                completionTime: new Date(new Date("2023/9/30 10:00").setMinutes(i * 5 + 10)),
+                qty: ((i * 39) % 4) + 1,
+                order: {
+                    id: "" + i,
+                    isMobileOrder: i % 2 === 0,
+                    numberTag: i % 20,
+                },
+            };
+            return data;
+        });
 
     return new Promise((resolve, reject) => {
         setTimeout(() => {

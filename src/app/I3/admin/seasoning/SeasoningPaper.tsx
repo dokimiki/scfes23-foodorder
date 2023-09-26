@@ -15,36 +15,46 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
         <>
             <Paper elevation={6} sx={{ padding: 2, margin: "18px 18px 0 18px" }}>
                 <Stack direction="row" justifyContent="space-between">
-                    <Stack direction="row" flexWrap="wrap">
-                        {order.items.map((item, i) => {
-                            const menuName = menus.find((menu) => menu.id === item.id)?.name;
-                            return (
-                                <Box
-                                    sx={{
-                                        borderRadius: "35px",
-                                        background: "rgba(0, 0, 0, 0.08)",
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                        minWidth: "12rem",
-                                        padding: "8px",
-                                        margin: "8px",
-                                        height: "fit-content",
-                                    }}
-                                    key={i}
-                                >
-                                    <Avatar sx={{ width: "32px", height: "32px" }} />
-                                    <Typography
+                    <Stack direction="row" alignItems="center">
+                        <Typography variant="h5">
+                            <Bold>No. {order.id}</Bold>
+                        </Typography>
+                        <Stack direction="row" flexWrap="wrap">
+                            {order.items.map((item, i) => {
+                                const menu: MenuItem = menus.find((menu) => menu.id === item.id) || {
+                                    id: "",
+                                    name: "",
+                                    price: 0,
+                                    image: "",
+                                };
+                                return (
+                                    <Box
                                         sx={{
-                                            paddingLeft: "0.5rem",
+                                            borderRadius: "35px",
+                                            background: "rgba(0, 0, 0, 0.08)",
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            alignItems: "center",
+                                            minWidth: "12rem",
+                                            padding: "8px",
+                                            margin: "8px",
+                                            height: "fit-content",
                                         }}
+                                        key={i}
                                     >
-                                        {menuName}
-                                        <Bold>x{item.quantity}</Bold>
-                                    </Typography>
-                                </Box>
-                            );
-                        })}
+                                        <Avatar src={menu.image} sx={{ width: "32px", height: "32px" }} />
+                                        <Typography
+                                            sx={{
+                                                paddingLeft: "0.5rem",
+                                            }}
+                                        >
+                                            {menu.name}
+                                            <Bold>x{item.quantity}</Bold>
+                                        </Typography>
+                                    </Box>
+                                );
+                            })}
+                        </Stack>
                     </Stack>
                     <Stack direction="column" alignItems="center" sx={{ minWidth: "9rem" }}>
                         <Typography>{order.isMobileOrder ? "モバイル注文" : "店内注文"}</Typography>

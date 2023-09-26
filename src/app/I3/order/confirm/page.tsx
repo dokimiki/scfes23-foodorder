@@ -9,11 +9,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { useRouter } from "next/navigation";
 import * as React from "react";
 
 export default function Confirm() {
-    const router = useRouter();
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
     React.useEffect(() => {
@@ -60,12 +58,17 @@ export default function Confirm() {
                                 marginY: "0.5rem",
                             }}
                         >
-                            <Stack direction="row" alignItems="center" justifyContent="space-between" width="inherit">
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                justifyContent="space-between"
+                                sx={{ width: "-webkit-fill-available" }}
+                            >
                                 <Stack direction="row" spacing={1} alignItems="center">
                                     <Avatar src={menu.image} sx={{ width: "4.3rem", height: "4.3rem" }} />
                                     <Stack>
                                         <Typography variant="body1">{menu.name}</Typography>
-                                        <Typography variant="h6">{menu.price}円</Typography>
+                                        <Typography variant="h6">¥{menu.price.toLocaleString()}</Typography>
                                     </Stack>
                                 </Stack>
 
@@ -74,8 +77,8 @@ export default function Confirm() {
                                 </Typography>
                             </Stack>
 
-                            <Typography variant="h5" width="8rem" align="right">
-                                {(menu.price * e.quantity).toLocaleString()}¥
+                            <Typography variant="h5" sx={{ width: "6rem" }} align="right">
+                                ¥{(menu.price * e.quantity).toLocaleString()}
                             </Typography>
                         </Stack>
                         <Divider />
@@ -86,32 +89,24 @@ export default function Confirm() {
             <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ margin: "8px" }}>
                 <Typography variant="h4">合計</Typography>
                 <Typography variant="h3">
-                    {cart.reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0).toLocaleString()}円
+                    ¥{cart.reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0).toLocaleString()}
                 </Typography>
             </Stack>
             <Divider sx={{ marginBottom: "16px" }} />
 
-            <Stack direction="row">
-                <Button
-                    variant="contained"
-                    color="inherit"
-                    onClick={() => {
-                        router.push("/I3/order/menus");
-                    }}
-                    size="large"
-                >
+            <Stack direction="row" justifyContent="space-between">
+                <Button variant="contained" color="inherit" href="/I3/order/menus" size="large">
                     戻る
                 </Button>
-                <Button
-                    variant="contained"
-                    onClick={() => {
-                        router.push("/I3/order/completed");
-                    }}
-                    size="large"
-                >
+                <Button variant="contained" href="/I3/order/completed" size="large">
                     注文を確定する
                 </Button>
             </Stack>
+            <Typography variant="body2" sx={{ marginTop: "8px" }}>
+                ※注文を確定すると、キャンセル・変更をスマホ上から行うことはできません。
+                <br />
+                もしも注文をキャンセル・変更したい場合は、店員にお声がけください。
+            </Typography>
         </main>
     );
 }

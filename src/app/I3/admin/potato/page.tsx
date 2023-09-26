@@ -62,6 +62,12 @@ export default function Potato() {
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
+                            <TableCell align="left">
+                                <Typography fontSize={"1.7rem"}>#</Typography>
+                            </TableCell>
+                            <TableCell align="center">
+                                <Typography fontSize={"1.2rem"}>注文方法</Typography>
+                            </TableCell>
                             <TableCell align="center">
                                 <Typography fontSize={"1.7rem"} align="center">
                                     本数
@@ -72,9 +78,10 @@ export default function Potato() {
                             </TableCell>
                             <TableCell align="center">
                                 <Typography fontSize={"1.7rem"} align="center">
-                                    完成予定時間
+                                    完成予定
                                 </Typography>
                             </TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
 
