@@ -15,6 +15,8 @@ import { ReserveItem } from "@/libs/types/reserve";
 import { Toolbar } from "@mui/material";
 import { css } from "@emotion/react";
 import { ReserveTable } from "./ReserveTable";
+import { getPotatoDate } from "@/libs/Potato";
+import { Key } from "@mui/icons-material";
 
 export default function Potato() {
     const reserveLists: ReserveItem[] = Array(20)
@@ -67,9 +69,19 @@ export default function Potato() {
                     </TableHead>
 
                     <TableBody>
-                        {reserveLists.map((e, i) => (
-                            <ReserveTable key={i} reserveItem={e} />
-                        ))}
+                        <ReserveTable
+                            reserveItem={() => {
+                                const data = getPotatoDate()
+                                    .then(() => {
+                                        data.map((e) => {
+                                            return e;
+                                        });
+                                    })
+                                    .catch(() => {
+                                        console.log("error");
+                                    });
+                            }}
+                        />
                     </TableBody>
                 </Table>
             </TableContainer>
