@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import SeasoningPaper from "./SeasoningPaper";
 import Dialog from "@mui/material/Dialog";
-import DialogContentText from "@mui/material/DialogContentText";
+import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
@@ -51,7 +51,7 @@ function getOrderedCarts(): Order[] {
 
 export default function Page() {
     const [open, setOpen] = React.useState(false);
-    const [dialogOrderId, setDialogOrderId] = React.useState("");
+    const [dialogOrderId, setDialogOrderId] = React.useState(0);
 
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
 
@@ -69,7 +69,7 @@ export default function Page() {
         setOpen(false);
     }
 
-    function handleDialogOpen(orderNumber: string) {
+    function handleDialogOpen(orderNumber: number) {
         setOpen(true);
         setDialogOrderId(orderNumber);
     }
@@ -89,16 +89,22 @@ export default function Page() {
 
             <Stack>
                 {orders.map((e, i) => (
-                    <SeasoningPaper order={e} menus={menus} onOpenModal={() => handleDialogOpen(e.id)} key={i} />
+                    <SeasoningPaper order={e} menus={menus} onOpenModal={() => handleDialogOpen(e.numberTag)} key={i} />
                 ))}
             </Stack>
+            <Dialog open={open} onClose={handleDialogClose}>
+                <DialogTitle id="alert-dialog-title">注文を完了しますか？</DialogTitle>
+                <DialogContent>
+                    <Stack>
+                        <Typography fontSize={"1.1rem"} marginLeft={"10px"}>
+                            お客様番号
+                        </Typography>
+                        <Typography fontSize={"3rem"} color={"#ff8c00"} margin={"10px"} textAlign={"center"}>
+                            {dialogOrderId}
+                        </Typography>
+                    </Stack>
+                </DialogContent>
 
-            <Dialog open={open} onClose={handleDialogClose} sx={{ margin: "50px" }}>
-                <DialogContentText>注文を完了しますか？</DialogContentText>
-                <DialogTitle>
-                    <Typography fontSize={"1.2rem"}>お客様番号：</Typography>
-                    <Typography fontSize={"1.6rem"}>{}</Typography>
-                </DialogTitle>
                 <DialogActions>
                     <Button onClick={handleDialogClose}>
                         <Typography color={"red"}>キャンセル</Typography>
