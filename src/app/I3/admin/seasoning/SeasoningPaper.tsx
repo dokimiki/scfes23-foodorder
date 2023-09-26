@@ -26,13 +26,16 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                                         display: "flex",
                                         flexDirection: "row",
                                         alignItems: "center",
-                                        minWidth: "9rem",
+                                        minWidth: "12rem",
+                                        paddingLeft: "0.5rem",
                                         padding: "8px",
                                         height: "fit-content",
                                     }}
                                 >
                                     <Avatar sx={{ width: "32px", height: "32px" }} />
-                                    <Typography>{menuName}</Typography>
+                                    <Typography>
+                                        {menuName}x{item.quantity}
+                                    </Typography>
                                 </Box>
                             );
                         })}
