@@ -2,8 +2,6 @@ import Stepper from "@/components/Stepper";
 import { MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { Global } from "@emotion/react";
-import { Delete } from "@mui/icons-material";
-import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 "use client";
+
 import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
 import { getMenuItems } from "@/libs/apis/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
@@ -14,20 +15,9 @@ import List from "@mui/material/List";
 import { Backdrop, Button, CircularProgress, Dialog, Divider, Stack } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
 import { useRouter } from "next/navigation";
+import Bold from "@/components/Bold";
 
 const drawerBleeding = 68.5;
-
-function Bold({ children }: { children: React.ReactNode }) {
-    return (
-        <span
-            css={css`
-                font-weight: bold;
-            `}
-        >
-            {children}
-        </span>
-    );
-}
 
 export default function Menus() {
     const router = useRouter();

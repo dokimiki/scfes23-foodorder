@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+"use client";
 
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { css } from "@emotion/react";

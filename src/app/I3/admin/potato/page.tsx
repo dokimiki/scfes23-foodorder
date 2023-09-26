@@ -16,7 +16,6 @@ import { Toolbar } from "@mui/material";
 import { css } from "@emotion/react";
 import { ReserveTable } from "./ReserveTable";
 import { getPotatoDate } from "@/libs/apis/admin/Potato";
-import { Key } from "@mui/icons-material";
 
 export default function Potato() {
     const reserveLists: ReserveItem[] = Array(20)

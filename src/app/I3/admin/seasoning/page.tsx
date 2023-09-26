@@ -1,23 +1,18 @@
 "use client";
+import { getMenuItems } from "@/libs/apis/Menus";
+import { MenuItem } from "@/libs/types/item";
+import { Order } from "@/libs/types/order";
+import AppBar from "@mui/material/AppBar";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import React from "react";
 import SeasoningPaper from "./SeasoningPaper";
-import AppBar from "@mui/material/AppBar";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { Stack } from "@mui/material";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Toolbar from "@mui/material/Toolbar";
-
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { MenuItem } from "@/libs/types/item";
-import { getMenuItems } from "@/libs/apis/Menus";
-import { Order } from "@/libs/types/order";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
 
 function getOrderedCarts(): Order[] {
     return [

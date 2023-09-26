@@ -1,29 +1,15 @@
-/** @jsxImportSource @emotion/react */
-"use client";
-
-import * as React from "react";
-import { css } from "@emotion/react";
-import { useRouter } from "next/navigation";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { CartItem, MenuItem } from "@/libs/types/item";
+import Bold from "@/components/Bold";
 import { getMenuItems } from "@/libs/apis/Menus";
+import { CartItem, MenuItem } from "@/libs/types/item";
+import Avatar from "@mui/material/Avatar";
 import Backdrop from "@mui/material/Backdrop";
+import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
+import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import { Avatar, Divider } from "@mui/material";
-
-function Bold({ children }: { children: React.ReactNode }) {
-    return (
-        <span
-            css={css`
-                font-weight: bold;
-            `}
-        >
-            {children}
-        </span>
-    );
-}
+import Typography from "@mui/material/Typography";
+import { useRouter } from "next/navigation";
+import * as React from "react";
 
 export default function Confirm() {
     const router = useRouter();
