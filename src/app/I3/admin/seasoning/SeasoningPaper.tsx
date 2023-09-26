@@ -17,7 +17,14 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                     <Stack direction="row" spacing={1}>
                         {order.items.map((item, i) => {
                             const menuName = menus.find((menu) => menu.id === item.id)?.name;
-                            return <Chip label={menuName} avatar={<Avatar />} key={i} sx={{ width: 3, height: 3 }} />;
+                            return (
+                                <Chip
+                                    label={menuName}
+                                    avatar={<Avatar sx={{ width: "32px", height: "32px" }} />}
+                                    key={i}
+                                    sx={{ padding: "8px" }}
+                                />
+                            );
                         })}
                     </Stack>
                     <Stack direction="column" alignItems="center" sx={{ minWidth: "9rem" }}>
