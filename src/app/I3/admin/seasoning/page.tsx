@@ -17,9 +17,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { MenuItem } from "@/libs/types/item";
 import { getMenuItems } from "@/libs/Items";
-import { order } from "@/libs/types/order";
+import { Order } from "@/libs/types/order";
 
-function getOrderedCarts(): order[] {
+function getOrderedCarts(): Order[] {
     return [
         {
             id: "1",
@@ -79,7 +79,7 @@ export default function Page() {
         setDialogOrderId(orderNumber);
     }
 
-    const orders: order[] = getOrderedCarts();
+    const orders: Order[] = getOrderedCarts();
 
     return (
         <main>
@@ -94,7 +94,7 @@ export default function Page() {
 
             <Stack>
                 {orders.map((e, i) => (
-                    <SeasoningPaper order={e} onOpenModal={() => handleDialogOpen(e.id)} key={i} />
+                    <SeasoningPaper order={e} menus={menus} onOpenModal={() => handleDialogOpen(e.id)} key={i} />
                 ))}
             </Stack>
 
