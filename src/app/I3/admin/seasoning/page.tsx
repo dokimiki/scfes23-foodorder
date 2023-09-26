@@ -83,13 +83,15 @@ export default function Page() {
 
     return (
         <main>
-            <AppBar position="sticky" sx={{ marginBottom: "30px" }}>
+            <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
                         調味料管理
                     </Typography>
                 </Toolbar>
             </AppBar>
+            <Toolbar />
+
             <Stack>
                 {orders.map((e, i) => (
                     <SeasoningPaper order={e} onOpenModal={() => handleDialogOpen(e.id)} key={i} />
