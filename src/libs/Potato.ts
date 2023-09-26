@@ -1,8 +1,10 @@
 import { ReserveItem } from "./types/reserve";
 
-export function getReserveItems(){
-    const : ReserveItem[] = {[
 
-    ]}
-    return potato;
+export function getPotatoDate(): ReserveItem{
+    return {
+        receptionTime: new Date(),
+        completionTime: new Date(),
+        qty: 1,
+    }
 }
