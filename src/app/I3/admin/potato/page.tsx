@@ -12,7 +12,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
 import { OrderedPotato } from "@/libs/types/potato";
-import { Backdrop, CircularProgress, Toolbar } from "@mui/material";
+import { Backdrop, CircularProgress, Dialog, Toolbar } from "@mui/material";
 import { css } from "@emotion/react";
 import { PotatoTable } from "./PotatoTable";
 import { getPotatoData } from "@/libs/apis/admin/Potato";
@@ -109,6 +109,8 @@ export default function Potato() {
             </TableContainer>
 
             <Toolbar></Toolbar>
+
+            <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}></Dialog>
         </main>
     );
 }
