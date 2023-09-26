@@ -1,3 +1,4 @@
+"use client";
 import Bold from "@/components/Bold";
 import { getMenuItems } from "@/libs/apis/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
