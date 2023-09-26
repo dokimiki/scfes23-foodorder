@@ -31,7 +31,7 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
         <>
             <Paper elevation={6} sx={{ padding: 2, margin: "18px 18px 0 18px" }}>
                 <Stack direction="row" justifyContent="space-between">
-                    <Stack direction="row" flexWrap="wrap" spacing={1}>
+                    <Stack direction="row" flexWrap="wrap">
                         {order.items.map((item, i) => {
                             const menuName = menus.find((menu) => menu.id === item.id)?.name;
                             return (
@@ -44,6 +44,7 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                                         alignItems: "center",
                                         minWidth: "12rem",
                                         padding: "8px",
+                                        marginLeft: "8px",
                                         height: "fit-content",
                                     }}
                                 >
