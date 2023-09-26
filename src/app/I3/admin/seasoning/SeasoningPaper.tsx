@@ -19,11 +19,11 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                         {order.items.map((item, i) => {
                             const menuName = menus.find((menu) => menu.id === item.id)?.name;
                             return (
-                                <Box sx={{ borderRadius: "16px", background: "rgba(0, 0, 0, 0.08)" }}>
-                                    <Stack direction="row">
-                                        <Avatar sx={{ width: "32px", height: "32px" }} />
-                                        <Typography>{menuName}</Typography>
-                                    </Stack>
+                                <Box
+                                    sx={{ borderRadius: "16px", background: "rgba(0, 0, 0, 0.08)", display: "flex", flexDirection: "row" }}
+                                >
+                                    <Avatar sx={{ width: "32px", height: "32px" }} />
+                                    <Typography>{menuName}</Typography>
                                 </Box>
                             );
                         })}
