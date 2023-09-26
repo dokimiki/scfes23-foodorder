@@ -92,26 +92,26 @@ export default function Page() {
                     <SeasoningPaper order={e} menus={menus} onOpenModal={() => handleDialogOpen(e.numberTag)} key={i} />
                 ))}
             </Stack>
-            <Dialog open={open} onClose={handleDialogClose}>
-                <DialogTitle id="alert-dialog-title">注文を完了しますか？</DialogTitle>
+            <Dialog open={open} onClose={handleDialogClose} keepMounted>
+                <DialogTitle id="alert-dialog-title">この注文は提供済みですか？</DialogTitle>
                 <DialogContent>
-                    <Stack>
-                        <Typography fontSize={"1.1rem"} marginLeft={"10px"}>
-                            お客様番号
-                        </Typography>
-                        <Typography fontSize={"3rem"} color={"#ff8c00"} margin={"10px"} textAlign={"center"}>
+                    <Stack alignItems="center">
+                        <Typography variant="h6">番号札</Typography>
+                        <Typography variant="h3" color={"#ffa53f"}>
                             {dialogOrderId}
                         </Typography>
                     </Stack>
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={handleDialogClose}>
-                        <Typography color={"red"}>キャンセル</Typography>
-                    </Button>
-                    <Button onClick={handleDialogClose} autoFocus>
-                        <Typography color={"blue"}>完了</Typography>
-                    </Button>
+                    <Stack direction="row" justifyContent="space-between" width="100%">
+                        <Button onClick={handleDialogClose} variant="contained" size="large" color="inherit">
+                            キャンセル
+                        </Button>
+                        <Button onClick={handleDialogClose} variant="contained" size="large" autoFocus>
+                            完了
+                        </Button>
+                    </Stack>
                 </DialogActions>
             </Dialog>
         </main>
