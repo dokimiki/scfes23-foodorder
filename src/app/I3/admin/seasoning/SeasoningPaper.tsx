@@ -21,7 +21,7 @@ export default function SeasoningPaper({ order, onOpenModal }: { order: order; o
                     <Stack
                         direction="column"
                         sx={{
-                            "& > *": {
+                            "> *": {
                                 margin: "0 auto",
                             },
                         }}
