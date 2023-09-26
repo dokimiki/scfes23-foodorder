@@ -44,7 +44,7 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                                         alignItems: "center",
                                         minWidth: "12rem",
                                         padding: "8px",
-                                        marginLeft: "8px",
+                                        margin: "8px",
                                         height: "fit-content",
                                     }}
                                 >
