@@ -8,22 +8,21 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import { MenuItem } from "@/libs/types/item";
+import Box from "@mui/material/Box";
 
 export default function SeasoningPaper({ order, menus, onOpenModal }: { order: Order; menus: MenuItem[]; onOpenModal: () => void }) {
     return (
         <>
             <Paper elevation={6} sx={{ padding: 2, margin: "18px 18px 0 18px" }}>
                 <Stack direction="row" justifyContent="space-between">
-                    <Stack direction="row" spacing={1}>
+                    <Stack direction="row" flexWrap="wrap" spacing={1}>
                         {order.items.map((item, i) => {
                             const menuName = menus.find((menu) => menu.id === item.id)?.name;
                             return (
-                                <Chip
-                                    label={menuName}
-                                    avatar={<Avatar sx={{ width: "32px", height: "32px" }} />}
-                                    key={i}
-                                    sx={{ padding: "8px" }}
-                                />
+                                <Box sx={{ borderRadius: "16px", background: "rgba(0, 0, 0, 0.08)" }}>
+                                    <Avatar sx={{ width: "32px", height: "32px" }} />
+                                    <Typography>{menuName}</Typography>
+                                </Box>
                             );
                         })}
                     </Stack>
