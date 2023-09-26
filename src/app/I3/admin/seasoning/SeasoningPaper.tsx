@@ -18,14 +18,7 @@ export default function SeasoningPaper({ order, onOpenModal }: { order: order; o
                             return <Chip label={e.id} avatar={<Avatar />} key={i} />;
                         })}
                     </Stack>
-                    <Stack
-                        direction="column"
-                        sx={{
-                            "> *": {
-                                margin: "0 auto !important",
-                            },
-                        }}
-                    >
+                    <Stack direction="column">
                         <Typography>{order.isMobileOrder ? "モバイル注文" : "店内注文"}</Typography>
                         <Divider />
                         <Typography>番号札: {order.numberTag}</Typography>
