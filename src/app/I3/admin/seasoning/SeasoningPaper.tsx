@@ -22,7 +22,7 @@ export default function SeasoningPaper({ order, onOpenModal }: { order: order; o
                         direction="column"
                         sx={{
                             "> *": {
-                                margin: "0 auto !import",
+                                margin: "0 auto !important",
                             },
                         }}
                     >
