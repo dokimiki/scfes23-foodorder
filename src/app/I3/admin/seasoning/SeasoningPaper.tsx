@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+"use client";
+
 import * as React from "react";
 import { Order } from "@/libs/types/order";
 import Paper from "@mui/material/Paper";
@@ -9,6 +12,19 @@ import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import { MenuItem } from "@/libs/types/item";
 import Box from "@mui/material/Box";
+import { css } from "@emotion/react";
+
+function Bold({ children }: { children: React.ReactNode }) {
+    return (
+        <span
+            css={css`
+                font-weight: bold;
+            `}
+        >
+            {children}
+        </span>
+    );
+}
 
 export default function SeasoningPaper({ order, menus, onOpenModal }: { order: Order; menus: MenuItem[]; onOpenModal: () => void }) {
     return (
@@ -27,14 +43,18 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                                         flexDirection: "row",
                                         alignItems: "center",
                                         minWidth: "12rem",
-                                        paddingLeft: "0.5rem",
                                         padding: "8px",
                                         height: "fit-content",
                                     }}
                                 >
                                     <Avatar sx={{ width: "32px", height: "32px" }} />
-                                    <Typography>
-                                        {menuName}x{item.quantity}
+                                    <Typography
+                                        sx={{
+                                            paddingLeft: "0.5rem",
+                                        }}
+                                    >
+                                        {menuName}
+                                        <Bold>x{item.quantity}</Bold>
                                     </Typography>
                                 </Box>
                             );
