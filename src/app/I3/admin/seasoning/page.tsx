@@ -86,7 +86,7 @@ export default function Page() {
             <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>
-                        調味料管理
+                        シーズニング
                     </Typography>
                 </Toolbar>
             </AppBar>

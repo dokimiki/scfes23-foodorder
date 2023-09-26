@@ -64,7 +64,7 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                     <Stack direction="column" alignItems="center" sx={{ minWidth: "9rem" }}>
                         <Typography>{order.isMobileOrder ? "モバイル注文" : "店内注文"}</Typography>
                         <Divider sx={{ width: "100%" }} />
-                        <Typography variant="h5">番号札: {order.numberTag}</Typography>
+                        <Typography variant="h5">番号札: {order.numberTag > 0 ? order.numberTag : "なし"}</Typography>
                         <Button onClick={onOpenModal} size="large" fullWidth variant="contained" sx={{ margin: 1 }}>
                             完了
                         </Button>
