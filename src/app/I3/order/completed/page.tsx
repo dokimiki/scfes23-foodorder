@@ -47,7 +47,7 @@ export default function Completed() {
                         width: "100%",
                         padding: 2,
                         background: "white",
-                        position: "relative",
+                        position: "sticky",
                         zIndex: "1201",
                         borderRadius: "0 0 8px 8px",
                     }}
