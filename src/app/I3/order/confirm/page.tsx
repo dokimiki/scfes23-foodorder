@@ -71,7 +71,7 @@ export default function Confirm() {
                     width: 100%;
                 `}
             >
-                <Card sx={{ margin: "0 auto" }}>
+                <Card sx={{ margin: "0 auto", width: "250px" }}>
                     <CardContent>
                         <Typography variant="h5">2本以上購入!!</Typography>
                         <Button
