@@ -3,18 +3,44 @@ import Typography from "@mui/material/Typography";
 import AllAllergen from "./AllAllergen";
 import { AllergensList } from "@/libs/types/allergen";
 import { MenuItem } from "@/libs/types/item";
-import { Divider, IconButton, Stack } from "@mui/material";
+import { Backdrop, CircularProgress, Divider, IconButton, Stack } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { getAllergen } from "@/libs/apis/common/Allergen";
 
 export default function AllergenDialogContent({
-    allergens,
     itemInfo = { id: "", name: "", price: 0, image: "" },
     onClose,
 }: {
-    allergens: AllergensList;
     itemInfo?: MenuItem;
     onClose: () => void;
 }) {
+    const [allergens, setAllergens] = React.useState<AllergensList>();
+    const [isAllergenLoading, setIsAllergenLoading] = React.useState(false);
+
+    React.useEffect(() => {
+        setIsAllergenLoading(true);
+        getAllergen(itemInfo.id)
+            .then((res) => {
+                setAllergens(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setIsAllergenLoading(false);
+            });
+    }, [itemInfo]);
+
+    if (isAllergenLoading || allergens === undefined) {
+        return (
+            <main>
+                <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            </main>
+        );
+    }
+
     return (
         <>
             <Stack

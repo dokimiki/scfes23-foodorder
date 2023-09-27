@@ -10,12 +10,12 @@ import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import OrderDrawerContent from "./OrderDrawerContent";
 import MenuItemPaper from "./MenuItemPaper";
-import { AllergensList } from "@/libs/types/allergen";
 import List from "@mui/material/List";
 import { Backdrop, Button, CircularProgress, Dialog, Divider, Stack } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
 import { useRouter } from "next/navigation";
 import Bold from "@/components/Bold";
+import { getAllergen } from "@/libs/apis/common/Allergen";
 
 const drawerBleeding = 68.5;
 
@@ -201,18 +201,6 @@ export default function Menus() {
                 open={isDialogOpen}
             >
                 <AllergenDialogContent
-                    allergens={
-                        {
-                            ebi: "NotContains",
-                            kani: "Contains",
-                            komugi: "NotContains",
-                            kurumi: "NotContains",
-                            milk: "NotContains",
-                            peanut: "Contamination",
-                            soba: "NotContains",
-                            tamago: "NotContains",
-                        } as AllergensList
-                    }
                     itemInfo={menus.find((e) => e.id === selectedModalItemID)}
                     onClose={() => {
                         setIsDialogOpen(false);
