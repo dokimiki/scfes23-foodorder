@@ -87,7 +87,7 @@ export default function Confirm() {
             <Stack direction="column">
                 <Card sx={{ background: "white" }}>
                     <CardContent>
-                        <Typography variant="body1">2本以上購入で抽選！</Typography>
+                        <Typography variant="body1">2本以上購入で1回抽選！</Typography>
                         <Button
                             size="large"
                             variant="contained"
@@ -95,7 +95,7 @@ export default function Confirm() {
                             sx={{
                                 background:
                                     "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                                marginY: "8px",
+                                marginTop: "8px",
                             }}
                             fullWidth
                         >
@@ -106,8 +106,9 @@ export default function Confirm() {
                     </CardContent>
                 </Card>
 
-                <Card sx={{ margin: "10px auto", backgroundColor: "white" }}>
+                <Card sx={{ background: "white" }}>
                     <CardContent>
+                        <Typography variant="body1">QRコードを友達に読み込んでもらって1回抽選！</Typography>
                         <img
                             src="/img/sample_code.jpeg"
                             css={css`
@@ -121,9 +122,13 @@ export default function Confirm() {
                             sx={{
                                 background:
                                     "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                marginTTop: "8px",
                             }}
+                            fullWidth
                         >
-                            <Typography variant="h6">くじを引く</Typography>
+                            <Typography variant="body1" sx={{ color: "white" }}>
+                                <Bold>くじを引く</Bold>
+                            </Typography>
                         </Button>
                     </CardContent>
                 </Card>
