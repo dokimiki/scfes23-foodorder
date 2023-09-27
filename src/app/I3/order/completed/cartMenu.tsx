@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 
 export function CartMenu({ menus, cart }: { menus: MenuItem[]; cart: CartItem }) {
-    const menu: MenuItem = menus.find((m) => m.id === cart.id) || { id: "", name: "", price: 0, image: "" };
+    const menu: MenuItem = menus.find((m) => m.id === cart.id) || { id: "", name: "", price: 0, image: "", isShow: false };
     return (
         <div>
             <Stack
