@@ -88,7 +88,7 @@ export default function Confirm() {
                     </CardContent>
                 </Card>
 
-                <Card sx={{ margin: "10px auto", width: "250px", backgroundColor: "white" }}>
+                <Card sx={{ margin: "10px auto", width: "400px", backgroundColor: "white" }}>
                     <CardContent>
                         <Typography width={"200px"}>
                             {""}
