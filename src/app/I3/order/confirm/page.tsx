@@ -89,7 +89,6 @@ export default function Confirm() {
 
     function onDrawBulkLot() {
         setIsLoadingBulkLot(true);
-
         drawBulkLots()
             .then((res) => {
                 const CouponItemID = COUPON_ITEM_IDS[res.kind];
