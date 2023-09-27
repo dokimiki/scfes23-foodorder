@@ -85,7 +85,7 @@ export default function Confirm() {
             <Divider sx={{ marginBottom: "16px" }} />
 
             <Stack direction="column">
-                <Card sx={{ background: "white" }}>
+                <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
                         <Typography variant="body1">2本以上購入で1回抽選！</Typography>
                         <Button
@@ -106,7 +106,7 @@ export default function Confirm() {
                     </CardContent>
                 </Card>
 
-                <Card sx={{ background: "white" }}>
+                <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
                         <Typography variant="body1">QRコードを友達に読み込んでもらって1回抽選！</Typography>
                         <img
