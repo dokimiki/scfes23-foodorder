@@ -19,7 +19,7 @@ import { sendCartData } from "@/libs/apis/order/Carts";
 import { useRouter } from "next/navigation";
 import { useQRCode } from "next-qrcode";
 import { CouponKind } from "@/libs/types/coupon";
-import { drawBulkLots, drawInviteLots } from "@/libs/apis/order/Lots";
+import { drawBulkLots, drawInviteLots } from "@/libs/apis/order/Coupon";
 import { MAX_CART_ITEM_QUANTITY } from "@/libs/Carts";
 
 const COUPON_ITEM_IDS: {

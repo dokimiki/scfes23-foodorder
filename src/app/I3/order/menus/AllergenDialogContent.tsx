@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { getAllergen } from "@/libs/apis/common/Allergen";
 
 export default function AllergenDialogContent({
-    itemInfo = { id: "", name: "", price: 0, image: "" },
+    itemInfo = { id: "", name: "", price: 0, image: "", isShow: false },
     onClose,
 }: {
     itemInfo?: MenuItem;
