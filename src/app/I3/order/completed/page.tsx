@@ -57,7 +57,7 @@ export default function Completed() {
                 </Paper>
             </div>
             <main>
-                <Card sx={{ margin: "50px auto", width: "250px", backgroundColor: "white" }}>
+                <Card sx={{ margin: "16px auto", width: "250px", backgroundColor: "white" }}>
                     <CardContent>
                         <Typography variant="h5" fontWeight={"medium"}>
                             待ち時間:
@@ -67,6 +67,12 @@ export default function Completed() {
                         </Typography>
                     </CardContent>
                 </Card>
+                <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ margin: "8px" }}>
+                    <Typography variant="h4">合計</Typography>
+                    <Typography variant="h3">
+                        ¥{cart.reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0).toLocaleString()}
+                    </Typography>
+                </Stack
 
                 <Typography
                     variant="h2"
@@ -84,12 +90,7 @@ export default function Completed() {
                 {cart.map((e, i) => {
                     return cartMenu(menus, e);
                 })}
-                <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ margin: "8px" }}>
-                    <Typography variant="h4">合計</Typography>
-                    <Typography variant="h3">
-                        ¥{cart.reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0).toLocaleString()}
-                    </Typography>
-                </Stack>
+>
             </main>
         </>
     );
