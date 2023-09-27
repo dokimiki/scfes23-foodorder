@@ -11,3 +11,13 @@ export function getCompleteState(): Promise<CompleteState> {
         }, 1000);
     });
 }
+
+export function getCompleteBarcode(): Promise<string> {
+    const mockResponse = Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join("");
+
+    return new Promise<string>((resolve, reject) => {
+        setTimeout(() => {
+            resolve(mockResponse);
+        }, 1000);
+    });
+}

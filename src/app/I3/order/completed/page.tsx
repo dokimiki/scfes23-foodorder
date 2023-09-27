@@ -14,16 +14,18 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { getCompleteState } from "@/libs/apis/order/Completed";
 import { CompleteState } from "@/libs/types/orderComplete";
+import { getCompleteBarcode } from "@/libs/apis/order/Completed";
 
 export default function Completed() {
     const barcode = Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join("");
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
+    const [completeBarcode, setCompleteBarcode] = React.useState<string>("");
 
     const { inputRef } = useBarcode({
         value: barcode,
         options: {
-            text: barcode.split("").reduce((str, char, i) => {
+            text: completeBarcode.split("").reduce((str, char, i) => {
                 return str + char + (i % 4 === 3 ? " " : "");
             }, ""),
             fontSize: 16,
@@ -41,6 +43,12 @@ export default function Completed() {
             .catch((err) => {
                 console.log(err);
             });
+
+        getCompleteBarcode()
+            .then((res) => {
+                setCompleteBarcode(res);
+            })
+            .catch((err) => {});
 
         getCompleteState()
             .then((res) => {
