@@ -17,6 +17,8 @@ import { CompleteState } from "@/libs/types/orderComplete";
 
 export default function Completed() {
     const barcode = Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join("");
+    const [menus, setMenus] = React.useState<MenuItem[]>([]);
+    const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
 
     const { inputRef } = useBarcode({
         value: barcode,
@@ -28,8 +30,9 @@ export default function Completed() {
             background: "#00000000",
         },
     });
-    const [menus, setMenus] = React.useState<MenuItem[]>([]);
-    const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
+
+    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
+
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
@@ -38,13 +41,13 @@ export default function Completed() {
             .catch((err) => {
                 console.log(err);
             });
+
+        getCompleteState()
+            .then((res) => {
+                setCompleteStatus(res);
+            })
+            .catch((err) => {});
     }, []);
-    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
-    getCompleteState()
-        .then((res) => {
-            setCompleteStatus(res);
-        })
-        .catch((err) => {});
 
     return (
         <>
