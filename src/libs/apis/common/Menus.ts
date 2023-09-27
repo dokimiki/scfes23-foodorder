@@ -33,6 +33,12 @@ export function getMenuItems(): Promise<MenuItem[]> {
             price: 500,
             image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=1974&q=80",
         },
+        {
+            id: "6",
+            name: "コンソメ",
+            price: 300,
+            image: "/img/consomme.png",
+        },
     ];
 
     return new Promise((resolve, reject) => {
