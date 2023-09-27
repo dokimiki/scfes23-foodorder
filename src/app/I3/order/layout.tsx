@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             SignIn(USER_ID)
                 .then((res) => {
                     setNewUser(res);
-                    localStorage.setItem("user-id", newUser?.id ?? "");
+                    localStorage.setItem("user-id", res.id);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             SignUp()
                 .then((res) => {
                     setNewUser(res);
-                    localStorage.setItem("user-id", newUser?.id ?? "");
+                    localStorage.setItem("user-id", res.id);
                 })
                 .catch((err) => {
                     console.log(err);

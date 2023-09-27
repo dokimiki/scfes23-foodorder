@@ -166,8 +166,9 @@ export default function Confirm() {
                             variant="contained"
                             color="inherit"
                             sx={{
-                                background:
-                                    "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                background: isLoadingBulkLot
+                                    ? ""
+                                    : "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                                 marginTop: "8px",
                             }}
                             onClick={onDrawBulkLot}
@@ -175,7 +176,7 @@ export default function Confirm() {
                             disabled={isLoadingBulkLot}
                         >
                             {isLoadingBulkLot ? (
-                                <CircularProgress color="warning" size={25} />
+                                <CircularProgress color="error" size={25} />
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
                                     <Bold>くじを引く</Bold>
@@ -207,25 +208,29 @@ export default function Confirm() {
                                     }}
                                 />
                             </div>
-
-                            <Button
-                                size="large"
-                                variant="contained"
-                                color="inherit"
-                                sx={{
-                                    background:
-                                        "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                                    marginTTop: "8px",
-                                }}
-                                onClick={onDrawInviteLot}
-                                fullWidth
-                                disabled={isLoadingInviteLot}
-                            >
+                        </Stack>
+                        <Button
+                            size="large"
+                            variant="contained"
+                            color="inherit"
+                            sx={{
+                                background: isLoadingInviteLot
+                                    ? ""
+                                    : "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                marginTTop: "8px",
+                            }}
+                            onClick={onDrawInviteLot}
+                            fullWidth
+                            disabled={isLoadingInviteLot}
+                        >
+                            {isLoadingInviteLot ? (
+                                <CircularProgress color="error" size={25} />
+                            ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
                                     <Bold>くじを引く</Bold>
                                 </Typography>
-                            </Button>
-                        </Stack>
+                            )}
+                        </Button>
                     </CardContent>
                 </Card>
             </Stack>
