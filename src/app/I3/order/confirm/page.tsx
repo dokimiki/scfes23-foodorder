@@ -149,7 +149,7 @@ export default function Confirm() {
 
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
-                        <Typography variant="body1">下のQRコードを友達のスマホで読み込んでもらって1回抽選！</Typography>
+                        <Typography variant="body1">QRコードを友達のスマホで読み込んでもらって1回抽選！</Typography>
                         <Stack direction="column" alignItems="center">
                             <div
                                 css={css`
