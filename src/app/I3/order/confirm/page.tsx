@@ -68,6 +68,7 @@ export default function Confirm() {
                 <div
                     css={css`
                         color: white;
+                        margin: 0 auto;
                     `}
                 >
                     <Button
@@ -79,11 +80,11 @@ export default function Confirm() {
                                 "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                         }}
                     >
-                        <Typography variant="h4">くじを引く</Typography>
+                        <Typography variant="h6">くじを引く</Typography>
                     </Button>
                 </div>
             </Box>
-            <Box sx={{ margin: "0 auto" }}>
+            <Box>
                 <Typography width={"200px"}>
                     {""}
                     <img src="/img/sample_code.jpeg" alt="qrコード" />
@@ -102,7 +103,7 @@ export default function Confirm() {
                                 "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                         }}
                     >
-                        <Typography variant="h4">割り引き</Typography>
+                        <Typography variant="h6">くじを引く</Typography>
                     </Button>
                 </div>
             </Box>
