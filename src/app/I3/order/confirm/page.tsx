@@ -15,6 +15,8 @@ import { execSync } from "child_process";
 import * as React from "react";
 import { cartMenu } from "./cartMenu";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import { CardContent } from "@mui/material";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -66,24 +68,25 @@ export default function Confirm() {
             <div
                 css={css`
                     color: white;
-                    width: 150px;
-                    margin: 0 auto;
+                    width: 100%;
                 `}
             >
-                <Box>
-                    <Typography variant="h5">2本以上購入!!</Typography>
-                    <Button
-                        size="large"
-                        variant="contained"
-                        color="inherit"
-                        sx={{
-                            background:
-                                "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                        }}
-                    >
-                        <Typography variant="h6">くじを引く</Typography>
-                    </Button>
-                </Box>
+                <Card sx={{ margin: "0 auto" }}>
+                    <CardContent>
+                        <Typography variant="h5">2本以上購入!!</Typography>
+                        <Button
+                            size="large"
+                            variant="contained"
+                            color="inherit"
+                            sx={{
+                                background:
+                                    "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                            }}
+                        >
+                            <Typography variant="h6">くじを引く</Typography>
+                        </Button>
+                    </CardContent>
+                </Card>
 
                 <Box>
                     <Typography width={"200px"}>
