@@ -11,21 +11,25 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { execSync } from "child_process";
 import * as React from "react";
 import { CartMenu } from "./cartMenu";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import { CardContent, Paper } from "@mui/material";
+import { CardContent } from "@mui/material";
 import { sendCartData } from "@/libs/apis/order/Carts";
 import { useRouter } from "next/navigation";
+import { useQRCode } from "next-qrcode";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [isSending, setIsSending] = React.useState<boolean>(false);
-    let cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
+    const [cart, setCart] = React.useState<CartItem[]>([]);
 
     const router = useRouter();
+    const { Canvas } = useQRCode();
+
+    React.useEffect(() => {
+        setCart(JSON.parse(localStorage.getItem("cart-item") || "[]"));
+    }, []);
 
     React.useEffect(() => {
         getMenuItems()
@@ -108,29 +112,36 @@ export default function Confirm() {
 
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
-                        <Typography variant="body1">QRコードを友達に読み込んでもらって1回抽選！</Typography>
-                        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-                        <img
-                            src="/img/sample_code.jpeg"
-                            css={css`
-                                width: -webkit-fill-available;
-                            `}
-                        />
-                        <Button
-                            size="large"
-                            variant="contained"
-                            color="inherit"
-                            sx={{
-                                background:
-                                    "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                                marginTTop: "8px",
-                            }}
-                            fullWidth
-                        >
-                            <Typography variant="body1" sx={{ color: "white" }}>
-                                <Bold>くじを引く</Bold>
-                            </Typography>
-                        </Button>
+                        <Typography variant="body1">下のQRコードを友達のスマホで読み込んでもらって1回抽選！</Typography>
+                        <Stack direction="column" alignItems="center">
+                            <Canvas
+                                text={"https://github.com/bunlong/next-qrcode"}
+                                options={{
+                                    errorCorrectionLevel: "L",
+                                    scale: 4,
+                                    width: 200,
+                                    color: {
+                                        dark: "#000C",
+                                        light: "#FFF0",
+                                    },
+                                }}
+                            />
+                            <Button
+                                size="large"
+                                variant="contained"
+                                color="inherit"
+                                sx={{
+                                    background:
+                                        "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                    marginTTop: "8px",
+                                }}
+                                fullWidth
+                            >
+                                <Typography variant="body1" sx={{ color: "white" }}>
+                                    <Bold>くじを引く</Bold>
+                                </Typography>
+                            </Button>
+                        </Stack>
                     </CardContent>
                 </Card>
             </Stack>
