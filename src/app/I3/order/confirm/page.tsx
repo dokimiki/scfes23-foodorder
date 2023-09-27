@@ -59,9 +59,10 @@ export default function Confirm() {
                 </Typography>
             </Stack>
             <Divider sx={{ marginBottom: "16px" }} />
+
             <Box>
-                <Typography>くじをひけるよ！</Typography>
-                <Button>
+                <Typography>2本以上購入!!</Typography>
+                <Button size="medium" variant="contained">
                     <Typography>くじを引く</Typography>
                 </Button>
             </Box>
