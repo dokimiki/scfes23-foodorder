@@ -67,7 +67,7 @@ export default function Confirm() {
                 <div
                     css={css`
                         color: white;
-                        width: 200px;
+                        width: 100px;
                         margin: 0 auto;
                     `}
                 >
@@ -87,29 +87,21 @@ export default function Confirm() {
             </Box>
 
             <Box>
-                <div
-                    css={css`
-                        color: white;
-                        width: 200px;
-                        margin: 0 auto;
-                    `}
+                <Typography width={"200px"}>
+                    {""}
+                    <img src="/img/sample_code.jpeg" alt="qrコード" />
+                </Typography>
+                <Button
+                    size="large"
+                    variant="contained"
+                    color="inherit"
+                    sx={{
+                        background:
+                            "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                    }}
                 >
-                    <Typography width={"200px"}>
-                        {""}
-                        <img src="/img/sample_code.jpeg" alt="qrコード" />
-                    </Typography>
-                    <Button
-                        size="large"
-                        variant="contained"
-                        color="inherit"
-                        sx={{
-                            background:
-                                "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                        }}
-                    >
-                        <Typography variant="h6">くじを引く</Typography>
-                    </Button>
-                </div>
+                    <Typography variant="h6">くじを引く</Typography>
+                </Button>
             </Box>
 
             <Stack direction="row" justifyContent="space-between">
