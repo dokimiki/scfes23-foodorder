@@ -67,7 +67,7 @@ export default function Confirm() {
                 <Typography>2本以上購入!!</Typography>
                 <div
                     css={css`
-                        background: linear-gradient(38deg, rgba(255, 0, 254, 1) 20%, rgba(165, 62, 255, 1) 48%, rgba(0, 116, 255, 1) 89%);
+                        color: white;
                     `}
                 >
                     <Button
@@ -75,8 +75,8 @@ export default function Confirm() {
                         variant="contained"
                         color="inherit"
                         sx={{
-                            backgroundColor:
-                                "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%);",
+                            background:
+                                "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                         }}
                     >
                         <Typography>くじを引く</Typography>
