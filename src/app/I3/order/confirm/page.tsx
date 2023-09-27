@@ -64,7 +64,6 @@ export default function Confirm() {
             <Divider sx={{ marginBottom: "16px" }} />
 
             <Box sx={{ margin: "0 auto" }}>
-                <Typography variant="h5">2本以上購入!!</Typography>
                 <div
                     css={css`
                         color: white;
@@ -72,6 +71,7 @@ export default function Confirm() {
                         margin: 0 auto;
                     `}
                 >
+                    <Typography variant="h5">2本以上購入!!</Typography>
                     <Button
                         size="large"
                         variant="contained"
@@ -85,16 +85,19 @@ export default function Confirm() {
                     </Button>
                 </div>
             </Box>
+
             <Box>
-                <Typography width={"200px"}>
-                    {""}
-                    <img src="/img/sample_code.jpeg" alt="qrコード" />
-                </Typography>
                 <div
                     css={css`
                         color: white;
+                        width: 200px;
+                        margin: 0 auto;
                     `}
                 >
+                    <Typography width={"200px"}>
+                        {""}
+                        <img src="/img/sample_code.jpeg" alt="qrコード" />
+                    </Typography>
                     <Button
                         size="large"
                         variant="contained"
