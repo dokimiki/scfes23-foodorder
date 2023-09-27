@@ -160,13 +160,7 @@ export default function Confirm() {
             <Stack direction="column">
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
-                        {bulkCoupon === "none" ? (
-                            <Typography variant="body1">2本以上購入で1回抽選！</Typography>
-                        ) : (
-                            <Typography variant="h5" marginBottom={"5px"} textAlign={"center"}>
-                                {bulkCoupon}
-                            </Typography>
-                        )}
+                        <Typography variant="body1">2本以上購入で1回抽選！</Typography>
 
                         <Button
                             size="large"
@@ -187,7 +181,7 @@ export default function Confirm() {
                                 <CircularProgress color="error" size={25} />
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
-                                    <Bold>くじを引く</Bold>
+                                 {bulkCoupon === "none" ? <Bold>くじを引く</Bold> :}   
                                 </Typography>
                             )}
                         </Button>
