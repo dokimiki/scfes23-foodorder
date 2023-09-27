@@ -12,6 +12,9 @@ export async function getAllergen(menuId: string): Promise<AllergensList> {
         tamago: "NotContains",
     };
 
-    await setTimeout(() => {}, 1000);
-    return mockResponse;
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(mockResponse);
+        }, 1000);
+    });
 }
