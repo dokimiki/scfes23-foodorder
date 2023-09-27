@@ -26,6 +26,7 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                                     name: "",
                                     price: 0,
                                     image: "",
+                                    isShow: false,
                                 };
                                 return (
                                     <Box

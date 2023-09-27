@@ -3,6 +3,7 @@ export type MenuItem = {
     name: string;
     price: number;
     image: string;
+    isShow: boolean;
 };
 
 export type CartItem = {

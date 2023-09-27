@@ -26,7 +26,7 @@ export default function Menus() {
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
-                setMenus(res);
+                setMenus(res.filter((e) => e.isShow));
             })
             .catch((err) => {
                 console.log(err);
