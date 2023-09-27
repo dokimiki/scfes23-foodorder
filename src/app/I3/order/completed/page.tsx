@@ -2,16 +2,15 @@
 import { Paper, Stack } from "@mui/material";
 import { useBarcode } from "next-barcode";
 import { CartMenu } from "./cartMenu";
-import { CartItem, MenuItem } from "@/libs/types/item";
+import { MenuItem } from "@/libs/types/item";
 import * as React from "react";
 import { getMenuItems } from "@/libs/apis/common/Menus";
 import Typography from "@mui/material/Typography";
 import Bold from "@/components/Bold";
-import Box from "@mui/material/Box";
+
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
+
 import { getCompleteInfo, getCompleteState } from "@/libs/apis/order/Completed";
 import { CompleteInfo, CompleteState } from "@/libs/types/orderComplete";
 

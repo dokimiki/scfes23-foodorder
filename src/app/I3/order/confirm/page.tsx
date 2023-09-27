@@ -74,7 +74,6 @@ export default function Confirm() {
     }, []);
 
     function onConfirm() {
-        setIsLoadingBulkLot(true);
         setIsSending(true);
         sendCartData(cart)
             .then(() => {
@@ -85,7 +84,6 @@ export default function Confirm() {
             })
             .finally(() => {
                 setIsSending(false);
-                setIsLoadingBulkLot(false);
             });
     }
 

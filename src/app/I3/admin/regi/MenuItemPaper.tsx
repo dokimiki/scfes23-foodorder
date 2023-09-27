@@ -9,7 +9,6 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
 
 export function MenuItemPaper({
     itemMenuInfo,

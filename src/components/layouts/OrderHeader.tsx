@@ -1,12 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import * as React from "react";
-import { css } from "@emotion/react";
-import Link from "next/link";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import HomeIcon from "@mui/icons-material/Home";
 
 export default function Header({ title }: { title: string }) {
     return (
