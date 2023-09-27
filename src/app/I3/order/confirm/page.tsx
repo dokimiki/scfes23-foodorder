@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { execSync } from "child_process";
 import * as React from "react";
 import { cartMenu } from "./cartMenu";
+import Box from "@mui/material/Box";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -58,6 +59,17 @@ export default function Confirm() {
                 </Typography>
             </Stack>
             <Divider sx={{ marginBottom: "16px" }} />
+            <Box>
+                <Typography>くじをひけるよ！</Typography>
+                <Button>
+                    <Typography>くじを引く</Typography>
+                </Button>
+            </Box>
+            <Box>
+                <Button>
+                    <Typography>割り引き</Typography>
+                </Button>
+            </Box>
 
             <Stack direction="row" justifyContent="space-between">
                 <Button variant="contained" color="inherit" href="/I3/order/menus" size="large">
