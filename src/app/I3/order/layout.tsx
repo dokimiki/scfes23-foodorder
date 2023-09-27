@@ -12,11 +12,11 @@ import { usePathname, useRouter } from "next/navigation";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const [newUser, setNewUser] = React.useState<User | undefined>();
-    const USER_ID: string | null = localStorage.getItem("user-id");
     const pathname = usePathname();
     const router = useRouter();
 
     React.useEffect(() => {
+        const USER_ID: string | null = localStorage.getItem("user-id");
         if (USER_ID) {
             SignIn(USER_ID)
                 .then((res) => {
