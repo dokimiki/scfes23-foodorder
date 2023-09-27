@@ -85,7 +85,7 @@ export default function Confirm() {
             <Divider sx={{ marginBottom: "16px" }} />
 
             <Stack direction="column">
-                <Paper>
+                <Card sx={{ background: "white" }}>
                     <CardContent>
                         <Typography variant="body1">2本以上購入で抽選！</Typography>
                         <Button
@@ -97,13 +97,14 @@ export default function Confirm() {
                                     "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                                 marginY: "4px",
                             }}
+                            fullWidth
                         >
                             <Typography variant="body2" sx={{ color: "white" }}>
                                 くじを引く
                             </Typography>
                         </Button>
                     </CardContent>
-                </Paper>
+                </Card>
 
                 <Card sx={{ margin: "10px auto", backgroundColor: "white" }}>
                     <CardContent>
