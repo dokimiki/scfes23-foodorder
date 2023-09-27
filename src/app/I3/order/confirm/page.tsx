@@ -85,6 +85,7 @@ export default function Confirm() {
             </Box>
             <Box>
                 <Button>
+                    <img src="/img/sample_code.jpeg" alt="" />
                     <Typography>割り引き</Typography>
                 </Button>
             </Box>
