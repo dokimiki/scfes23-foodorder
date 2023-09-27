@@ -72,7 +72,7 @@ export default function Completed() {
                     <Typography variant="h3">
                         ¥{cart.reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0).toLocaleString()}
                     </Typography>
-                </Stack
+                </Stack>
 
                 <Typography
                     variant="h2"
@@ -90,7 +90,6 @@ export default function Completed() {
                 {cart.map((e, i) => {
                     return cartMenu(menus, e);
                 })}
->
             </main>
         </>
     );
