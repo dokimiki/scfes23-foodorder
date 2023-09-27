@@ -164,7 +164,7 @@ export default function Confirm() {
                             <Typography variant="body1">2本以上購入で1回抽選！</Typography>
                         ) : (
                             <Typography variant="h5" marginBottom={"5px"} textAlign={"center"}>
-                                使用済み
+                                {bulkCoupon}
                             </Typography>
                         )}
 
