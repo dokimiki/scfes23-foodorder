@@ -163,6 +163,7 @@ export default function Menus() {
                 >
                     好きな味をえらぼう！
                 </Typography>
+                <Typography variant="subtitle1">※一緒の味は最大5つまで同時にカートに入れられます。</Typography>
                 <List
                     sx={{
                         width: "100%",
