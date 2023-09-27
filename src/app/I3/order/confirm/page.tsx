@@ -51,6 +51,7 @@ export default function Confirm() {
     }, []);
 
     function onConfirm() {
+        setIsLoadingBulkLot(true);
         setIsSending(true);
         sendCartData(cart)
             .then(() => {
@@ -61,6 +62,7 @@ export default function Confirm() {
             })
             .finally(() => {
                 setIsSending(false);
+                setIsLoadingBulkLot(false);
             });
     }
 
@@ -143,9 +145,13 @@ export default function Confirm() {
                             fullWidth
                             disabled={isLoadingBulkLot}
                         >
-                            <Typography variant="body1" sx={{ color: "white" }}>
-                                <Bold>くじを引く</Bold>
-                            </Typography>
+                            {isLoadingBulkLot ? (
+                                <CircularProgress color="warning" size={25} />
+                            ) : (
+                                <Typography variant="body1" sx={{ color: "white" }}>
+                                    <Bold>くじを引く</Bold>
+                                </Typography>
+                            )}
                         </Button>
                     </CardContent>
                 </Card>
