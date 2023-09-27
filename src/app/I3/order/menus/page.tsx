@@ -2,7 +2,7 @@
 "use client";
 
 import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
-import { getMenuItems } from "@/libs/apis/Menus";
+import { getMenuItems } from "@/libs/apis/common/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { Global, css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
@@ -10,12 +10,12 @@ import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import OrderDrawerContent from "./OrderDrawerContent";
 import MenuItemPaper from "./MenuItemPaper";
-import { AllergensList } from "@/libs/types/allergen";
 import List from "@mui/material/List";
 import { Backdrop, Button, CircularProgress, Dialog, Divider, Stack } from "@mui/material";
 import AllergenDialogContent from "./AllergenDialogContent";
 import { useRouter } from "next/navigation";
 import Bold from "@/components/Bold";
+import { getAllergen } from "@/libs/apis/common/Allergen";
 
 const drawerBleeding = 68.5;
 
@@ -121,7 +121,7 @@ export default function Menus() {
                 <Typography variant="body1">
                     I3のトルネードポテト・ネット支店へようこそ！
                     <br />
-                    予約してくれた人の中から抽選で割引もあるよ！
+                    条件を満たした人の中から抽選で割引もあるよ！
                     <br /> このサイトで注文をして、お得に待ち時間なしでポテトを受け取ろう！
                     <br />
                     <br />
@@ -163,6 +163,7 @@ export default function Menus() {
                 >
                     好きな味をえらぼう！
                 </Typography>
+                <Typography variant="subtitle1">※一緒の味は最大5つまで同時にカートに入れられます。</Typography>
                 <List
                     sx={{
                         width: "100%",
@@ -201,18 +202,6 @@ export default function Menus() {
                 open={isDialogOpen}
             >
                 <AllergenDialogContent
-                    allergens={
-                        {
-                            ebi: "NotContains",
-                            kani: "Contains",
-                            komugi: "NotContains",
-                            kurumi: "NotContains",
-                            milk: "NotContains",
-                            peanut: "Contamination",
-                            soba: "NotContains",
-                            tamago: "NotContains",
-                        } as AllergensList
-                    }
                     itemInfo={menus.find((e) => e.id === selectedModalItemID)}
                     onClose={() => {
                         setIsDialogOpen(false);

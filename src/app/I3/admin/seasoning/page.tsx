@@ -1,5 +1,5 @@
 "use client";
-import { getMenuItems } from "@/libs/apis/Menus";
+import { getMenuItems } from "@/libs/apis/common/Menus";
 import { MenuItem } from "@/libs/types/item";
 import { Order } from "@/libs/types/order";
 import AppBar from "@mui/material/AppBar";

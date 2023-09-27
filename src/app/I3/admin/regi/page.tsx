@@ -2,8 +2,8 @@
 "use client";
 
 import { MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
-import { getCartDataFromOrderCode, sendCartData } from "@/libs/apis/admin/Carts";
-import { getMenuItems } from "@/libs/apis/Menus";
+import { getCartDataFromOrderCode, sendOrderData } from "@/libs/apis/admin/Carts";
+import { getMenuItems } from "@/libs/apis/common/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { css } from "@emotion/react";
 import { Smartphone } from "@mui/icons-material";
@@ -254,7 +254,7 @@ export default function Regi() {
                     total={cart.reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)}
                     onSend={() => {
                         setIsSending(true);
-                        sendCartData(cart, orderCode)
+                        sendOrderData(cart, orderCode)
                             .then((res) => {
                                 console.log(res);
                                 setOrderCode("");

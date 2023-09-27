@@ -119,7 +119,7 @@ export default function Potato() {
             <Toolbar></Toolbar>
 
             <Dialog open={isDialogOpen} onClose={() => setIsDialogOpen(false)}>
-                <DialogTitle id="alert-dialog-title">この項目を削除してよろしいですか？</DialogTitle>
+                <DialogTitle id="alert-dialog-title">このポテトは揚げ終わりましたか？</DialogTitle>
                 <DialogContent>
                     <Stack direction={"row"} alignItems={"end"} justifyContent={"center"}>
                         <Typography variant="h5" margin={"0 10px 5px 0"}>
@@ -132,12 +132,14 @@ export default function Potato() {
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={() => setIsDialogOpen(false)}>
-                        <Typography color={"red"}>キャンセル</Typography>
-                    </Button>
-                    <Button onClick={() => setIsDialogOpen(false)} autoFocus>
-                        <Typography color={"blue"}>確認</Typography>
-                    </Button>
+                    <Stack direction="row" justifyContent="space-between" width="100%">
+                        <Button onClick={() => setIsDialogOpen(false)} variant="contained" size="large" color="inherit">
+                            キャンセル
+                        </Button>
+                        <Button onClick={() => setIsDialogOpen(false)} variant="contained" size="large" autoFocus>
+                            完了
+                        </Button>
+                    </Stack>
                 </DialogActions>
             </Dialog>
         </main>
