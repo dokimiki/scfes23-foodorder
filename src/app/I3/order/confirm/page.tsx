@@ -18,8 +18,8 @@ import { CardContent } from "@mui/material";
 import { sendCartData } from "@/libs/apis/order/Carts";
 import { useRouter } from "next/navigation";
 import { useQRCode } from "next-qrcode";
-import { CouponKind } from "@/libs/types/coupon";
-import { drawBulkLots, drawInviteLots } from "@/libs/apis/order/Coupon";
+import { CouponItemIds, CouponKind } from "@/libs/types/coupon";
+import { drawBulkLots, drawInviteLots, getCouponItemIds } from "@/libs/apis/order/Coupon";
 import { MAX_CART_ITEM_QUANTITY } from "@/libs/Carts";
 
 const COUPON_ITEM_IDS: {
@@ -41,6 +41,7 @@ export default function Confirm() {
     const [isLoadingInviteLot, setIsLoadingInviteLot] = React.useState<boolean>(false);
     const [bulkCoupon, setBulkCoupon] = React.useState<CouponKind>("none");
     const [inviteCoupon, setInviteCoupon] = React.useState<CouponKind>("none");
+    const [couponItemIds, setCouponItemIds] = React.useState<CouponItemIds>();
 
     const router = useRouter();
     const { Canvas } = useQRCode();
@@ -67,6 +68,16 @@ export default function Confirm() {
         getMenuItems()
             .then((res) => {
                 setMenus(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    React.useEffect(() => {
+        getCouponItemIds()
+            .then((res) => {
+                setCouponItemIds(res);
             })
             .catch((err) => {
                 console.log(err);
