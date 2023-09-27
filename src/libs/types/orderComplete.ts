@@ -1,7 +1,9 @@
 import { CartItem } from "./item";
 
+export type CompleteStateKind = "Cooking" | "Cooked" | "Delivered";
+
 export type CompleteState = {
-    state: "Cooking" | "Cooked" | "Delivered";
+    state: CompleteStateKind;
 };
 
 export type CompleteInfo = {
