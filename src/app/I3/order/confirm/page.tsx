@@ -1,4 +1,7 @@
+/** @jsxImportSource @emotion/react */
 "use client";
+
+import { css } from "@emotion/react";
 import Bold from "@/components/Bold";
 import { getMenuItems } from "@/libs/apis/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
@@ -62,9 +65,15 @@ export default function Confirm() {
 
             <Box>
                 <Typography>2本以上購入!!</Typography>
-                <Button size="medium" variant="contained">
-                    <Typography>くじを引く</Typography>
-                </Button>
+                <div
+                    css={css`
+                        color: green;
+                    `}
+                >
+                    <Button size="medium" variant="contained" color="inherit">
+                        <Typography>くじを引く</Typography>
+                    </Button>
+                </div>
             </Box>
             <Box>
                 <Button>
