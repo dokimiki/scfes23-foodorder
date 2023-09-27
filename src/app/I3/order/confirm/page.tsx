@@ -110,6 +110,7 @@ export default function Confirm() {
                                     "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                                 marginTop: "8px",
                             }}
+                            onClick={onDrawBulkLot}
                             fullWidth
                         >
                             <Typography variant="body1" sx={{ color: "white" }}>
@@ -144,6 +145,7 @@ export default function Confirm() {
                                         "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                                     marginTTop: "8px",
                                 }}
+                                onClick={onDrawInviteLot}
                                 fullWidth
                             >
                                 <Typography variant="body1" sx={{ color: "white" }}>
