@@ -20,6 +20,17 @@ import { useRouter } from "next/navigation";
 import { useQRCode } from "next-qrcode";
 import { CouponKind } from "@/libs/types/coupon";
 import { drawBulkLots, drawInviteLots } from "@/libs/apis/order/Lots";
+import { MAX_CART_ITEM_QUANTITY } from "@/libs/Carts";
+
+const COUPON_ITEM_IDS: {
+    [key in CouponKind]: string | undefined;
+} = {
+    none: undefined,
+    "0": undefined,
+    "100": "7",
+    "200": "8",
+    "300": "9",
+};
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -35,6 +46,18 @@ export default function Confirm() {
     const { Canvas } = useQRCode();
 
     const QRUrl: string = "https://ncth-app.jp/I3/order/invite/test"; // TODO: 本番環境では変更する
+
+    function addToCart(id: string) {
+        const index = cart.findIndex((e) => e.id === id);
+        if (index === -1) {
+            setCart([...cart, { id: id, quantity: 1 }]);
+        } else {
+            const newCart = cart.slice();
+            newCart[index].quantity++;
+            newCart[index].quantity = Math.min(newCart[index].quantity, MAX_CART_ITEM_QUANTITY);
+            setCart(newCart);
+        }
+    }
 
     React.useEffect(() => {
         setCart(JSON.parse(localStorage.getItem("cart-item") || "[]"));
@@ -69,6 +92,10 @@ export default function Confirm() {
 
         drawBulkLots()
             .then((res) => {
+                const CouponItemID = COUPON_ITEM_IDS[res.kind];
+                if (CouponItemID !== undefined) {
+                    addToCart(CouponItemID);
+                }
                 setBulkCoupon(res.kind);
             })
             .catch((err) => {
@@ -83,6 +110,10 @@ export default function Confirm() {
         setIsLoadingInviteLot(true);
         drawInviteLots()
             .then((res) => {
+                const CouponItemID = COUPON_ITEM_IDS[res.kind];
+                if (CouponItemID !== undefined) {
+                    addToCart(CouponItemID);
+                }
                 setInviteCoupon(res.kind);
             })
             .catch((err) => {

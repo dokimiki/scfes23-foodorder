@@ -52,6 +52,20 @@ export function getMenuItems(): Promise<MenuItem[]> {
             image: "/img/menu_tornado.png",
             isShow: false,
         },
+        {
+            id: "8",
+            name: "¥200割引",
+            price: -200,
+            image: "/img/menu_tornado.png",
+            isShow: false,
+        },
+        {
+            id: "9",
+            name: "¥300割引",
+            price: -300,
+            image: "/img/menu_tornado.png",
+            isShow: false,
+        },
     ];
 
     return new Promise((resolve, reject) => {
