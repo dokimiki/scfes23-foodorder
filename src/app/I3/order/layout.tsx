@@ -10,7 +10,7 @@ import { User } from "@/libs/types/user";
 import { SignIn, SignUp } from "@/libs/apis/order/User";
 import { usePathname, useRouter } from "next/navigation";
 
-const DEBUG = true; // TODO: falseにする
+let DEBUG = true; // TODO: falseにする
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const [newUser, setNewUser] = React.useState<User | undefined>();
