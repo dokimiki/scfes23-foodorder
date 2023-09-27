@@ -24,6 +24,7 @@ export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [isSending, setIsSending] = React.useState<boolean>(false);
     const [cart, setCart] = React.useState<CartItem[]>([]);
+
     const [isLoadingBulkLot, setIsLoadingBulkLot] = React.useState<boolean>(false);
     const [isLoadingInviteLot, setIsLoadingInviteLot] = React.useState<boolean>(false);
     const [bulkCoupon, setBulkCoupon] = React.useState<CouponKind>("none");
@@ -60,7 +61,12 @@ export default function Confirm() {
             });
     }
 
-    function onDrawBulkLot() {}
+    function onDrawBulkLot() {
+        setIsLoadingBulkLot(true);
+        setTimeout(() => {
+            setIsLoadingBulkLot(false);
+        }, 1000);
+    }
 
     function onDrawInviteLot() {}
 
@@ -112,6 +118,7 @@ export default function Confirm() {
                             }}
                             onClick={onDrawBulkLot}
                             fullWidth
+                            disabled={isLoadingBulkLot}
                         >
                             <Typography variant="body1" sx={{ color: "white" }}>
                                 <Bold>くじを引く</Bold>
@@ -147,6 +154,7 @@ export default function Confirm() {
                                 }}
                                 onClick={onDrawInviteLot}
                                 fullWidth
+                                disabled={isLoadingInviteLot}
                             >
                                 <Typography variant="body1" sx={{ color: "white" }}>
                                     <Bold>くじを引く</Bold>
