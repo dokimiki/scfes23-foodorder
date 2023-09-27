@@ -63,14 +63,14 @@ export default function Confirm() {
             </Stack>
             <Divider sx={{ marginBottom: "16px" }} />
 
-            <Box sx={{ margin: "0 auto" }}>
-                <div
-                    css={css`
-                        color: white;
-                        width: 100px;
-                        margin: 0 auto;
-                    `}
-                >
+            <div
+                css={css`
+                    color: white;
+                    width: 150px;
+                    margin: 0 auto;
+                `}
+            >
+                <Box>
                     <Typography variant="h5">2本以上購入!!</Typography>
                     <Button
                         size="large"
@@ -83,26 +83,26 @@ export default function Confirm() {
                     >
                         <Typography variant="h6">くじを引く</Typography>
                     </Button>
-                </div>
-            </Box>
+                </Box>
 
-            <Box>
-                <Typography width={"200px"}>
-                    {""}
-                    <img src="/img/sample_code.jpeg" alt="qrコード" />
-                </Typography>
-                <Button
-                    size="large"
-                    variant="contained"
-                    color="inherit"
-                    sx={{
-                        background:
-                            "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                    }}
-                >
-                    <Typography variant="h6">くじを引く</Typography>
-                </Button>
-            </Box>
+                <Box>
+                    <Typography width={"200px"}>
+                        {""}
+                        <img src="/img/sample_code.jpeg" alt="qrコード" />
+                    </Typography>
+                    <Button
+                        size="large"
+                        variant="contained"
+                        color="inherit"
+                        sx={{
+                            background:
+                                "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                        }}
+                    >
+                        <Typography variant="h6">くじを引く</Typography>
+                    </Button>
+                </Box>
+            </div>
 
             <Stack direction="row" justifyContent="space-between">
                 <Button variant="contained" color="inherit" href="/I3/order/menus" size="large">
