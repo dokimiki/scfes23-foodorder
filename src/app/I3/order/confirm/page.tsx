@@ -16,7 +16,7 @@ import * as React from "react";
 import { CartMenu } from "./cartMenu";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import { CardContent } from "@mui/material";
+import { CardContent, Paper } from "@mui/material";
 import { sendCartData } from "@/libs/apis/order/Carts";
 import { useRouter } from "next/navigation";
 
@@ -40,7 +40,7 @@ export default function Confirm() {
     function onConfirm() {
         setIsSending(true);
         sendCartData(cart)
-            .then((res) => {
+            .then(() => {
                 router.push("/I3/order/completed");
             })
             .catch((err) => {
@@ -84,15 +84,10 @@ export default function Confirm() {
             </Stack>
             <Divider sx={{ marginBottom: "16px" }} />
 
-            <div
-                css={css`
-                    color: white;
-                    width: 100%;
-                `}
-            >
-                <Card sx={{ margin: "0 auto", backgroundColor: "white" }}>
+            <Stack direction="column">
+                <Paper>
                     <CardContent>
-                        <Typography variant="h5">2本以上購入!!</Typography>
+                        <Typography variant="body1">2本以上購入で抽選！</Typography>
                         <Button
                             size="large"
                             variant="contained"
@@ -100,18 +95,24 @@ export default function Confirm() {
                             sx={{
                                 background:
                                     "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                marginY: "4px",
                             }}
                         >
-                            <Typography variant="h6">くじを引く</Typography>
+                            <Typography variant="body2" sx={{ color: "white" }}>
+                                くじを引く
+                            </Typography>
                         </Button>
                     </CardContent>
-                </Card>
+                </Paper>
 
                 <Card sx={{ margin: "10px auto", backgroundColor: "white" }}>
                     <CardContent>
-                        <Typography sx={{ margin: "0 auto", width: "340px" }}>
-                            <img src="/img/sample_code.jpeg" alt="qrコード" />
-                        </Typography>
+                        <img
+                            src="/img/sample_code.jpeg"
+                            css={css`
+                                width: -webkit-fill-available;
+                            `}
+                        />
                         <Button
                             size="large"
                             variant="contained"
@@ -125,7 +126,7 @@ export default function Confirm() {
                         </Button>
                     </CardContent>
                 </Card>
-            </div>
+            </Stack>
 
             <Stack direction="row" justifyContent="space-between">
                 <Button variant="contained" color="inherit" href="/I3/order/menus" size="large">
