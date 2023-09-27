@@ -40,22 +40,20 @@ export default function Completed() {
 
     return (
         <>
-            <div>
-                <Paper
-                    elevation={0}
-                    sx={{
-                        width: "100%",
-                        padding: 2,
-                        background: "white",
-                        position: "fixed",
-                        borderRadius: "0 0 8px 8px",
-                    }}
-                >
-                    <Stack alignItems="center">
-                        <svg ref={inputRef} />
-                    </Stack>
-                </Paper>
-            </div>
+            <Paper
+                elevation={0}
+                sx={{
+                    width: "100%",
+                    padding: 2,
+                    background: "white",
+                    position: "fixed",
+                    borderRadius: "0 0 8px 8px",
+                }}
+            >
+                <Stack alignItems="center">
+                    <svg ref={inputRef} />
+                </Stack>
+            </Paper>
             <main>
                 <Card sx={{ margin: "16px auto", backgroundColor: "white" }}>
                     <CardContent>
