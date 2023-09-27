@@ -58,6 +58,7 @@ export default function Completed() {
                 </Paper>
 
                 <Paper
+                    elevation={0}
                     sx={{
                         width: "100%",
                         padding: 2,
