@@ -68,6 +68,8 @@ export default function Confirm() {
                 <div
                     css={css`
                         color: white;
+                        width: 200px;
+                        margin: 0 auto;
                     `}
                 >
                     <Button
@@ -77,8 +79,6 @@ export default function Confirm() {
                         sx={{
                             background:
                                 "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                            width: "200px",
-                            margin: "0 auto",
                         }}
                     >
                         <Typography variant="h6">くじを引く</Typography>
