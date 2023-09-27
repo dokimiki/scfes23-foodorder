@@ -18,19 +18,9 @@ import { CardContent } from "@mui/material";
 import { sendCartData } from "@/libs/apis/order/Carts";
 import { useRouter } from "next/navigation";
 import { useQRCode } from "next-qrcode";
-import { CouponKind } from "@/libs/types/coupon";
-import { drawBulkLots, drawInviteLots } from "@/libs/apis/order/Coupon";
+import { CouponItemIds, CouponKind } from "@/libs/types/coupon";
+import { drawBulkLots, drawInviteLots, getCouponItemIds } from "@/libs/apis/order/Coupon";
 import { MAX_CART_ITEM_QUANTITY } from "@/libs/Carts";
-
-const COUPON_ITEM_IDS: {
-    [key in CouponKind]: string | undefined;
-} = {
-    none: undefined,
-    "0": undefined,
-    "100": "7",
-    "200": "8",
-    "300": "9",
-};
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -41,6 +31,7 @@ export default function Confirm() {
     const [isLoadingInviteLot, setIsLoadingInviteLot] = React.useState<boolean>(false);
     const [bulkCoupon, setBulkCoupon] = React.useState<CouponKind>("none");
     const [inviteCoupon, setInviteCoupon] = React.useState<CouponKind>("none");
+    const [couponItemIds, setCouponItemIds] = React.useState<CouponItemIds>();
 
     const router = useRouter();
     const { Canvas } = useQRCode();
@@ -73,6 +64,16 @@ export default function Confirm() {
             });
     }, []);
 
+    React.useEffect(() => {
+        getCouponItemIds()
+            .then((res) => {
+                setCouponItemIds(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     function onConfirm() {
         setIsSending(true);
         sendCartData(cart)
@@ -91,8 +92,8 @@ export default function Confirm() {
         setIsLoadingBulkLot(true);
         drawBulkLots()
             .then((res) => {
-                const CouponItemID = COUPON_ITEM_IDS[res.kind];
-                if (CouponItemID !== undefined) {
+                const CouponItemID = couponItemIds?.[res.kind] ?? null;
+                if (CouponItemID !== null) {
                     addToCart(CouponItemID);
                 }
                 setBulkCoupon(res.kind);
@@ -109,8 +110,8 @@ export default function Confirm() {
         setIsLoadingInviteLot(true);
         drawInviteLots()
             .then((res) => {
-                const CouponItemID = COUPON_ITEM_IDS[res.kind];
-                if (CouponItemID !== undefined) {
+                const CouponItemID = couponItemIds?.[res.kind] ?? null;
+                if (CouponItemID !== null) {
                     addToCart(CouponItemID);
                 }
                 setInviteCoupon(res.kind);
