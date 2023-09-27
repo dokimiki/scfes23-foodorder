@@ -17,9 +17,15 @@ import { cartMenu } from "./cartMenu";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { CardContent } from "@mui/material";
+import { sendCartData } from "@/libs/apis/order/Carts";
+import { useRouter } from "next/navigation";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
+    const [isSending, setIsSending] = React.useState<boolean>(false);
+    let cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
+
+    const router = useRouter();
 
     React.useEffect(() => {
         getMenuItems()
@@ -31,7 +37,21 @@ export default function Confirm() {
             });
     }, []);
 
-    if (menus.length <= 0) {
+    function onConfirm() {
+        setIsSending(true);
+        sendCartData(cart)
+            .then((res) => {
+                router.push("/I3/order/completed");
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setIsSending(false);
+            });
+    }
+
+    if (menus.length <= 0 || isSending) {
         return (
             <main>
                 <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
@@ -41,7 +61,6 @@ export default function Confirm() {
         );
     }
 
-    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
     return (
         <main>
             <Typography
@@ -112,7 +131,7 @@ export default function Confirm() {
                 <Button variant="contained" color="inherit" href="/I3/order/menus" size="large">
                     戻る
                 </Button>
-                <Button variant="contained" href="/I3/order/completed" size="large">
+                <Button variant="contained" onClick={onConfirm} size="large">
                     注文を確定する
                 </Button>
             </Stack>
