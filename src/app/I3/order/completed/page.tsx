@@ -12,27 +12,24 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import { getCompleteState } from "@/libs/apis/order/Completed";
-import { CompleteState } from "@/libs/types/orderComplete";
-import { getCompleteBarcode } from "@/libs/apis/order/Completed";
+import { getCompleteInfo, getCompleteState } from "@/libs/apis/order/Completed";
+import { CompleteInfo, CompleteState } from "@/libs/types/orderComplete";
 
 export default function Completed() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
-    const [completeBarcode, setCompleteBarcode] = React.useState<string>("");
+    const [completeInfo, setCompleteInfo] = React.useState<CompleteInfo>();
 
     const { inputRef } = useBarcode({
-        value: completeBarcode,
+        value: completeInfo?.barcode || "???",
         options: {
-            text: completeBarcode.split("").reduce((str, char, i) => {
+            text: (completeInfo?.barcode || "???").split("").reduce((str, char, i) => {
                 return str + char + (i % 4 === 3 ? " " : "");
             }, ""),
             fontSize: 16,
             background: "#00000000",
         },
     });
-
-    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
 
     React.useEffect(() => {
         getMenuItems()
@@ -43,9 +40,9 @@ export default function Completed() {
                 console.log(err);
             });
 
-        getCompleteBarcode()
+        getCompleteInfo()
             .then((res) => {
-                setCompleteBarcode(res);
+                setCompleteInfo(res);
             })
             .catch((err) => {});
 
@@ -81,7 +78,7 @@ export default function Completed() {
                             完成予定:
                         </Typography>
                         <Typography variant="h2" fontWeight={"bold"} align="center">
-                            10:20
+                            {completeInfo?.completeTime || "??:??"}
                         </Typography>
                         <Typography variant="h6" fontWeight={"medium"} align="center">
                             完成状況:{" "}
@@ -98,7 +95,10 @@ export default function Completed() {
                 <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ margin: "8px" }}>
                     <Typography variant="h4">合計</Typography>
                     <Typography variant="h3">
-                        ¥{cart.reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0).toLocaleString()}
+                        ¥
+                        {completeInfo?.items
+                            .reduce((p, c) => p + (menus.find((e) => e.id === c.id)?.price || 0) * c.quantity, 0)
+                            .toLocaleString()}
                     </Typography>
                 </Stack>
 
@@ -115,7 +115,7 @@ export default function Completed() {
                 >
                     <Bold>注文内容</Bold>
                 </Typography>
-                {cart.map((e, i) => (
+                {completeInfo?.items.map((e, i) => (
                     <CartMenu cart={e} menus={menus} key={i} />
                 ))}
             </main>

@@ -1,4 +1,4 @@
-import { CompleteState } from "@/libs/types/orderComplete";
+import { CompleteInfo, CompleteState } from "@/libs/types/orderComplete";
 
 export function getCompleteState(): Promise<CompleteState> {
     const mockResponse: CompleteState = {
@@ -12,10 +12,23 @@ export function getCompleteState(): Promise<CompleteState> {
     });
 }
 
-export function getCompleteBarcode(): Promise<string> {
-    const mockResponse = Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join("");
+export function getCompleteInfo(): Promise<CompleteInfo> {
+    const mockResponse: CompleteInfo = {
+        barcode: "12345678912072313912",
+        completeTime: "10:00",
+        items: [
+            {
+                id: "1",
+                quantity: 1,
+            },
+            {
+                id: "2",
+                quantity: 2,
+            },
+        ],
+    };
 
-    return new Promise<string>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(mockResponse);
         }, 1000);
