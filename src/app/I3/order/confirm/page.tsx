@@ -19,6 +19,7 @@ import { sendCartData } from "@/libs/apis/order/Carts";
 import { useRouter } from "next/navigation";
 import { useQRCode } from "next-qrcode";
 import { CouponKind } from "@/libs/types/coupon";
+import { drawBulkLots, drawInviteLots } from "@/libs/apis/order/Lots";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -32,6 +33,8 @@ export default function Confirm() {
 
     const router = useRouter();
     const { Canvas } = useQRCode();
+
+    const QRUrl: string = "https://ncth-app.jp/I3/order/invite/test"; // TODO: 本番環境では変更する
 
     React.useEffect(() => {
         setCart(JSON.parse(localStorage.getItem("cart-item") || "[]"));
@@ -63,12 +66,32 @@ export default function Confirm() {
 
     function onDrawBulkLot() {
         setIsLoadingBulkLot(true);
-        setTimeout(() => {
-            setIsLoadingBulkLot(false);
-        }, 1000);
+
+        drawBulkLots()
+            .then((res) => {
+                setBulkCoupon(res.kind);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setIsLoadingBulkLot(false);
+            });
     }
 
-    function onDrawInviteLot() {}
+    function onDrawInviteLot() {
+        setIsLoadingInviteLot(true);
+        drawInviteLots()
+            .then((res) => {
+                setInviteCoupon(res.kind);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setIsLoadingInviteLot(false);
+            });
+    }
 
     if (menus.length <= 0 || isSending) {
         return (
@@ -129,20 +152,27 @@ export default function Confirm() {
 
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
-                        <Typography variant="body1">下のQRコードを友達のスマホで読み込んでもらって1回抽選！</Typography>
+                        <Typography variant="body1">QRコードを友達のスマホで読み込んでもらって1回抽選！</Typography>
                         <Stack direction="column" alignItems="center">
-                            <Canvas
-                                text={"https://github.com/bunlong/next-qrcode"}
-                                options={{
-                                    errorCorrectionLevel: "L",
-                                    scale: 4,
-                                    width: 200,
-                                    color: {
-                                        dark: "#000C",
-                                        light: "#FFF0",
-                                    },
-                                }}
-                            />
+                            <div
+                                css={css`
+                                    display: ${inviteCoupon === "none" ? "inherit" : "none"};
+                                `}
+                            >
+                                <Canvas
+                                    text={QRUrl}
+                                    options={{
+                                        errorCorrectionLevel: "L",
+                                        scale: 4,
+                                        width: 200,
+                                        color: {
+                                            dark: "#000C",
+                                            light: "#FFF0",
+                                        },
+                                    }}
+                                />
+                            </div>
+
                             <Button
                                 size="large"
                                 variant="contained"
