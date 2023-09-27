@@ -4,7 +4,7 @@ import { useBarcode } from "next-barcode";
 import { cartMenu } from "../confirm/cartMenu";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import * as React from "react";
-import { getMenuItems } from "@/libs/apis/Menus";
+import { getMenuItems } from "@/libs/apis/common/Menus";
 import Typography from "@mui/material/Typography";
 import Bold from "@/components/Bold";
 import Box from "@mui/material/Box";

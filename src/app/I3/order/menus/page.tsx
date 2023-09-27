@@ -2,7 +2,7 @@
 "use client";
 
 import { MAX_CART_ITEM_QUANTITY, MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
-import { getMenuItems } from "@/libs/apis/Menus";
+import { getMenuItems } from "@/libs/apis/common/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { Global, css } from "@emotion/react";
 import Typography from "@mui/material/Typography";

@@ -3,7 +3,7 @@
 
 import { MIN_CART_ITEM_QUANTITY } from "@/libs/Carts";
 import { getCartDataFromOrderCode, sendCartData } from "@/libs/apis/admin/Carts";
-import { getMenuItems } from "@/libs/apis/Menus";
+import { getMenuItems } from "@/libs/apis/common/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import { css } from "@emotion/react";
 import { Smartphone } from "@mui/icons-material";

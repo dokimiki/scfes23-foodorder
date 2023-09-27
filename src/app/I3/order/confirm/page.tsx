@@ -3,7 +3,7 @@
 
 import { css } from "@emotion/react";
 import Bold from "@/components/Bold";
-import { getMenuItems } from "@/libs/apis/Menus";
+import { getMenuItems } from "@/libs/apis/common/Menus";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import Backdrop from "@mui/material/Backdrop";
 import Button from "@mui/material/Button";
