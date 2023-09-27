@@ -18,7 +18,7 @@ export function SignIn(userId: string): Promise<User> {
 export function SignUp(): Promise<User> {
     const mockResponse = {
         id: "abcde",
-        isOrdered: false,
+        isOrdered: true,
     };
 
     return new Promise((resolve, reject) => {

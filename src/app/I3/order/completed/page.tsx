@@ -12,6 +12,8 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import { getCompleteState } from "@/libs/apis/order/Completed";
+import { CompleteState } from "@/libs/types/orderComplete";
 
 export default function Completed() {
     const barcode = Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join("");
@@ -27,6 +29,7 @@ export default function Completed() {
         },
     });
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
+    const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
@@ -37,6 +40,11 @@ export default function Completed() {
             });
     }, []);
     const cart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
+    getCompleteState()
+        .then((res) => {
+            setCompleteStatus(res);
+        })
+        .catch((err) => {});
 
     return (
         <>
@@ -66,7 +74,14 @@ export default function Completed() {
                             10:20
                         </Typography>
                         <Typography variant="h6" fontWeight={"medium"} align="center">
-                            完成状況: <Bold>受付済み</Bold>
+                            完成状況:{" "}
+                            <Bold>
+                                {completeStatus?.state === "Cooking"
+                                    ? "調理中"
+                                    : completeStatus?.state === "Cooked"
+                                    ? "完成"
+                                    : "受け取り済み"}
+                            </Bold>
                         </Typography>
                     </CardContent>
                 </Card>

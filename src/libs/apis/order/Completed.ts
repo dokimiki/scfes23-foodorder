@@ -1,5 +1,13 @@
-import { CompletionList } from "@/libs/types/completion";
+import { CompleteState } from "@/libs/types/orderComplete";
 
-export function getCompletionList(){
-    return new Promise<CompletionList[]>((resolve, reject) => {
+export function getCompleteState(): Promise<CompleteState> {
+    const mockResponse: CompleteState = {
+        state: "Cooking",
+    };
+
+    return new Promise<CompleteState>((resolve, reject) => {
+        setTimeout(() => {
+            resolve(mockResponse);
+        }, 1000);
+    });
 }
