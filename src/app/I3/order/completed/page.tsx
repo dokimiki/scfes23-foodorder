@@ -17,13 +17,12 @@ import { CompleteState } from "@/libs/types/orderComplete";
 import { getCompleteBarcode } from "@/libs/apis/order/Completed";
 
 export default function Completed() {
-    const barcode = Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join("");
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
     const [completeBarcode, setCompleteBarcode] = React.useState<string>("");
 
     const { inputRef } = useBarcode({
-        value: barcode,
+        value: completeBarcode,
         options: {
             text: completeBarcode.split("").reduce((str, char, i) => {
                 return str + char + (i % 4 === 3 ? " " : "");
