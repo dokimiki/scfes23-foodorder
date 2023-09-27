@@ -1,7 +1,7 @@
 "use client";
 import { Paper, Stack } from "@mui/material";
 import { useBarcode } from "next-barcode";
-import { cartMenu } from "../confirm/cartMenu";
+import { CartMenu } from "./cartMenu";
 import { CartItem, MenuItem } from "@/libs/types/item";
 import * as React from "react";
 import { getMenuItems } from "@/libs/apis/common/Menus";
@@ -87,9 +87,9 @@ export default function Completed() {
                 >
                     <Bold>注文内容</Bold>
                 </Typography>
-                {cart.map((e, i) => {
-                    return cartMenu(menus, e);
-                })}
+                {cart.map((e, i) => (
+                    <CartMenu cart={e} menus={menus} key={i} />
+                ))}
             </main>
         </>
     );
