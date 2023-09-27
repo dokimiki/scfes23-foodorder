@@ -66,7 +66,7 @@ export default function Completed() {
                         <Typography variant="h2" fontWeight={"bold"} align="center">
                             10:20
                         </Typography>
-                        <Typography variant="h4" fontWeight={"medium"} align="center">
+                        <Typography variant="h6" fontWeight={"medium"} align="center">
                             完成状況: <Bold>受付済み</Bold>
                         </Typography>
                     </CardContent>
