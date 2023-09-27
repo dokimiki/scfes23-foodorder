@@ -88,8 +88,8 @@ export default function Confirm() {
                     </CardContent>
                 </Card>
 
-                <Card sx={{ margin: "10px auto", padding: " 0 auto", backgroundColor: "white" }}>
-                    <CardContent>
+                <Card sx={{ margin: "10px auto", backgroundColor: "white" }}>
+                    <CardContent sx={{ margin: "0 auto" }}>
                         <Typography width={"200px"}>
                             {""}
                             <img src="/img/sample_code.jpeg" alt="qrコード" />
