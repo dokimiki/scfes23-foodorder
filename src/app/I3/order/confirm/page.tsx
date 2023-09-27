@@ -63,8 +63,8 @@ export default function Confirm() {
             </Stack>
             <Divider sx={{ marginBottom: "16px" }} />
 
-            <Box margin={"0 auto"}>
-                <Typography variant="h4">2本以上購入!!</Typography>
+            <Box sx={{ margin: "0 auto" }}>
+                <Typography variant="h5">2本以上購入!!</Typography>
                 <div
                     css={css`
                         color: white;
@@ -79,12 +79,12 @@ export default function Confirm() {
                                 "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                         }}
                     >
-                        <Typography variant="h3">くじを引く</Typography>
+                        <Typography variant="h4">くじを引く</Typography>
                     </Button>
                 </div>
             </Box>
-            <Box margin={"0 auto"}>
-                <Typography>
+            <Box sx={{ margin: "0 auto" }}>
+                <Typography width={"200px"}>
                     {""}
                     <img src="/img/sample_code.jpeg" alt="qrコード" />
                 </Typography>
@@ -102,7 +102,7 @@ export default function Confirm() {
                                 "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                         }}
                     >
-                        <Typography variant="h3">割り引き</Typography>
+                        <Typography variant="h4">割り引き</Typography>
                     </Button>
                 </div>
             </Box>
