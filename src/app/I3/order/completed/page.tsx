@@ -61,10 +61,13 @@ export default function Completed() {
                 <Card sx={{ margin: "16px auto", backgroundColor: "white" }}>
                     <CardContent>
                         <Typography variant="h5" fontWeight={"medium"}>
-                            待ち時間:
+                            完成予定:
                         </Typography>
                         <Typography variant="h2" fontWeight={"bold"} align="center">
-                            約10分
+                            10:20
+                        </Typography>
+                        <Typography variant="h4" fontWeight={"medium"} align="center">
+                            完成状況: <Bold>受付済み</Bold>
                         </Typography>
                     </CardContent>
                 </Card>
