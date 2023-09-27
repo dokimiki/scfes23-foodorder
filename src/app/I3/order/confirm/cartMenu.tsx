@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
-export function cartMenu(menus: MenuItem[], cart: CartItem) {
+export function CartMenu({ menus, cart }: { menus: MenuItem[]; cart: CartItem }) {
     const menu: MenuItem = menus.find((m) => m.id === cart.id) || { id: "", name: "", price: 0, image: "" };
     return (
         <div>

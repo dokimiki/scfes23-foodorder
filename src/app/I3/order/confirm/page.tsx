@@ -13,7 +13,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { execSync } from "child_process";
 import * as React from "react";
-import { cartMenu } from "./cartMenu";
+import { CartMenu } from "./cartMenu";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { CardContent } from "@mui/material";
@@ -72,9 +72,9 @@ export default function Confirm() {
                 <Bold>注文確認</Bold>
             </Typography>
 
-            {cart.map((e, i) => {
-                return cartMenu(menus, e);
-            })}
+            {cart.map((e, i) => (
+                <CartMenu cart={e} menus={menus} key={i} />
+            ))}
 
             <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ margin: "8px" }}>
                 <Typography variant="h4">合計</Typography>
