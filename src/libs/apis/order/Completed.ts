@@ -1,3 +1,5 @@
+"use client";
+
 import { CompleteInfo, CompleteState } from "@/libs/types/orderComplete";
 
 export function getCompleteState(): Promise<CompleteState> {

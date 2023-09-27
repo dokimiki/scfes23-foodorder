@@ -1,3 +1,5 @@
+"use client";
+
 import { Coupon } from "@/libs/types/coupon";
 
 export function drawBulkLots(): Promise<Coupon> {
