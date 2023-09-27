@@ -63,15 +63,15 @@ export default function Confirm() {
             </Stack>
             <Divider sx={{ marginBottom: "16px" }} />
 
-            <Box>
-                <Typography>2本以上購入!!</Typography>
+            <Box margin={"0 auto"}>
+                <Typography variant="h4">2本以上購入!!</Typography>
                 <div
                     css={css`
                         color: white;
                     `}
                 >
                     <Button
-                        size="medium"
+                        size="large"
                         variant="contained"
                         color="inherit"
                         sx={{
@@ -79,15 +79,32 @@ export default function Confirm() {
                                 "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
                         }}
                     >
-                        <Typography>くじを引く</Typography>
+                        <Typography variant="h3">くじを引く</Typography>
                     </Button>
                 </div>
             </Box>
-            <Box>
-                <Button>
-                    <img src="/img/sample_code.jpeg" alt="" />
-                    <Typography>割り引き</Typography>
-                </Button>
+            <Box margin={"0 auto"}>
+                <Typography>
+                    {""}
+                    <img src="/img/sample_code.jpeg" alt="qrコード" />
+                </Typography>
+                <div
+                    css={css`
+                        color: white;
+                    `}
+                >
+                    <Button
+                        size="large"
+                        variant="contained"
+                        color="inherit"
+                        sx={{
+                            background:
+                                "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                        }}
+                    >
+                        <Typography variant="h3">割り引き</Typography>
+                    </Button>
+                </div>
             </Box>
 
             <Stack direction="row" justifyContent="space-between">
