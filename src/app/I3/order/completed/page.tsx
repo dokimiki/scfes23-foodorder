@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 
 export default function Completed() {
     const barcode = Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)).join("");
+
     const { inputRef } = useBarcode({
         value: barcode,
         options: {
@@ -57,12 +58,12 @@ export default function Completed() {
                 </Paper>
             </div>
             <main>
-                <Card sx={{ margin: "16px auto", width: "250px", backgroundColor: "white" }}>
+                <Card sx={{ margin: "16px auto", backgroundColor: "white" }}>
                     <CardContent>
                         <Typography variant="h5" fontWeight={"medium"}>
                             待ち時間:
                         </Typography>
-                        <Typography variant="h2" fontWeight={"bold"}>
+                        <Typography variant="h2" fontWeight={"bold"} align="center">
                             約10分
                         </Typography>
                     </CardContent>
