@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react **/
 "use client";
 
 import * as React from "react";
@@ -13,7 +12,6 @@ import Typography from "@mui/material/Typography";
 import AppBar from "@mui/material/AppBar";
 import { OrderedPotato } from "@/libs/types/potato";
 import { Backdrop, CircularProgress, Dialog, Toolbar } from "@mui/material";
-import { css } from "@emotion/react";
 import { PotatoTable } from "./PotatoTable";
 import { getPotatoData } from "@/libs/apis/admin/Potato";
 import { DialogTitle } from "@mui/material";
@@ -48,11 +46,7 @@ export default function Potato() {
     }
 
     return (
-        <main
-            css={css`
-                margin: 16px;
-            `}
-        >
+        <main>
             <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
                 <Toolbar>
                     <Typography variant="h4" align="center" sx={{ flexGrow: 1 }}>

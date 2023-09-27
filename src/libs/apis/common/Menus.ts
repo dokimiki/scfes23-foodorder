@@ -1,3 +1,4 @@
+"use client";
 import { MenuItem } from "@/libs/types/item";
 
 export function getMenuItems(): Promise<MenuItem[]> {

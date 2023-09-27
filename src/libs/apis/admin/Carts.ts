@@ -1,3 +1,4 @@
+"use client";
 import { CartItem } from "../../types/item";
 
 export function getCartDataFromOrderCode(orderCode: string): Promise<CartItem[]> {

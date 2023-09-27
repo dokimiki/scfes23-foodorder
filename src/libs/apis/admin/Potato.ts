@@ -1,3 +1,4 @@
+"use client";
 import { OrderedPotato } from "../../types/potato";
 
 export function getPotatoData(): Promise<OrderedPotato[]> {

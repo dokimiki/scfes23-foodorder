@@ -1,3 +1,4 @@
+"use client";
 import { AllergensList } from "@/libs/types/allergen";
 
 export async function getAllergen(menuId: string): Promise<AllergensList> {
