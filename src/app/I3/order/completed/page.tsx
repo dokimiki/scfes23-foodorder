@@ -41,12 +41,14 @@ export default function Completed() {
     return (
         <>
             <Paper
-                elevation={0}
+                elevation={3}
                 sx={{
                     width: "100%",
                     padding: 2,
                     background: "white",
-                    position: "fixed",
+                    position: "sticky",
+                    top: 0,
+                    zIndex: "1201",
                     borderRadius: "0 0 8px 8px",
                 }}
             >
