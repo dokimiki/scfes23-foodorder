@@ -18,11 +18,16 @@ import { CardContent } from "@mui/material";
 import { sendCartData } from "@/libs/apis/order/Carts";
 import { useRouter } from "next/navigation";
 import { useQRCode } from "next-qrcode";
+import { CouponKind } from "@/libs/types/coupon";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [isSending, setIsSending] = React.useState<boolean>(false);
     const [cart, setCart] = React.useState<CartItem[]>([]);
+    const [isLoadingBulkLot, setIsLoadingBulkLot] = React.useState<boolean>(false);
+    const [isLoadingInviteLot, setIsLoadingInviteLot] = React.useState<boolean>(false);
+    const [bulkCoupon, setBulkCoupon] = React.useState<CouponKind>("none");
+    const [inviteCoupon, setInviteCoupon] = React.useState<CouponKind>("none");
 
     const router = useRouter();
     const { Canvas } = useQRCode();
@@ -54,6 +59,10 @@ export default function Confirm() {
                 setIsSending(false);
             });
     }
+
+    function onDrawBulkLot() {}
+
+    function onDrawInviteLot() {}
 
     if (menus.length <= 0 || isSending) {
         return (
