@@ -160,20 +160,28 @@ export default function Confirm() {
             <Stack direction="column">
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
-                        <Typography variant="body1">2本以上購入で1回抽選！</Typography>
+                        {bulkCoupon === "none" ? (
+                            <Typography variant="body1">2本以上購入で1回抽選！</Typography>
+                        ) : (
+                            <Typography variant="h5" marginBottom={"5px"} textAlign={"center"}>
+                                使用済み
+                            </Typography>
+                        )}
+
                         <Button
                             size="large"
                             variant="contained"
                             color="inherit"
                             sx={{
-                                background: isLoadingBulkLot
-                                    ? ""
-                                    : "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                background:
+                                    bulkCoupon === "none"
+                                        ? "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;"
+                                        : "gray",
                                 marginTop: "8px",
                             }}
                             onClick={onDrawBulkLot}
                             fullWidth
-                            disabled={isLoadingBulkLot}
+                            disabled={bulkCoupon !== "none" || isLoadingBulkLot}
                         >
                             {isLoadingBulkLot ? (
                                 <CircularProgress color="error" size={25} />
@@ -188,7 +196,16 @@ export default function Confirm() {
 
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
-                        <Typography variant="body1">QRコードを友達のスマホで読み込んでもらって1回抽選！</Typography>
+                        {inviteCoupon === "none" ? (
+                            <Typography variant="body1">
+                                QRコードを友達のスマホで読み込んでもらってから「くじを引く」を押して1回抽選！
+                            </Typography>
+                        ) : (
+                            <Typography variant="h5" marginBottom={"5px"} textAlign={"center"}>
+                                使用済み
+                            </Typography>
+                        )}
+
                         <Stack direction="column" alignItems="center">
                             <div
                                 css={css`
@@ -214,14 +231,15 @@ export default function Confirm() {
                             variant="contained"
                             color="inherit"
                             sx={{
-                                background: isLoadingInviteLot
-                                    ? ""
-                                    : "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                background:
+                                    inviteCoupon === "none"
+                                        ? "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;"
+                                        : "gray",
                                 marginTTop: "8px",
                             }}
                             onClick={onDrawInviteLot}
                             fullWidth
-                            disabled={isLoadingInviteLot}
+                            disabled={inviteCoupon !== "none" || isLoadingInviteLot}
                         >
                             {isLoadingInviteLot ? (
                                 <CircularProgress color="error" size={25} />
