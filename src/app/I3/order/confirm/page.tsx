@@ -95,12 +95,12 @@ export default function Confirm() {
                             sx={{
                                 background:
                                     "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                                marginY: "4px",
+                                marginY: "8px",
                             }}
                             fullWidth
                         >
-                            <Typography variant="body2" sx={{ color: "white" }}>
-                                くじを引く
+                            <Typography variant="body1" sx={{ color: "white" }}>
+                                <Bold>くじを引く</Bold>
                             </Typography>
                         </Button>
                     </CardContent>
