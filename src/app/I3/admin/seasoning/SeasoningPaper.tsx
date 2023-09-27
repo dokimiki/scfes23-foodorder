@@ -17,7 +17,7 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                 <Stack direction="row" justifyContent="space-between">
                     <Stack direction="row" alignItems="center">
                         <Typography variant="h5">
-                            <Bold>No. {order.id}</Bold>
+                            <Bold>No.{order.id}</Bold>
                         </Typography>
                         <Stack direction="row" flexWrap="wrap">
                             {order.items.map((item, i) => {

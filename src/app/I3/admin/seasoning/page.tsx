@@ -13,52 +13,31 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-
-function getOrderedCarts(): Order[] {
-    return [
-        {
-            id: "1",
-            isMobileOrder: false,
-            numberTag: 15,
-            items: [
-                {
-                    id: "1",
-                    quantity: 2,
-                },
-                {
-                    id: "2",
-                    quantity: 1,
-                },
-                {
-                    id: "3",
-                    quantity: 4,
-                },
-            ],
-        },
-        {
-            id: "2",
-            isMobileOrder: true,
-            numberTag: 0,
-            items: [
-                {
-                    id: "4",
-                    quantity: 2,
-                },
-            ],
-        },
-    ];
-}
+import { getOrderedCarts } from "@/libs/apis/admin/Orders";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Page() {
     const [open, setOpen] = React.useState(false);
     const [dialogOrderId, setDialogOrderId] = React.useState(0);
 
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
+    const [orders, setOrders] = React.useState<Order[]>([]);
 
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
                 setMenus(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    React.useEffect(() => {
+        getOrderedCarts()
+            .then((res) => {
+                setOrders(res);
             })
             .catch((err) => {
                 console.log(err);
@@ -74,7 +53,15 @@ export default function Page() {
         setDialogOrderId(orderNumber);
     }
 
-    const orders: Order[] = getOrderedCarts();
+    if (menus.length <= 0) {
+        return (
+            <main>
+                <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            </main>
+        );
+    }
 
     return (
         <main>

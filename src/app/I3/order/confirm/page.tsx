@@ -109,6 +109,7 @@ export default function Confirm() {
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
                         <Typography variant="body1">QRコードを友達に読み込んでもらって1回抽選！</Typography>
+                        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
                         <img
                             src="/img/sample_code.jpeg"
                             css={css`
