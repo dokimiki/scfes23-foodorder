@@ -22,16 +22,6 @@ import { CouponItemIds, CouponKind } from "@/libs/types/coupon";
 import { drawBulkLots, drawInviteLots, getCouponItemIds } from "@/libs/apis/order/Coupon";
 import { MAX_CART_ITEM_QUANTITY } from "@/libs/Carts";
 
-const COUPON_ITEM_IDS: {
-    [key in CouponKind]: string | undefined;
-} = {
-    none: undefined,
-    "0": undefined,
-    "100": "7",
-    "200": "8",
-    "300": "9",
-};
-
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [isSending, setIsSending] = React.useState<boolean>(false);
@@ -103,8 +93,8 @@ export default function Confirm() {
 
         drawBulkLots()
             .then((res) => {
-                const CouponItemID = COUPON_ITEM_IDS[res.kind];
-                if (CouponItemID !== undefined) {
+                const CouponItemID = couponItemIds?.[res.kind] ?? null;
+                if (CouponItemID !== null) {
                     addToCart(CouponItemID);
                 }
                 setBulkCoupon(res.kind);
@@ -121,8 +111,8 @@ export default function Confirm() {
         setIsLoadingInviteLot(true);
         drawInviteLots()
             .then((res) => {
-                const CouponItemID = COUPON_ITEM_IDS[res.kind];
-                if (CouponItemID !== undefined) {
+                const CouponItemID = couponItemIds?.[res.kind] ?? null;
+                if (CouponItemID !== null) {
                     addToCart(CouponItemID);
                 }
                 setInviteCoupon(res.kind);
