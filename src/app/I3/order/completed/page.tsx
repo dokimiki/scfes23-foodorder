@@ -47,8 +47,23 @@ export default function Completed() {
                         width: "100%",
                         padding: 2,
                         background: "white",
-                        position: "sticky",
+                        position: "fixed",
                         zIndex: "1201",
+                        borderRadius: "0 0 8px 8px",
+                    }}
+                >
+                    <Stack alignItems="center">
+                        <svg ref={inputRef} />
+                    </Stack>
+                </Paper>
+
+                <Paper
+                    sx={{
+                        width: "100%",
+                        padding: 2,
+                        background: "white",
+                        position: "relative",
+                        zIndex: "-1",
                         borderRadius: "0 0 8px 8px",
                     }}
                 >
