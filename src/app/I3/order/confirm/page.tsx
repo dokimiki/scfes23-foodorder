@@ -88,23 +88,25 @@ export default function Confirm() {
                     </CardContent>
                 </Card>
 
-                <Box>
-                    <Typography width={"200px"}>
-                        {""}
-                        <img src="/img/sample_code.jpeg" alt="qrコード" />
-                    </Typography>
-                    <Button
-                        size="large"
-                        variant="contained"
-                        color="inherit"
-                        sx={{
-                            background:
-                                "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                        }}
-                    >
-                        <Typography variant="h6">くじを引く</Typography>
-                    </Button>
-                </Box>
+                <Card sx={{ margin: "10px auto", width: "250px", backgroundColor: "white" }}>
+                    <CardContent>
+                        <Typography width={"200px"}>
+                            {""}
+                            <img src="/img/sample_code.jpeg" alt="qrコード" />
+                        </Typography>
+                        <Button
+                            size="large"
+                            variant="contained"
+                            color="inherit"
+                            sx={{
+                                background:
+                                    "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                            }}
+                        >
+                            <Typography variant="h6">くじを引く</Typography>
+                        </Button>
+                    </CardContent>
+                </Card>
             </div>
 
             <Stack direction="row" justifyContent="space-between">
