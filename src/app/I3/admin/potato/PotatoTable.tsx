@@ -19,6 +19,9 @@ export function PotatoTable({ orderedPotato, onDone }: { orderedPotato: OrderedP
                     <Bold>No. {orderedPotato.order.id}</Bold>
                 </Typography>
             </TableCell>
+            <TableCell align="center" sx={{ background: orderedPotato.order.isPaid ? "#f888" : "#0000" }}>
+                <Typography fontSize={"1.2rem"}>{orderedPotato.order.isPaid ? "支払済" : "未払い"}</Typography>
+            </TableCell>
             <TableCell align="center" sx={{ background: orderedPotato.order.isMobileOrder ? "#0000" : "#fc6c" }}>
                 <Typography fontSize={"1.2rem"}>{orderedPotato.order.isMobileOrder ? "モバイル" : "店内"}</Typography>
             </TableCell>

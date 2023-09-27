@@ -12,6 +12,7 @@ export function getPotatoData(): Promise<OrderedPotato[]> {
                     id: "" + i,
                     isMobileOrder: i % 2 === 0,
                     numberTag: i % 20,
+                    isPaid: i % 3 === 0,
                 },
             };
             return data;

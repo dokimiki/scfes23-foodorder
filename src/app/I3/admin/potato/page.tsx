@@ -73,6 +73,9 @@ export default function Potato() {
                                 <Typography fontSize={"1.5rem"}>#</Typography>
                             </TableCell>
                             <TableCell align="center">
+                                <Typography fontSize={"1.5rem"}>支払状況</Typography>
+                            </TableCell>
+                            <TableCell align="center">
                                 <Typography fontSize={"1.5rem"}>注文方法</Typography>
                             </TableCell>
                             <TableCell align="center">

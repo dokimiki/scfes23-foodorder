@@ -5,6 +5,7 @@ export type OrderedPotato = {
     order: {
         id: string;
         isMobileOrder: boolean;
+        isPaid: boolean;
         numberTag: number;
     };
 };
