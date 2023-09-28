@@ -11,8 +11,6 @@ import { SignIn, SignUp } from "@/libs/apis/order/User";
 import { usePathname, useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 
-let DEBUG = true; // TODO: falseにする
-
 export default function Layout({ children }: { children: React.ReactNode }) {
     const [newUser, setNewUser] = React.useState<User | undefined>();
     const pathname = usePathname();
@@ -53,10 +51,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         );
     }
 
-    if (newUser.isOrdered === false && pathname === "/I3/order/completed" && DEBUG === false) {
+    if (newUser.isOrdered === false && pathname === "/I3/order/completed") {
         router.push("/I3/order/menus");
     }
-    if (newUser.isOrdered === true && pathname !== "/I3/order/completed" && DEBUG === false) {
+    if (newUser.isOrdered === true && pathname !== "/I3/order/completed") {
         router.push("/I3/order/completed");
     }
 
