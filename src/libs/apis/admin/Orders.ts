@@ -6,23 +6,11 @@ export function getCartDataFromOrderCode(orderCode: string): Promise<CartItem[]>
     const mockResponse = [
         {
             id: "1",
-            quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
+            quantity: 2,
         },
         {
-            id: "2",
-            quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
-        },
-        {
-            id: "3",
-            quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
-        },
-        {
-            id: "4",
-            quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
-        },
-        {
-            id: "5",
-            quantity: Math.round(Math.random() * 5) * Math.round(Math.random() * 1),
+            id: "17",
+            quantity: 1,
         },
     ];
 
