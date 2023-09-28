@@ -213,15 +213,9 @@ export default function Confirm() {
 
                 <Card sx={{ background: "white", marginY: "8px" }}>
                     <CardContent>
-                        {inviteCoupon === "none" ? (
-                            <Typography variant="body1">
-                                QRコードを友達のスマホで読み込んでもらってから「くじを引く」を押して1回抽選！
-                            </Typography>
-                        ) : (
-                            <Typography variant="h5" marginBottom={"5px"} textAlign={"center"}>
-                                使用済み
-                            </Typography>
-                        )}
+                        <Typography variant="body1">
+                            QRコードを友達のスマホで読み込んでもらってから「くじを引く」を押して1回抽選！
+                        </Typography>
 
                         <Stack direction="column" alignItems="center">
                             <div
