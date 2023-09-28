@@ -1,5 +1,5 @@
 "use client";
 
 export function wasInvited(userId: string): Promise<boolean> {
-    return fetch("https://ncth-app.jp:3939/v1/user/inviteregistry/" + userId).then((res) => res);
+    return fetch("https://ncth-app.jp:3939/v1/user/inviteregistry/" + userId).then((res) => !!res);
 }
