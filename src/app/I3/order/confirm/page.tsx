@@ -175,6 +175,8 @@ export default function Confirm() {
                                         "200": "green",
                                         "300": "green",
                                     };
+                                    console.log(bulkCoupon);
+                                    console.log(text[bulkCoupon]);
                                     return text[bulkCoupon];
                                 })(),
 
