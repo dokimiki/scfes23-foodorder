@@ -181,7 +181,9 @@ export default function Confirm() {
                                 <CircularProgress color="error" size={25} />
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
-                                    {bulkCoupon === "none" ? <Bold>くじを引く</Bold> : "使用済み"}
+                                    {(() => {
+                                        return "test";
+                                    })()}
                                 </Typography>
                             )}
                         </Button>
