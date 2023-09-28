@@ -18,14 +18,14 @@ const allergenColor = {
 
 export default function AllAllergen({ allergens }: { allergens: AllergensList }) {
     let allergensInfo: { name: string; img: string; contamination: AllergenContaminationStatus }[] = [
-        { name: "えび", img: "/img/allergen_ebi.png", contamination: allergens.ebi },
-        { name: "かに", img: "/img/allergen_kani.png", contamination: allergens.kani },
-        { name: "小麦", img: "/img/allergen_komugi.png", contamination: allergens.komugi },
-        { name: "クルミ", img: "/img/allergen_kurumi.png", contamination: allergens.kurumi },
-        { name: "ミルク", img: "/img/allergen_milk.png", contamination: allergens.milk },
-        { name: "落花生", img: "/img/allergen_peanuts.png", contamination: allergens.peanut },
-        { name: "そば", img: "/img/allergen_soba.png", contamination: allergens.soba },
-        { name: "卵", img: "/img/allergen_tamago.png", contamination: allergens.tamago },
+        { name: "えび", img: "/img/allergen/allergen_ebi.png", contamination: allergens.ebi },
+        { name: "かに", img: "/img/allergen/allergen_kani.png", contamination: allergens.kani },
+        { name: "小麦", img: "/img/allergen/allergen_komugi.png", contamination: allergens.komugi },
+        { name: "クルミ", img: "/img/allergen/allergen_kurumi.png", contamination: allergens.kurumi },
+        { name: "ミルク", img: "/img/allergen/allergen_milk.png", contamination: allergens.milk },
+        { name: "落花生", img: "/img/allergen/allergen_peanuts.png", contamination: allergens.peanut },
+        { name: "そば", img: "/img/allergen/allergen_soba.png", contamination: allergens.soba },
+        { name: "卵", img: "/img/allergen/allergen_tamago.png", contamination: allergens.tamago },
     ];
     return (
         <>
