@@ -271,7 +271,7 @@ export default function Confirm() {
                             disabled={inviteCoupon !== "none" || isLoadingInviteLot}
                         >
                             {isLoadingInviteLot ? (
-                                <CircularProgress color="error" size={25} />
+                                <CircularProgress color="inherit" size={25} />
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
                                     <Bold>
@@ -283,7 +283,7 @@ export default function Confirm() {
                                                 "200": "あたり！200円引き！",
                                                 "300": "あたり！300円引き！",
                                             };
-                                            return text[bulkCoupon];
+                                            return text[inviteCoupon];
                                         })()}
                                     </Bold>
                                 </Typography>
