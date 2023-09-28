@@ -199,10 +199,11 @@ export default function Confirm() {
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
                                     <Bold>
-                                            {(() => {
-                                                if !isBuyMultiItem {
-                                                    return "2本以上購入で1回抽選！"
+                                        {(() => {
+                                            if (!isBuyMultiItem) {
+                                                return "2本以上購入で1回抽選！";
                                                 }
+                                                
                                             const text = {
                                                 none: "くじを引く",
                                                 "0": "はずれ...",
