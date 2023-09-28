@@ -3,22 +3,7 @@ import { Order } from "@/libs/types/order";
 import { CartItem } from "../../types/item";
 
 export function getCartDataFromOrderCode(orderCode: string): Promise<CartItem[]> {
-    const mockResponse = [
-        {
-            id: "11",
-            quantity: 2,
-        },
-        {
-            id: "17",
-            quantity: 1,
-        },
-    ];
-
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(mockResponse);
-        }, 1000);
-    });
+    return fetch("https://ncth-app.jp:3939/v1/getcartdatafromordercode/" + orderCode).then((res) => res.json());
 }
 
 export function getOrderedCarts(): Promise<Order[]> {
