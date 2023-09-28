@@ -192,7 +192,7 @@ export default function Confirm() {
                             }}
                             onClick={onDrawBulkLot}
                             fullWidth
-                            disabled={bulkCoupon !== "none" || isLoadingBulkLot}
+                            disabled={bulkCoupon !== "none" || isLoadingBulkLot || !isBuyMultiItem}
                         >
                             {isLoadingBulkLot ? (
                                 <CircularProgress color="inherit" size={25} />
@@ -202,8 +202,8 @@ export default function Confirm() {
                                         {(() => {
                                             if (!isBuyMultiItem) {
                                                 return "2本以上購入で1回抽選！";
-                                                }
-                                                
+                                            }
+
                                             const text = {
                                                 none: "くじを引く",
                                                 "0": "はずれ...",
