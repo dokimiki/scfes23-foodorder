@@ -16,14 +16,5 @@ export function SignIn(userId: string): Promise<User> {
 }
 
 export function SignUp(): Promise<User> {
-    const mockResponse = {
-        id: "abcde",
-        isOrdered: true,
-    };
-
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(mockResponse);
-        }, 1000);
-    });
+    return fetch("https://ncth-app.jp:3939/v1/user/signup").then((res) => res.json());
 }
