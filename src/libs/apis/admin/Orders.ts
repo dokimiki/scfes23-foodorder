@@ -5,7 +5,7 @@ import { CartItem } from "../../types/item";
 export function getCartDataFromOrderCode(orderCode: string): Promise<CartItem[]> {
     const mockResponse = [
         {
-            id: "1",
+            id: "11",
             quantity: 2,
         },
         {

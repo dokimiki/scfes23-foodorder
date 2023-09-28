@@ -17,10 +17,10 @@ export function getCompleteState(): Promise<CompleteState> {
 export function getCompleteInfo(): Promise<CompleteInfo> {
     const mockResponse: CompleteInfo = {
         barcode: "12345678912072313912",
-        completeTime: "10:00",
+        completeTime: "18:00",
         items: [
             {
-                id: "1",
+                id: "11",
                 quantity: 2,
             },
             {
