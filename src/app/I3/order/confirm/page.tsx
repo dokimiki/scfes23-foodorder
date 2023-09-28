@@ -26,6 +26,8 @@ export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [isSending, setIsSending] = React.useState<boolean>(false);
     const [cart, setCart] = React.useState<CartItem[]>([]);
+    const [isBuyMultiItem, setIsBuyMultiItem] = React.useState<boolean>(false);
+    const [qrUrl, setQrUrl] = React.useState<string>("");
 
     const [isLoadingBulkLot, setIsLoadingBulkLot] = React.useState<boolean>(false);
     const [isLoadingInviteLot, setIsLoadingInviteLot] = React.useState<boolean>(false);
@@ -35,8 +37,6 @@ export default function Confirm() {
 
     const router = useRouter();
     const { Canvas } = useQRCode();
-
-    const QRUrl: string = "https://ncth-app.jp/I3/order/invite/test"; // TODO: 本番環境では変更する
 
     function addToCart(id: string) {
         const index = cart.findIndex((e) => e.id === id);
@@ -51,7 +51,12 @@ export default function Confirm() {
     }
 
     React.useEffect(() => {
-        setCart(JSON.parse(localStorage.getItem("cart-item") || "[]"));
+        const localStorageCart: CartItem[] = JSON.parse(localStorage.getItem("cart-item") || "[]");
+        setCart(localStorageCart);
+        setIsBuyMultiItem(localStorageCart.length > 1 || localStorageCart[0].quantity > 1);
+
+        const userId: string = localStorage.getItem("user-id") || "";
+        setQrUrl("https://ncth-app.jp/I3/order/invite/" + userId);
     }, []);
 
     React.useEffect(() => {
@@ -176,7 +181,7 @@ export default function Confirm() {
                                         "300": "#e75d45 !important;",
                                     };
 
-                                    if (isLoadingBulkLot) {
+                                    if (isLoadingBulkLot || !isBuyMultiItem) {
                                         return "";
                                     } else {
                                         return text[bulkCoupon];
@@ -194,7 +199,10 @@ export default function Confirm() {
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
                                     <Bold>
-                                        {(() => {
+                                            {(() => {
+                                                if !isBuyMultiItem {
+                                                    return "2本以上購入で1回抽選！"
+                                                }
                                             const text = {
                                                 none: "くじを引く",
                                                 "0": "はずれ...",
@@ -224,7 +232,7 @@ export default function Confirm() {
                                 `}
                             >
                                 <Canvas
-                                    text={QRUrl}
+                                    text={qrUrl}
                                     options={{
                                         errorCorrectionLevel: "L",
                                         scale: 4,
