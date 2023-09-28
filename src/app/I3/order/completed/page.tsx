@@ -13,6 +13,7 @@ import CardContent from "@mui/material/CardContent";
 
 import { getCompleteInfo, getCompleteState } from "@/libs/apis/order/Completed";
 import { CompleteInfo, CompleteState } from "@/libs/types/orderComplete";
+import { enqueueSnackbar } from "notistack";
 
 export default function Completed() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -36,7 +37,7 @@ export default function Completed() {
                 setMenus(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
 
         getCompleteInfo()

@@ -19,6 +19,7 @@ import { DialogContent } from "@mui/material";
 import { DialogActions } from "@mui/material";
 import { Button } from "@mui/material";
 import { Stack } from "@mui/material";
+import { enqueueSnackbar } from "notistack";
 
 export default function Potato() {
     const [orderedPotatoList, setOrderedPotatoList] = React.useState<OrderedPotato[]>([]);
@@ -31,7 +32,7 @@ export default function Potato() {
                 setOrderedPotatoList(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
     }, []);
 

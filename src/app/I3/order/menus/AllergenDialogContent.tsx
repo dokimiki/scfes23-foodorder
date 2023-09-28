@@ -6,6 +6,7 @@ import { MenuItem } from "@/libs/types/item";
 import { Backdrop, CircularProgress, Divider, IconButton, Stack } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { getAllergen } from "@/libs/apis/common/Allergen";
+import { enqueueSnackbar } from "notistack";
 
 export default function AllergenDialogContent({
     itemInfo = { id: "", name: "", price: 0, image: "", isShow: false },
@@ -24,7 +25,7 @@ export default function AllergenDialogContent({
                 setAllergens(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             })
             .finally(() => {
                 setIsAllergenLoading(false);

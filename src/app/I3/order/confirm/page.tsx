@@ -21,6 +21,8 @@ import { useQRCode } from "next-qrcode";
 import { CouponItemIds, CouponKind } from "@/libs/types/coupon";
 import { drawBulkLots, drawInviteLots, getCouponItemIds } from "@/libs/apis/order/Coupon";
 import { MAX_CART_ITEM_QUANTITY } from "@/libs/Carts";
+import jwtDecode from "jwt-decode";
+import { enqueueSnackbar } from "notistack";
 
 export default function Confirm() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
@@ -55,7 +57,8 @@ export default function Confirm() {
         setCart(localStorageCart);
         setIsBuyMultiItem(localStorageCart.length > 1 || localStorageCart[0].quantity > 1);
 
-        const userId: string = localStorage.getItem("user-id") || "";
+        const token: string = localStorage.getItem("user-id") || "";
+        const userId: string = (jwtDecode(token) as any).sub;
         setQrUrl("https://ncth-app.jp/I3/order/invite/" + userId);
     }, []);
 
@@ -65,7 +68,7 @@ export default function Confirm() {
                 setMenus(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
     }, []);
 
@@ -75,7 +78,7 @@ export default function Confirm() {
                 setCouponItemIds(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
     }, []);
 
@@ -86,7 +89,7 @@ export default function Confirm() {
                 router.push("/I3/order/completed");
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             })
             .finally(() => {
                 setIsSending(false);
@@ -104,7 +107,7 @@ export default function Confirm() {
                 setBulkCoupon(res.kind);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             })
             .finally(() => {
                 setIsLoadingBulkLot(false);
@@ -122,7 +125,7 @@ export default function Confirm() {
                 setInviteCoupon(res.kind);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             })
             .finally(() => {
                 setIsLoadingInviteLot(false);

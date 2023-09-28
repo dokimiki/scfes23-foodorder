@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 import { getOrderedCarts } from "@/libs/apis/admin/Orders";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import { enqueueSnackbar } from "notistack";
 
 export default function Page() {
     const [open, setOpen] = React.useState(false);
@@ -30,7 +31,7 @@ export default function Page() {
                 setMenus(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
     }, []);
 
@@ -40,7 +41,7 @@ export default function Page() {
                 setOrders(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
     }, []);
 

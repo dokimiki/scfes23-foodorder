@@ -40,7 +40,7 @@ export default function Regi() {
                 setMenus(res);
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
     }, []);
 
@@ -142,7 +142,7 @@ export default function Regi() {
                                     setIsSendingDialogOpen(true);
                                 })
                                 .catch((err) => {
-                                    console.log(err);
+                                    enqueueSnackbar(err);
                                     enqueueSnackbar("注文コードが見つかりませんでした。", { variant: "error" });
                                 });
 
@@ -256,14 +256,14 @@ export default function Regi() {
                         setIsSending(true);
                         sendOrderData(cart, orderCode)
                             .then((res) => {
-                                console.log(res);
+                                enqueueSnackbar(res);
                                 setOrderCode("");
                                 setCart([]);
                                 enqueueSnackbar("会計データを送信しました。", { variant: "success" });
                                 setIsSending(false);
                             })
                             .catch((err) => {
-                                console.log(err);
+                                enqueueSnackbar(err);
                                 enqueueSnackbar("会計データの送信に失敗しました。", { variant: "error" });
                                 setIsSending(false);
                             });

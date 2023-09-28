@@ -5,6 +5,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
+import { enqueueSnackbar } from "notistack";
 import React from "react";
 
 export default function Invite() {
@@ -16,7 +17,7 @@ export default function Invite() {
     wasInvited(invitedId)
         .then(() => {})
         .catch((err) => {
-            console.log(err);
+            enqueueSnackbar(err);
         })
         .finally(() => {
             setIsSending(false);

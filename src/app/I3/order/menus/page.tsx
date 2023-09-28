@@ -16,6 +16,7 @@ import AllergenDialogContent from "./AllergenDialogContent";
 import { useRouter } from "next/navigation";
 import Bold from "@/components/Bold";
 import { getAllergen } from "@/libs/apis/common/Allergen";
+import { enqueueSnackbar } from "notistack";
 
 const drawerBleeding = 68.5;
 
@@ -29,7 +30,7 @@ export default function Menus() {
                 setMenus(res.filter((e) => e.isShow));
             })
             .catch((err) => {
-                console.log(err);
+                enqueueSnackbar(err);
             });
     }, []);
 

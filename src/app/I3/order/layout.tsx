@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { User } from "@/libs/types/user";
 import { SignIn, SignUp } from "@/libs/apis/order/User";
 import { usePathname, useRouter } from "next/navigation";
+import { enqueueSnackbar } from "notistack";
 
 let DEBUG = true; // TODO: falseにする
 
@@ -26,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     localStorage.setItem("user-id", res.id);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    enqueueSnackbar(err);
                 });
         } else {
             SignUp()
@@ -35,7 +36,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     localStorage.setItem("user-id", res.id);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    enqueueSnackbar(err);
                 });
         }
     }, []);
