@@ -182,7 +182,14 @@ export default function Confirm() {
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
                                     {(() => {
-                                        return "test";
+                                        const text = {
+                                            none: "くじを引く",
+                                            "0": "はずれ...",
+                                            "100": "100円引き！",
+                                            "200": "200円引き！",
+                                            "300": "300円引き！",
+                                        };
+                                        return text[bulkCoupon];
                                     })()}
                                 </Typography>
                             )}
