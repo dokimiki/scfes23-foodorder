@@ -170,14 +170,17 @@ export default function Confirm() {
                                 background: (() => {
                                     const text = {
                                         none: "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
-                                        "0": "gray",
-                                        "100": "green",
-                                        "200": "green",
-                                        "300": "green",
+                                        "0": "gray !important;",
+                                        "100": "#e75d45 !important;",
+                                        "200": "#e75d45 !important;",
+                                        "300": "#e75d45 !important;",
                                     };
-                                    console.log(bulkCoupon);
-                                    console.log(text[bulkCoupon]);
-                                    return text[bulkCoupon];
+
+                                    if (isLoadingBulkLot) {
+                                        return "gray !important;";
+                                    } else {
+                                        return text[bulkCoupon];
+                                    }
                                 })(),
 
                                 marginTop: "8px",
