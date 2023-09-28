@@ -2,9 +2,7 @@
 import { CartItem } from "@/libs/types/item";
 
 export function sendCartData(cart: CartItem[]): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(true);
-        }, 1000);
-    });
+    const token: string = localStorage.getItem("user-id") || "";
+    return fetch("https://ncth-app.jp:3939/v1/user/me/sendcartdata", {
+  headers: { 'Authorization': 'Bearer: ' + token} } ).then((res) => !!res);
 }
