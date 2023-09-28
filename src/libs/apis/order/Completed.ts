@@ -21,11 +21,11 @@ export function getCompleteInfo(): Promise<CompleteInfo> {
         items: [
             {
                 id: "1",
-                quantity: 1,
+                quantity: 2,
             },
             {
-                id: "2",
-                quantity: 2,
+                id: "8",
+                quantity: 1,
             },
         ],
     };

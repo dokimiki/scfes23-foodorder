@@ -4,7 +4,7 @@ import { Coupon, CouponItemIds } from "@/libs/types/coupon";
 
 export function drawBulkLots(): Promise<Coupon> {
     const mockResponse: Coupon = {
-        kind: Math.random() < 0.5 ? "0" : "100",
+        kind: "0",
     };
 
     return new Promise((resolve, reject) => {
@@ -16,7 +16,7 @@ export function drawBulkLots(): Promise<Coupon> {
 
 export function drawInviteLots(): Promise<Coupon> {
     const mockResponse: Coupon = {
-        kind: Math.random() < 0.5 ? "0" : "300",
+        kind: "200",
     };
 
     return new Promise((resolve, reject) => {
