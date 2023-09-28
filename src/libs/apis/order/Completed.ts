@@ -24,7 +24,7 @@ export function getCompleteInfo(): Promise<CompleteInfo> {
                 quantity: 2,
             },
             {
-                id: "8",
+                id: "17",
                 quantity: 1,
             },
         ],
