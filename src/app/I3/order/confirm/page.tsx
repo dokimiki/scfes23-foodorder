@@ -177,7 +177,7 @@ export default function Confirm() {
                                     };
 
                                     if (isLoadingBulkLot) {
-                                        return "gray !important;";
+                                        return "";
                                     } else {
                                         return text[bulkCoupon];
                                     }
@@ -190,19 +190,21 @@ export default function Confirm() {
                             disabled={bulkCoupon !== "none" || isLoadingBulkLot}
                         >
                             {isLoadingBulkLot ? (
-                                <CircularProgress color="error" size={25} />
+                                <CircularProgress color="inherit" size={25} />
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
-                                    {(() => {
-                                        const text = {
-                                            none: "くじを引く",
-                                            "0": "はずれ...",
-                                            "100": "100円引き！",
-                                            "200": "200円引き！",
-                                            "300": "300円引き！",
-                                        };
-                                        return text[bulkCoupon];
-                                    })()}
+                                    <Bold>
+                                        {(() => {
+                                            const text = {
+                                                none: "くじを引く",
+                                                "0": "はずれ...",
+                                                "100": "あたり！100円引き！",
+                                                "200": "あたり！200円引き！",
+                                                "300": "あたり！300円引き！",
+                                            };
+                                            return text[bulkCoupon];
+                                        })()}
+                                    </Bold>
                                 </Typography>
                             )}
                         </Button>
@@ -246,11 +248,23 @@ export default function Confirm() {
                             variant="contained"
                             color="inherit"
                             sx={{
-                                background:
-                                    inviteCoupon === "none"
-                                        ? "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;"
-                                        : "gray",
-                                marginTTop: "8px",
+                                background: (() => {
+                                    const text = {
+                                        none: "linear-gradient(38deg, rgba(255,0,254,1) 20%, rgba(165,62,255,1) 48%, rgba(0,116,255,1) 89%) !important;",
+                                        "0": "gray !important;",
+                                        "100": "#e75d45 !important;",
+                                        "200": "#e75d45 !important;",
+                                        "300": "#e75d45 !important;",
+                                    };
+
+                                    if (isLoadingInviteLot) {
+                                        return "";
+                                    } else {
+                                        return text[inviteCoupon];
+                                    }
+                                })(),
+
+                                marginTop: "8px",
                             }}
                             onClick={onDrawInviteLot}
                             fullWidth
@@ -260,7 +274,18 @@ export default function Confirm() {
                                 <CircularProgress color="error" size={25} />
                             ) : (
                                 <Typography variant="body1" sx={{ color: "white" }}>
-                                    <Bold>くじを引く</Bold>
+                                    <Bold>
+                                        {(() => {
+                                            const text = {
+                                                none: "くじを引く",
+                                                "0": "はずれ...",
+                                                "100": "あたり！100円引き！",
+                                                "200": "あたり！200円引き！",
+                                                "300": "あたり！300円引き！",
+                                            };
+                                            return text[bulkCoupon];
+                                        })()}
+                                    </Bold>
                                 </Typography>
                             )}
                         </Button>
