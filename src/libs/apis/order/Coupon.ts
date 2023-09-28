@@ -3,15 +3,9 @@
 import { Coupon, CouponItemIds } from "@/libs/types/coupon";
 
 export function drawBulkLots(): Promise<Coupon> {
-    const mockResponse: Coupon = {
-        kind: "0",
-    };
-
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(mockResponse);
-        }, 1000);
-    });
+    const token: string = localStorage.getItem("user-id") || "";
+    return fetch("https://ncth-app.jp:3939/v1/user/me/drawbulklots", {
+  headers: { 'Authorization': 'Bearer: ' + token} } ).then((res) => res.json());
 }
 
 export function drawInviteLots(): Promise<Coupon> {
