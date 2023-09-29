@@ -62,7 +62,7 @@ export default function Page() {
         setOpen(true);
         setDialogOrderId(orderNumber);
     }
-    seasoningDone();
+    seasoningDone(orders.id);
 
     if (menus.length <= 0) {
         return (

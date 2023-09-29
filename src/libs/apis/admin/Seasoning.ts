@@ -1,3 +1,5 @@
-export function seasoningDone(){
+
+
+export function seasoningDone(id:string){
     
 }
