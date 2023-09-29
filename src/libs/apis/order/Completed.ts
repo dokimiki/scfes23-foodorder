@@ -7,10 +7,11 @@ export function getCompleteState(): Promise<CompleteState> {
     return fetch("https://ncth-app.jp:3939/v1/user/me/getcompletestate", {
         headers: { Authorization: "Bearer " + token },
     }).then((res) => {
-        if (res.json().hasOwnProperty("message")) {
-            throw new Error((res.json() as any).message);
+        const response = res.json();
+        if (response.hasOwnProperty("message")) {
+            throw new Error((response as any).message);
         }
-        return res.json();
+        return response;
     });
 }
 
@@ -19,9 +20,10 @@ export function getCompleteInfo(): Promise<CompleteInfo> {
     return fetch("https://ncth-app.jp:3939/v1/user/me/getcompleteinfo", {
         headers: { Authorization: "Bearer " + token },
     }).then((res) => {
-        if (res.json().hasOwnProperty("message")) {
-            throw new Error((res.json() as any).message);
+        const response = res.json();
+        if (response.hasOwnProperty("message")) {
+            throw new Error((response as any).message);
         }
-        return res.json();
+        return response;
     });
 }

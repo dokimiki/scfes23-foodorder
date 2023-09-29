@@ -12,18 +12,20 @@ export function SignIn(userId: string): Promise<User> {
         token = "none";
     }
     return fetch("https://ncth-app.jp:3939/v1/user/signin/" + token).then((res) => {
-        if (res.json().hasOwnProperty("message")) {
-            throw new Error((res.json() as any).message);
+        const response = res.json();
+        if (response.hasOwnProperty("message")) {
+            throw new Error((response as any).message);
         }
-        return res.json();
+        return response;
     });
 }
 
 export function SignUp(): Promise<User> {
     return fetch("https://ncth-app.jp:3939/v1/user/signup", { method: "POST" }).then((res) => {
-        if (res.json().hasOwnProperty("message")) {
-            throw new Error((res.json() as any).message);
+        const response = res.json();
+        if (response.hasOwnProperty("message")) {
+            throw new Error((response as any).message);
         }
-        return res.json();
+        return response;
     });
 }

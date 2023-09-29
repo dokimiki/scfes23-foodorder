@@ -4,19 +4,21 @@ import { CartItem } from "../../types/item";
 
 export function getCartDataFromOrderCode(orderCode: string): Promise<CartItem[]> {
     return fetch("https://ncth-app.jp:3939/v1/admin/getcartdatafromordercode/" + orderCode, { method: "POST" }).then((res) => {
-        if (res.json().hasOwnProperty("message")) {
-            throw new Error((res.json() as any).message);
+        const response = res.json();
+        if (response.hasOwnProperty("message")) {
+            throw new Error((response as any).message);
         }
-        return res.json();
+        return response;
     });
 }
 
 export function getOrderedCarts(): Promise<Order[]> {
     return fetch("https://ncth-app.jp:3939/v1/admin/getorderedcarts").then((res) => {
-        if (res.json().hasOwnProperty("message")) {
-            throw new Error((res.json() as any).message);
+        const response = res.json();
+        if (response.hasOwnProperty("message")) {
+            throw new Error((response as any).message);
         }
-        return res.json();
+        return response;
     });
 }
 
@@ -34,9 +36,10 @@ export function sendOrderData(cart: CartItem[], orderCode: string, numTag: numbe
         },
         body: JSON.stringify(orderData),
     }).then((res) => {
-        if (res.json().hasOwnProperty("message")) {
-            throw new Error((res.json() as any).message);
+        const response = res.json();
+        if (response.hasOwnProperty("message")) {
+            throw new Error((response as any).message);
         }
-        return res.json();
+        return response;
     });
 }
