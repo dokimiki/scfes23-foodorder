@@ -20,17 +20,6 @@ export default function Completed() {
     const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
     const [completeInfo, setCompleteInfo] = React.useState<CompleteInfo>();
 
-    // const { inputRef } = useBarcode({
-    //     value: completeInfo?.barcode || "????",
-    //     options: {
-    //         text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
-    //             return str + char + (i % 4 === 3 ? " " : "");
-    //         }, ""),
-    //         fontSize: 16,
-    //         background: "#00000000",
-    //     },
-    // });
-
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
@@ -46,18 +35,41 @@ export default function Completed() {
 
         getCompleteInfo()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setCompleteInfo(res);
             })
-            .catch((err) => {});
-
-        getCompleteState()
-            .then((res) => {
-                setCompleteStatus(res);
-            })
-            .catch((err) => {});
+            .catch((err) => {
+                enqueueSnackbar(err, { variant: "error" });
+            });
     }, []);
 
-    if (!completeStatus) {
+    React.useEffect(() => {
+        let timeoutId: NodeJS.Timeout;
+        function update() {
+            getCompleteState()
+                .then((res) => {
+                    if (res.hasOwnProperty("message")) {
+                        enqueueSnackbar((res as any).message, { variant: "error" });
+                        return;
+                    }
+                    setCompleteStatus(res);
+                })
+                .catch((err) => {
+                    enqueueSnackbar(err, { variant: "error" });
+                });
+            timeoutId = setTimeout(update, 10000);
+        }
+        update();
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, []);
+
+    if (completeInfo === undefined || menus.length <= 0) {
         return (
             <main>
                 <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
@@ -103,7 +115,9 @@ export default function Completed() {
                                     ? "調理中"
                                     : completeStatus?.state === "Cooked"
                                     ? "完成"
-                                    : "受け取り済み"}
+                                    : completeStatus?.state === "Delivered"
+                                    ? "受け取り済み"
+                                    : "不明"}
                             </Bold>
                         </Typography>
                     </CardContent>
