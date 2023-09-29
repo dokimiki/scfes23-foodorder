@@ -279,7 +279,7 @@ export default function Regi() {
     );
 }
 
-function SendingDialogContent({ total, setNumTag, onSend, onClose }: { total: number; setNumTag:(number) => void; onSend: () => void; onClose: () => void }) {
+function SendingDialogContent({ total, setNumTag, onSend, onClose }: { total: number; setNumTag:(num: number) => void; onSend: () => void; onClose: () => void }) {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNumTag(Number((event.target as HTMLInputElement).value));
       };
