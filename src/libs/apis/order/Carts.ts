@@ -3,8 +3,18 @@ import { CartItem } from "@/libs/types/item";
 
 export function sendCartData(cart: CartItem[]): Promise<boolean> {
     const token: string = localStorage.getItem("user-id") || "";
-    return fetch("https://ncth-app.jp:3939/v1/user/me/sendcartdata/" + JSON.stringify(cart), {
+
+    return fetch("https://ncth-app.jp:3939/v1/user/me/sendcartdata", {
         method: "POST",
-        headers: { Authorization: "Bearer " + token },
-    }).then((res) => !!res);
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(cart),
+    }).then((res) => {
+        if (res.hasOwnProperty("message")) {
+            throw new Error((res as any).message);
+        }
+        return !!res;
+    });
 }
