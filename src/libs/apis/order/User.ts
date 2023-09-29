@@ -5,6 +5,8 @@ import jwtDecode from "jwt-decode";
 
 export function SignIn(userId: string): Promise<User> {
     const jwt: string = localStorage.getItem("user-id") || "";
+    console.log(jwt);
+    console.log(jwtDecode(jwt));
     const token: string = (jwtDecode(jwt) as any).sub;
     return fetch("https://ncth-app.jp:3939/v1/user/signin/" + token).then((res) => res.json());
 }
