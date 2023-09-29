@@ -72,7 +72,7 @@ export default function Page() {
         setOpen(true);
     }
 
-    if (menus.length <= 0) {
+    if (menus.length <= 0 || orders.length <= 0) {
         return (
             <main>
                 <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
