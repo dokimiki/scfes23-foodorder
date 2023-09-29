@@ -20,7 +20,7 @@ export function MenuItemPaper({
     addToCart: () => void;
 }) {
     return (
-        <Button onClick={addToCart} sx={{ margin: 2, padding: 0 }}>
+        <Button onClick={addToCart} sx={{ margin: 1, padding: 0 }}>
             <Badge
                 badgeContent={itemCartInfo.quantity}
                 color="primary"
@@ -34,8 +34,8 @@ export function MenuItemPaper({
                     }
                 `}
             >
-                <Card sx={{ width: 200 }}>
-                    <CardMedia sx={{ height: 160 }} image={itemMenuInfo.image} />
+                <Card sx={{ width: 145 }}>
+                    <CardMedia sx={{ height: 100 }} image={itemMenuInfo.image} />
                     <Stack sx={{ padding: "16px" }}>
                         <Typography gutterBottom variant="body2" fontWeight="500" align="left">
                             {itemMenuInfo.name}
