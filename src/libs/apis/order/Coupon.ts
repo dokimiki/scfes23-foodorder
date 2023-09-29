@@ -1,15 +1,16 @@
 "use client";
 
 import { Coupon, CouponItemIds } from "@/libs/types/coupon";
-import { resolve } from "path";
 
 export function drawBulkLots(): Promise<Coupon> {
     const token: string = localStorage.getItem("user-id") || "";
-    return new Promise(() => {
+    return new Promise((resolve) => {
         setTimeout(() => {
-            fetch("https://ncth-app.jp:3939/v1/user/me/drawbulklots", {
-                headers: { Authorization: "Bearer " + token },
-            }).then((res) => res.json());
+            resolve(
+                fetch("https://ncth-app.jp:3939/v1/user/me/drawbulklots", {
+                    headers: { Authorization: "Bearer " + token },
+                }).then((res) => res.json())
+            );
         }, 1000);
     });
 }
