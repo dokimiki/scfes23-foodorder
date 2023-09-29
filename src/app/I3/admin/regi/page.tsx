@@ -33,15 +33,19 @@ export default function Regi() {
     const [orderCode, setOrderCode] = React.useState<string>("");
     const [isSending, setIsSending] = React.useState<boolean>(false);
     const [isSendingDialogOpen, setIsSendingDialogOpen] = React.useState<boolean>(false);
-    const [numTag, setNumTag] = React.useState(0)
+    const [numTag, setNumTag] = React.useState(0);
 
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setMenus(res);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             });
     }, []);
 
@@ -138,12 +142,16 @@ export default function Regi() {
                             let barcodeInput = event.target[0].value;
                             getCartDataFromOrderCode(barcodeInput)
                                 .then((res) => {
+                                    if (res.hasOwnProperty("message")) {
+                                        enqueueSnackbar((res as any).message, { variant: "error" });
+                                        return;
+                                    }
                                     setOrderCode(barcodeInput);
                                     setCart(res);
                                     setIsSendingDialogOpen(true);
                                 })
                                 .catch((err) => {
-                                    enqueueSnackbar(err);
+                                    enqueueSnackbar(err, { variant: "error" });
                                     enqueueSnackbar("注文コードが見つかりませんでした。", { variant: "error" });
                                 });
 
@@ -253,11 +261,17 @@ export default function Regi() {
             <Dialog onClose={() => setIsSendingDialogOpen(false)} open={isSendingDialogOpen} keepMounted>
                 <SendingDialogContent
                     total={cart.reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)}
-                    setNumTag={(num: number) => {setNumTag(num)}}
+                    setNumTag={(num: number) => {
+                        setNumTag(num);
+                    }}
                     onSend={() => {
                         setIsSending(true);
                         sendOrderData(cart, orderCode, numTag)
                             .then((res) => {
+                                if (res.hasOwnProperty("message")) {
+                                    enqueueSnackbar((res as any).message, { variant: "error" });
+                                    return;
+                                }
                                 enqueueSnackbar(res);
                                 setOrderCode("");
                                 setCart([]);
@@ -265,7 +279,7 @@ export default function Regi() {
                                 setIsSending(false);
                             })
                             .catch((err) => {
-                                enqueueSnackbar(err);
+                                enqueueSnackbar(err, { variant: "error" });
                                 enqueueSnackbar("会計データの送信に失敗しました。", { variant: "error" });
                                 setIsSending(false);
                             });
@@ -279,10 +293,20 @@ export default function Regi() {
     );
 }
 
-function SendingDialogContent({ total, setNumTag, onSend, onClose }: { total: number; setNumTag:(num: number) => void; onSend: () => void; onClose: () => void }) {
+function SendingDialogContent({
+    total,
+    setNumTag,
+    onSend,
+    onClose,
+}: {
+    total: number;
+    setNumTag: (num: number) => void;
+    onSend: () => void;
+    onClose: () => void;
+}) {
     const handleChange = (event: any) => {
         setNumTag(Number((event.target as HTMLInputElement).value));
-      };
+    };
 
     return (
         <>

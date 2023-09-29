@@ -21,20 +21,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         if (JWT) {
             SignIn(JWT)
                 .then((res) => {
+                    if (res.hasOwnProperty("message")) {
+                        enqueueSnackbar((res as any).message, { variant: "error" });
+                        return;
+                    }
                     setNewUser(res);
                     localStorage.setItem("user-id", res.id);
                 })
                 .catch((err) => {
-                    enqueueSnackbar(err);
+                    enqueueSnackbar(err, { variant: "error" });
                 });
         } else {
             SignUp()
                 .then((res) => {
+                    if (res.hasOwnProperty("message")) {
+                        enqueueSnackbar((res as any).message, { variant: "error" });
+                        return;
+                    }
                     setNewUser(res);
                     localStorage.setItem("user-id", res.id);
                 })
                 .catch((err) => {
-                    enqueueSnackbar(err);
+                    enqueueSnackbar(err, { variant: "error" });
                 });
         }
     }, []);

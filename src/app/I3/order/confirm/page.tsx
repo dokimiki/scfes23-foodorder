@@ -70,32 +70,44 @@ export default function Confirm() {
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setMenus(res);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             });
     }, []);
 
     React.useEffect(() => {
         getCouponItemIds()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setCouponItemIds(res);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             });
     }, []);
 
     function onConfirm() {
         setIsSending(true);
         sendCartData(cart)
-            .then(() => {
+            .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 router.push("/I3/order/completed");
                 window.location.reload();
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             })
             .finally(() => {
                 setIsSending(false);
@@ -106,6 +118,10 @@ export default function Confirm() {
         setIsLoadingBulkLot(true);
         drawBulkLots()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 const CouponItemID = couponItemIds?.[res.kind] ?? null;
                 if (CouponItemID !== null) {
                     addToCart(CouponItemID);
@@ -113,7 +129,7 @@ export default function Confirm() {
                 setBulkCoupon(res.kind);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             })
             .finally(() => {
                 setIsLoadingBulkLot(false);
@@ -124,6 +140,10 @@ export default function Confirm() {
         setIsLoadingInviteLot(true);
         drawInviteLots()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 const CouponItemID = couponItemIds?.[res.kind] ?? null;
                 if (CouponItemID !== null) {
                     addToCart(CouponItemID);
@@ -131,7 +151,7 @@ export default function Confirm() {
                 setInviteCoupon(res.kind);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             })
             .finally(() => {
                 setIsLoadingInviteLot(false);

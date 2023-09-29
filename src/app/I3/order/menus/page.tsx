@@ -27,10 +27,14 @@ export default function Menus() {
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setMenus(res.filter((e) => e.isShow));
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             });
     }, []);
 

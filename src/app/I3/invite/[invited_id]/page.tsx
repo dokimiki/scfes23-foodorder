@@ -15,9 +15,14 @@ export default function Invite() {
     const [isSending, setIsSending] = React.useState<boolean>(true);
 
     wasInvited(invitedId)
-        .then(() => {})
+        .then((res) => {
+            if (res.hasOwnProperty("message")) {
+                enqueueSnackbar((res as any).message, { variant: "error" });
+                return;
+            }
+        })
         .catch((err) => {
-            enqueueSnackbar(err);
+            enqueueSnackbar(err, { variant: "error" });
         })
         .finally(() => {
             setIsSending(false);
