@@ -17,9 +17,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const router = useRouter();
 
     React.useEffect(() => {
-        const USER_ID: string | null = localStorage.getItem("user-id");
-        if (USER_ID) {
-            SignIn(USER_ID)
+        const JWT: string | null = localStorage.getItem("user-id");
+        if (JWT) {
+            SignIn(JWT)
                 .then((res) => {
                     setNewUser(res);
                     localStorage.setItem("user-id", res.id);
