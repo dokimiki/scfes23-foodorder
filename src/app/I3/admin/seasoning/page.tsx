@@ -17,6 +17,7 @@ import { getOrderedCarts } from "@/libs/apis/admin/Orders";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { enqueueSnackbar } from "notistack";
+import { seasoningDone } from "@/libs/apis/admin/Seasoning";
 
 export default function Page() {
     const [open, setOpen] = React.useState(false);
@@ -53,6 +54,7 @@ export default function Page() {
         setOpen(true);
         setDialogOrderId(orderNumber);
     }
+    seasoningDone();
 
     if (menus.length <= 0) {
         return (
