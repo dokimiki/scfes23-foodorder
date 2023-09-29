@@ -47,7 +47,12 @@ export function getOrderedCarts(): Promise<Order[]> {
     });
 }
 
-export function sendOrderData(cart: CartItem[], orderCode: string): Promise<boolean> {
+export function sendOrderData(cart: CartItem[], orderCode: string, numTag: number): Promise<boolean> {
+    const orderData: {cart: CartItem[]; orderCode: string; numTag: number} = {
+        cart: cart,
+        orderCode: orderCode,
+        numTag: numTag
+    }
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(true);

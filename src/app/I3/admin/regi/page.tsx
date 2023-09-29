@@ -33,6 +33,7 @@ export default function Regi() {
     const [orderCode, setOrderCode] = React.useState<string>("");
     const [isSending, setIsSending] = React.useState<boolean>(false);
     const [isSendingDialogOpen, setIsSendingDialogOpen] = React.useState<boolean>(false);
+    const [numTag, setNumTag] = React.useState(0)
 
     React.useEffect(() => {
         getMenuItems()
@@ -252,9 +253,10 @@ export default function Regi() {
             <Dialog onClose={() => setIsSendingDialogOpen(false)} open={isSendingDialogOpen} keepMounted>
                 <SendingDialogContent
                     total={cart.reduce((acc, cur) => acc + (menus.find((e) => e.id === cur.id)?.price ?? 0) * cur.quantity, 0)}
+                    setNumTag={(num: number) => {setNumTag(num)}}
                     onSend={() => {
                         setIsSending(true);
-                        sendOrderData(cart, orderCode)
+                        sendOrderData(cart, orderCode, numTag)
                             .then((res) => {
                                 enqueueSnackbar(res);
                                 setOrderCode("");
@@ -277,7 +279,11 @@ export default function Regi() {
     );
 }
 
-function SendingDialogContent({ total, onSend, onClose }: { total: number; onSend: () => void; onClose: () => void }) {
+function SendingDialogContent({ total, setNumTag, onSend, onClose }: { total: number; setNumTag:(number) => void; onSend: () => void; onClose: () => void }) {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setNumTag(Number((event.target as HTMLInputElement).value));
+      };
+
     return (
         <>
             <DialogTitle>{total}円の支払いを完了させてください。</DialogTitle>
@@ -291,7 +297,7 @@ function SendingDialogContent({ total, onSend, onClose }: { total: number; onSen
                     番号札を選択してください:
                 </Typography>
                 <Stack direction="row" flexWrap="wrap">
-                    <RadioGroup row defaultValue={0}>
+                    <RadioGroup row defaultValue={0} onChange={handleChange}>
                         {Array(21)
                             .fill(1)
                             .map((e, i) => {
