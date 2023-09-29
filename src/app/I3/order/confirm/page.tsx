@@ -92,6 +92,7 @@ export default function Confirm() {
         sendCartData(cart)
             .then(() => {
                 router.push("/I3/order/completed");
+                window.location.reload();
             })
             .catch((err) => {
                 enqueueSnackbar(err);
