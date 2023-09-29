@@ -12,7 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    const [newUser, setNewUser] = React.useState<User | undefined>();
+    const [newUser, setNewUser] = React.useState<User | null>(null);
     const pathname = usePathname();
     const router = useRouter();
 
@@ -39,7 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         }
     }, []);
 
-    if (newUser === undefined) {
+    if (newUser === null) {
         return (
             <ThemeRegistry>
                 <main>
@@ -53,9 +53,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     if (newUser.isOrdered === false && pathname === "/I3/order/completed") {
         router.push("/I3/order/menus");
+        return;
     }
     if (newUser.isOrdered === true && pathname !== "/I3/order/completed") {
         router.push("/I3/order/completed");
+        return;
     }
 
     return (
