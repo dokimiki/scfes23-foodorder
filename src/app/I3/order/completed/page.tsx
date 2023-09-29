@@ -20,16 +20,16 @@ export default function Completed() {
     const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
     const [completeInfo, setCompleteInfo] = React.useState<CompleteInfo>();
 
-    // const { inputRef } = useBarcode({
-    //     value: completeInfo?.barcode || "????",
-    //     options: {
-    //         text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
-    //             return str + char + (i % 4 === 3 ? " " : "");
-    //         }, ""),
-    //         fontSize: 16,
-    //         background: "#00000000",
-    //     },
-    // });
+    const { inputRef } = useBarcode({
+        value: completeInfo?.barcode || "????",
+        options: {
+            text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
+                return str + char + (i % 4 === 3 ? " " : "");
+            }, ""),
+            fontSize: 16,
+            background: "#00000000",
+        },
+    });
 
     React.useEffect(() => {
         getMenuItems()
