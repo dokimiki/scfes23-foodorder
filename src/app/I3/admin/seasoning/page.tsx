@@ -13,7 +13,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import { getOrderedCarts } from "@/libs/apis/admin/Orders";
+import { getSeasoningData } from "@/libs/apis/admin/Orders";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { enqueueSnackbar } from "notistack";
@@ -41,7 +41,7 @@ export default function Page() {
     }, []);
 
     React.useEffect(() => {
-        getOrderedCarts()
+        getSeasoningData()
             .then((res) => {
                 if (res.hasOwnProperty("message")) {
                     enqueueSnackbar((res as any).message, { variant: "error" });

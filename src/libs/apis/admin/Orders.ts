@@ -6,8 +6,8 @@ export function getCartDataFromOrderCode(orderCode: string): Promise<CartItem[]>
     return fetch("https://ncth-app.jp:3939/v1/admin/getcartdatafromordercode/" + orderCode, { method: "POST" }).then((res) => res.json());
 }
 
-export function getOrderedCarts(): Promise<Order[]> {
-    return fetch("https://ncth-app.jp:3939/v1/admin/getorderedcarts").then((res) => res.json());
+export function getSeasoningData(): Promise<Order[]> {
+    return fetch("https://ncth-app.jp:3939/v1/admin/getseasoningdata").then((res) => res.json());
 }
 
 export function sendOrderData(cart: CartItem[], orderCode: string, numTag: number): Promise<boolean> {
