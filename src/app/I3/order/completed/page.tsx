@@ -60,7 +60,7 @@ export default function Completed() {
                 .catch((err) => {
                     enqueueSnackbar(err, { variant: "error" });
                 });
-            timeoutId = setTimeout(update, 10000);
+            timeoutId = setTimeout(update, 20000);
         }
         update();
 

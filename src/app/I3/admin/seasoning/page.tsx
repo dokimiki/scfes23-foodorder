@@ -41,17 +41,26 @@ export default function Page() {
     }, []);
 
     React.useEffect(() => {
-        getSeasoningData()
-            .then((res) => {
-                if (res.hasOwnProperty("message")) {
-                    enqueueSnackbar((res as any).message, { variant: "error" });
-                    return;
-                }
-                setOrders(res);
-            })
-            .catch((err) => {
-                enqueueSnackbar(err, { variant: "error" });
-            });
+        let timeoutId: NodeJS.Timeout;
+        function update() {
+            getSeasoningData()
+                .then((res) => {
+                    if (res.hasOwnProperty("message")) {
+                        enqueueSnackbar((res as any).message, { variant: "error" });
+                        return;
+                    }
+                    setOrders(res);
+                })
+                .catch((err) => {
+                    enqueueSnackbar(err, { variant: "error" });
+                });
+            timeoutId = setTimeout(update, 5000);
+        }
+        update();
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
     }, []);
 
     function handleDialogClose() {
@@ -114,6 +123,18 @@ export default function Page() {
                                             enqueueSnackbar((res as any).message, { variant: "error" });
                                             return;
                                         }
+                                    })
+                                    .catch((err) => {
+                                        enqueueSnackbar(err, { variant: "error" });
+                                    });
+
+                                getSeasoningData()
+                                    .then((res) => {
+                                        if (res.hasOwnProperty("message")) {
+                                            enqueueSnackbar((res as any).message, { variant: "error" });
+                                            return;
+                                        }
+                                        setOrders(res);
                                     })
                                     .catch((err) => {
                                         enqueueSnackbar(err, { variant: "error" });

@@ -27,24 +27,33 @@ export default function Potato() {
     const [selectedPotatoId, selectPotatoId] = React.useState<string>("");
 
     React.useEffect(() => {
-        getPotatoData()
-            .then((res) => {
-                if (res.hasOwnProperty("message")) {
-                    enqueueSnackbar((res as any).message, { variant: "error" });
-                    return;
-                }
-                const datedRes = res.map((e) => {
-                    return {
-                        ...e,
-                        receptionTime: new Date(e.receptionTime),
-                        completionTime: new Date(e.completionTime),
-                    };
+        let timeoutId: NodeJS.Timeout;
+        function update() {
+            getPotatoData()
+                .then((res) => {
+                    if (res.hasOwnProperty("message")) {
+                        enqueueSnackbar((res as any).message, { variant: "error" });
+                        return;
+                    }
+                    const datedRes = res.map((e) => {
+                        return {
+                            ...e,
+                            receptionTime: new Date(e.receptionTime),
+                            completionTime: new Date(e.completionTime),
+                        };
+                    });
+                    setOrderedPotatoList(datedRes);
+                })
+                .catch((err) => {
+                    enqueueSnackbar(err, { variant: "error" });
                 });
-                setOrderedPotatoList(datedRes);
-            })
-            .catch((err) => {
-                enqueueSnackbar(err, { variant: "error" });
-            });
+            timeoutId = setTimeout(update, 10000);
+        }
+        update();
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
     }, []);
 
     if (orderedPotatoList.length <= 0) {
@@ -151,6 +160,25 @@ export default function Potato() {
                                             enqueueSnackbar((res as any).message, { variant: "error" });
                                             return;
                                         }
+                                    })
+                                    .catch((err) => {
+                                        enqueueSnackbar(err, { variant: "error" });
+                                    });
+
+                                getPotatoData()
+                                    .then((res) => {
+                                        if (res.hasOwnProperty("message")) {
+                                            enqueueSnackbar((res as any).message, { variant: "error" });
+                                            return;
+                                        }
+                                        const datedRes = res.map((e) => {
+                                            return {
+                                                ...e,
+                                                receptionTime: new Date(e.receptionTime),
+                                                completionTime: new Date(e.completionTime),
+                                            };
+                                        });
+                                        setOrderedPotatoList(datedRes);
                                     })
                                     .catch((err) => {
                                         enqueueSnackbar(err, { variant: "error" });
