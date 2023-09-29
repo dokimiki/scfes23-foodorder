@@ -17,9 +17,15 @@ export function drawBulkLots(): Promise<Coupon> {
 
 export function drawInviteLots(): Promise<Coupon> {
     const token: string = localStorage.getItem("user-id") || "";
-    return fetch("https://ncth-app.jp:3939/v1/user/me/drawinvitelots", {
-        headers: { Authorization: "Bearer " + token },
-    }).then((res) => res.json());
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(
+                fetch("https://ncth-app.jp:3939/v1/user/me/drawinvitelots", {
+                    headers: { Authorization: "Bearer " + token },
+                }).then((res) => res.json())
+            );
+        }, 1000);
+    });
 }
 
 export function getCouponItemIds(): Promise<CouponItemIds> {
