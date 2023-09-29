@@ -13,7 +13,7 @@ import AppBar from "@mui/material/AppBar";
 import { OrderedPotato } from "@/libs/types/potato";
 import { Backdrop, CircularProgress, Dialog, Toolbar } from "@mui/material";
 import { PotatoTable } from "./PotatoTable";
-import { getPotatoData } from "@/libs/apis/admin/Potato";
+import { finishedFrying, getPotatoData } from "@/libs/apis/admin/Potato";
 import { DialogTitle } from "@mui/material";
 import { DialogContent } from "@mui/material";
 import { DialogActions } from "@mui/material";
@@ -142,7 +142,24 @@ export default function Potato() {
                         <Button onClick={() => setIsDialogOpen(false)} variant="contained" size="large" color="inherit">
                             キャンセル
                         </Button>
-                        <Button onClick={() => setIsDialogOpen(false)} variant="contained" size="large" autoFocus>
+                        <Button
+                            onClick={() => {
+                                setIsDialogOpen(false);
+                                finishedFrying(selectedPotatoId)
+                                    .then((res) => {
+                                        if (res.hasOwnProperty("message")) {
+                                            enqueueSnackbar((res as any).message, { variant: "error" });
+                                            return;
+                                        }
+                                    })
+                                    .catch((err) => {
+                                        enqueueSnackbar(err, { variant: "error" });
+                                    });
+                            }}
+                            variant="contained"
+                            size="large"
+                            autoFocus
+                        >
                             完了
                         </Button>
                     </Stack>
