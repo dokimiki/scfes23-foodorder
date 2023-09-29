@@ -19,6 +19,8 @@ export function drawInviteLots(): Promise<Coupon> {
     return fetch("https://ncth-app.jp:3939/v1/user/me/drawinvitelots", {
         headers: { Authorization: "Bearer " + token },
     }).then((res) => {
+        console.log(res);
+        console.log(res.hasOwnProperty("message"));
         if (res.hasOwnProperty("message")) {
             throw new Error((res as any).message);
         }
