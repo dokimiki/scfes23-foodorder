@@ -58,7 +58,7 @@ export default function Confirm() {
         setIsBuyMultiItem(localStorageCart.length > 1 || localStorageCart[0].quantity > 1);
 
         const token: string = localStorage.getItem("user-id") || "";
-        const userId: string = (jwtDecode(token) as any).sub;
+        const userId: string = (jwtDecode(token) as any)?.sub || "";
         setQrUrl("https://ncth-app.jp/I3/order/invite/" + userId);
     }, []);
 
