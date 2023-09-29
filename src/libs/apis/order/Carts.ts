@@ -11,5 +11,5 @@ export function sendCartData(cart: CartItem[]): Promise<boolean> {
             Authorization: "Bearer " + token,
         },
         body: JSON.stringify(cart),
-    }).then((res) => !!res);
+    }).then((res) => res.json());
 }

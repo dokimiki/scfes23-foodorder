@@ -17,13 +17,11 @@ import { getOrderedCarts } from "@/libs/apis/admin/Orders";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { enqueueSnackbar } from "notistack";
-import { seasoningDone } from "@/libs/apis/admin/Seasoning";
+import { finishedSeasoning } from "@/libs/apis/admin/Seasoning";
 
 export default function Page() {
     const [open, setOpen] = React.useState(false);
-    const [dialogOrderNumber, setDialogOrderNumber] = React.useState(0);
-    const [dialogOrderId, setDialogOrderid] = React.useState("");
-    const [dialogOrderMenus, setDialogOrderMenus] = React.useState<Order>();
+    const [dialogOrderId, setDialogOrderId] = React.useState("");
 
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [orders, setOrders] = React.useState<Order[]>([]);
@@ -59,9 +57,10 @@ export default function Page() {
     function handleDialogClose() {
         setOpen(false);
     }
-    function handleDialogOpen(orderNumber: number) {
+
+    function handleDialogOpen(orderId: string) {
+        setDialogOrderId(orderId);
         setOpen(true);
-        setDialogOrderNumber(orderNumber);
     }
 
     if (menus.length <= 0) {
@@ -87,10 +86,8 @@ export default function Page() {
 
             <Stack>
                 {orders.map((e, i) => {
-                    return(
-                    <SeasoningPaper order={e} menus={menus} onOpenModal={() => handleDialogOpen(e.numberTag)} key={i} />
-                    {setDialogOrderMenus(e)}
-                )})}
+                    return <SeasoningPaper order={e} menus={menus} onOpenModal={() => handleDialogOpen(e.id)} key={i} />;
+                })}
             </Stack>
             <Dialog open={open} onClose={handleDialogClose} keepMounted>
                 <DialogTitle id="alert-dialog-title">この注文は提供済みですか？</DialogTitle>
@@ -98,7 +95,7 @@ export default function Page() {
                     <Stack alignItems="center">
                         <Typography variant="h6">番号札</Typography>
                         <Typography variant="h3" color={"#ffa53f"}>
-                            {dialogOrderNumber}
+                            {orders.find((e) => e.id === dialogOrderId)?.numberTag}
                         </Typography>
                     </Stack>
                 </DialogContent>
@@ -108,7 +105,23 @@ export default function Page() {
                         <Button onClick={handleDialogClose} variant="contained" size="large" color="inherit">
                             キャンセル
                         </Button>
-                        <Button onClick={() => seasoningDone(dialogOrderId)} variant="contained" size="large" autoFocus>
+                        <Button
+                            onClick={() =>
+                                finishedSeasoning(dialogOrderId)
+                                    .then((res) => {
+                                        if (res.hasOwnProperty("message")) {
+                                            enqueueSnackbar((res as any).message, { variant: "error" });
+                                            return;
+                                        }
+                                    })
+                                    .catch((err) => {
+                                        enqueueSnackbar(err, { variant: "error" });
+                                    })
+                            }
+                            variant="contained"
+                            size="large"
+                            autoFocus
+                        >
                             完了
                         </Button>
                     </Stack>
