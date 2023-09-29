@@ -64,7 +64,7 @@ export default function Confirm() {
         } catch (e) {
             token = "none";
         }
-        setQrUrl("https://ncth-app.jp/I3/order/invite/" + token);
+        setQrUrl("https://ncth-app.jp/I3/invite/" + token);
     }, []);
 
     React.useEffect(() => {
