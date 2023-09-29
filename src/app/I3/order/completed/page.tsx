@@ -1,5 +1,5 @@
 "use client";
-import { Paper, Stack } from "@mui/material";
+import { Backdrop, CircularProgress, Paper, Stack } from "@mui/material";
 import { useBarcode } from "next-barcode";
 import { CartMenu } from "./cartMenu";
 import { MenuItem } from "@/libs/types/item";
@@ -56,6 +56,16 @@ export default function Completed() {
             })
             .catch((err) => {});
     }, []);
+
+    if (!completeStatus) {
+        return (
+            <main>
+                <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={true}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            </main>
+        );
+    }
 
     return (
         <>
