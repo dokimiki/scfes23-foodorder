@@ -57,9 +57,14 @@ export default function Confirm() {
         setCart(localStorageCart);
         setIsBuyMultiItem(localStorageCart.length > 1 || localStorageCart[0].quantity > 1);
 
-        const token: string = localStorage.getItem("user-id") || "";
-        const userId: string = (jwtDecode(token) as any)?.sub || "";
-        setQrUrl("https://ncth-app.jp/I3/order/invite/" + userId);
+        const jwt: string = localStorage.getItem("user-id") || "";
+        let token: string;
+        try {
+            token = (jwtDecode(jwt) as any)?.sub || "";
+        } catch (e) {
+            token = "";
+        }
+        setQrUrl("https://ncth-app.jp/I3/order/invite/" + token);
     }, []);
 
     React.useEffect(() => {
