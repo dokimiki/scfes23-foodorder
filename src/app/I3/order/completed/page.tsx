@@ -22,13 +22,6 @@ export default function Completed() {
 
     const { inputRef } = useBarcode({
         value: completeInfo?.barcode || "????",
-        options: {
-            text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
-                return str + char + (i % 4 === 3 ? " " : "");
-            }, ""),
-            fontSize: 16,
-            background: "#00000000",
-        },
     });
 
     React.useEffect(() => {
@@ -82,7 +75,7 @@ export default function Completed() {
                 }}
             >
                 <Stack alignItems="center">
-                    <img ref={inputRef} />
+                    <canvas ref={inputRef} />
                 </Stack>
             </Paper>
             <main>
