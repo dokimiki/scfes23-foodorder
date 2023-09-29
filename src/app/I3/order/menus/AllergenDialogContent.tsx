@@ -22,10 +22,14 @@ export default function AllergenDialogContent({
         setIsAllergenLoading(true);
         getAllergen(itemInfo.id)
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setAllergens(res);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             })
             .finally(() => {
                 setIsAllergenLoading(false);

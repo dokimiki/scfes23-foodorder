@@ -29,10 +29,14 @@ export default function Potato() {
     React.useEffect(() => {
         getPotatoData()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setOrderedPotatoList(res);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             });
     }, []);
 

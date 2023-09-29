@@ -34,10 +34,14 @@ export default function Completed() {
     React.useEffect(() => {
         getMenuItems()
             .then((res) => {
+                if (res.hasOwnProperty("message")) {
+                    enqueueSnackbar((res as any).message, { variant: "error" });
+                    return;
+                }
                 setMenus(res);
             })
             .catch((err) => {
-                enqueueSnackbar(err);
+                enqueueSnackbar(err, { variant: "error" });
             });
 
         getCompleteInfo()
