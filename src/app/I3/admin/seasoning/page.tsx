@@ -106,7 +106,8 @@ export default function Page() {
                             キャンセル
                         </Button>
                         <Button
-                            onClick={() =>
+                            onClick={() => {
+                                handleDialogClose();
                                 finishedSeasoning(dialogOrderId)
                                     .then((res) => {
                                         if (res.hasOwnProperty("message")) {
@@ -116,8 +117,8 @@ export default function Page() {
                                     })
                                     .catch((err) => {
                                         enqueueSnackbar(err, { variant: "error" });
-                                    })
-                            }
+                                    });
+                            }}
                             variant="contained"
                             size="large"
                             autoFocus
