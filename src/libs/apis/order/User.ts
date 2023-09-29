@@ -12,8 +12,8 @@ export function SignIn(userId: string): Promise<User> {
         token = "none";
     }
     return fetch("https://ncth-app.jp:3939/v1/user/signin/" + token).then((res) => {
-        if (res.hasOwnProperty("message")) {
-            throw new Error((res as any).message);
+        if (res.json().hasOwnProperty("message")) {
+            throw new Error((res.json() as any).message);
         }
         return res.json();
     });
@@ -21,8 +21,8 @@ export function SignIn(userId: string): Promise<User> {
 
 export function SignUp(): Promise<User> {
     return fetch("https://ncth-app.jp:3939/v1/user/signup", { method: "POST" }).then((res) => {
-        if (res.hasOwnProperty("message")) {
-            throw new Error((res as any).message);
+        if (res.json().hasOwnProperty("message")) {
+            throw new Error((res.json() as any).message);
         }
         return res.json();
     });

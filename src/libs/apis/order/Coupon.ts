@@ -7,8 +7,8 @@ export function drawBulkLots(): Promise<Coupon> {
     return fetch("https://ncth-app.jp:3939/v1/user/me/drawbulklots", {
         headers: { Authorization: "Bearer " + token },
     }).then((res) => {
-        if (res.hasOwnProperty("message")) {
-            throw new Error((res as any).message);
+        if (res.json().hasOwnProperty("message")) {
+            throw new Error((res.json() as any).message);
         }
         return res.json();
     });
@@ -19,10 +19,8 @@ export function drawInviteLots(): Promise<Coupon> {
     return fetch("https://ncth-app.jp:3939/v1/user/me/drawinvitelots", {
         headers: { Authorization: "Bearer " + token },
     }).then((res) => {
-        console.log(res);
-        console.log(res.hasOwnProperty("message"));
-        if (res.hasOwnProperty("message")) {
-            throw new Error((res as any).message);
+        if (res.json().hasOwnProperty("message")) {
+            throw new Error((res.json() as any).message);
         }
         return res.json();
     });
@@ -33,8 +31,8 @@ export function getCouponItemIds(): Promise<CouponItemIds> {
     return fetch("https://ncth-app.jp:3939/v1/user/me/getcouponitemids", {
         headers: { Authorization: "Bearer " + token },
     }).then((res) => {
-        if (res.hasOwnProperty("message")) {
-            throw new Error((res as any).message);
+        if (res.json().hasOwnProperty("message")) {
+            throw new Error((res.json() as any).message);
         }
         return res.json();
     });
