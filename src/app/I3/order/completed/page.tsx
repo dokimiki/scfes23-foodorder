@@ -1,6 +1,5 @@
 "use client";
 import { Backdrop, CircularProgress, Paper, Stack } from "@mui/material";
-import { useBarcode } from "next-barcode";
 import { CartMenu } from "./cartMenu";
 import { MenuItem } from "@/libs/types/item";
 import * as React from "react";
@@ -14,15 +13,23 @@ import CardContent from "@mui/material/CardContent";
 import { getCompleteInfo, getCompleteState } from "@/libs/apis/order/Completed";
 import { CompleteInfo, CompleteState } from "@/libs/types/orderComplete";
 import { enqueueSnackbar } from "notistack";
+import Barcode from "react-barcode";
 
 export default function Completed() {
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [completeStatus, setCompleteStatus] = React.useState<CompleteState>();
     const [completeInfo, setCompleteInfo] = React.useState<CompleteInfo>();
 
-    const { inputRef } = useBarcode({
-        value: completeInfo?.barcode || "????",
-    });
+    // const { inputRef } = useBarcode({
+    //     value: completeInfo?.barcode || "????",
+    //     options: {
+    //         text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
+    //             return str + char + (i % 4 === 3 ? " " : "");
+    //         }, ""),
+    //         fontSize: 16,
+    //         background: "#00000000",
+    //     },
+    // });
 
     React.useEffect(() => {
         getMenuItems()
@@ -75,7 +82,7 @@ export default function Completed() {
                 }}
             >
                 <Stack alignItems="center">
-                    <canvas ref={inputRef} />
+                    <Barcode value={completeInfo?.barcode || ""} />
                 </Stack>
             </Paper>
             <main>
