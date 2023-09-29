@@ -21,7 +21,7 @@ export default function Completed() {
     const [completeInfo, setCompleteInfo] = React.useState<CompleteInfo>();
 
     const { inputRef } = useBarcode({
-        value: "????",
+        value: completeInfo?.barcode || "????",
         options: {
             text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
                 return str + char + (i % 4 === 3 ? " " : "");
@@ -82,7 +82,7 @@ export default function Completed() {
                 }}
             >
                 <Stack alignItems="center">
-                    <svg ref={inputRef} />
+                    <canvas ref={inputRef} />
                 </Stack>
             </Paper>
             <main>
