@@ -11,7 +11,7 @@ export function drawBulkLots(): Promise<Coupon> {
                     headers: { Authorization: "Bearer " + token },
                 }).then((res) => res.json())
             );
-        }, 1000);
+        }, 2300);
     });
 }
 
@@ -24,7 +24,7 @@ export function drawInviteLots(): Promise<Coupon> {
                     headers: { Authorization: "Bearer " + token },
                 }).then((res) => res.json())
             );
-        }, 1000);
+        }, 2000);
     });
 }
 
