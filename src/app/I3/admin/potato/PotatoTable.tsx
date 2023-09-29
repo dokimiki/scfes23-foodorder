@@ -8,6 +8,11 @@ import Button from "@mui/material/Button";
 import Bold from "@/components/Bold";
 
 export function PotatoTable({ orderedPotato, onDone }: { orderedPotato: OrderedPotato; onDone: () => void }) {
+    console.log(orderedPotato);
+    console.log(orderedPotato.receptionTime);
+    console.log(orderedPotato.completionTime);
+    console.log(orderedPotato.receptionTime.getHours());
+    console.log(orderedPotato.completionTime.getHours());
     const receptionTime =
         ("00" + orderedPotato.receptionTime.getHours()).slice(-2) + ":" + ("00" + orderedPotato.receptionTime.getMinutes()).slice(-2);
     const completionTime =
