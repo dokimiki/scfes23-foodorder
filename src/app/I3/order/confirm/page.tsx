@@ -60,9 +60,9 @@ export default function Confirm() {
         const jwt: string = localStorage.getItem("user-id") || "";
         let token: string;
         try {
-            token = (jwtDecode(jwt) as any)?.sub || "";
+            token = (jwtDecode(jwt) as any).sub;
         } catch (e) {
-            token = "";
+            token = "none";
         }
         setQrUrl("https://ncth-app.jp/I3/order/invite/" + token);
     }, []);
