@@ -272,7 +272,6 @@ export default function Regi() {
                                     enqueueSnackbar((res as any).message, { variant: "error" });
                                     return;
                                 }
-                                enqueueSnackbar(res);
                                 setOrderCode("");
                                 setCart([]);
                                 enqueueSnackbar("会計データを送信しました。", { variant: "success" });
