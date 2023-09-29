@@ -21,7 +21,9 @@ import { seasoningDone } from "@/libs/apis/admin/Seasoning";
 
 export default function Page() {
     const [open, setOpen] = React.useState(false);
-    const [dialogOrderId, setDialogOrderId] = React.useState(0);
+    const [dialogOrderNumber, setDialogOrderNumber] = React.useState(0);
+    const [dialogOrderId, setDialogOrderid] = React.useState("");
+    const [dialogOrderMenus, setDialogOrderMenus] = React.useState<Order>();
 
     const [menus, setMenus] = React.useState<MenuItem[]>([]);
     const [orders, setOrders] = React.useState<Order[]>([]);
@@ -57,12 +59,10 @@ export default function Page() {
     function handleDialogClose() {
         setOpen(false);
     }
-
     function handleDialogOpen(orderNumber: number) {
         setOpen(true);
-        setDialogOrderId(orderNumber);
+        setDialogOrderNumber(orderNumber);
     }
-    seasoningDone(orders.id);
 
     if (menus.length <= 0) {
         return (
@@ -86,9 +86,11 @@ export default function Page() {
             <Toolbar />
 
             <Stack>
-                {orders.map((e, i) => (
+                {orders.map((e, i) => {
+                    return(
                     <SeasoningPaper order={e} menus={menus} onOpenModal={() => handleDialogOpen(e.numberTag)} key={i} />
-                ))}
+                    {setDialogOrderMenus(e)}
+                )})}
             </Stack>
             <Dialog open={open} onClose={handleDialogClose} keepMounted>
                 <DialogTitle id="alert-dialog-title">この注文は提供済みですか？</DialogTitle>
@@ -96,7 +98,7 @@ export default function Page() {
                     <Stack alignItems="center">
                         <Typography variant="h6">番号札</Typography>
                         <Typography variant="h3" color={"#ffa53f"}>
-                            {dialogOrderId}
+                            {dialogOrderNumber}
                         </Typography>
                     </Stack>
                 </DialogContent>
@@ -106,7 +108,7 @@ export default function Page() {
                         <Button onClick={handleDialogClose} variant="contained" size="large" color="inherit">
                             キャンセル
                         </Button>
-                        <Button onClick={handleDialogClose} variant="contained" size="large" autoFocus>
+                        <Button onClick={() => seasoningDone(dialogOrderId)} variant="contained" size="large" autoFocus>
                             完了
                         </Button>
                     </Stack>
