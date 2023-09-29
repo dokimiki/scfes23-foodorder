@@ -82,7 +82,7 @@ export default function Completed() {
                 }}
             >
                 <Stack alignItems="center">
-                    <canvas ref={inputRef} />
+                    <img ref={inputRef} />
                 </Stack>
             </Paper>
             <main>
