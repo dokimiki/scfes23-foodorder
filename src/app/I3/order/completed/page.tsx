@@ -21,9 +21,9 @@ export default function Completed() {
     const [completeInfo, setCompleteInfo] = React.useState<CompleteInfo>();
 
     const { inputRef } = useBarcode({
-        value: completeInfo?.barcode || "?",
+        value: completeInfo?.barcode || "????",
         options: {
-            text: (completeInfo?.barcode || "?").split("").reduce((str, char, i) => {
+            text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
                 return str + char + (i % 4 === 3 ? " " : "");
             }, ""),
             fontSize: 16,
