@@ -21,7 +21,10 @@ export function drawInviteLots(): Promise<Coupon> {
         headers: { Authorization: "Bearer " + token },
     }).then((res) => {
         const response = res.json();
+        console.log(response);
+        console.log(response.hasOwnProperty("message"));
         if (response.hasOwnProperty("message")) {
+            console.log("true");
             throw new Error((response as any).message);
         }
         return response;
