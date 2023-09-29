@@ -21,7 +21,7 @@ export default function Completed() {
     const [completeInfo, setCompleteInfo] = React.useState<CompleteInfo>();
 
     const { inputRef } = useBarcode({
-        value: completeInfo?.barcode || "????",
+        value: "????",
         options: {
             text: (completeInfo?.barcode || "????").split("").reduce((str, char, i) => {
                 return str + char + (i % 4 === 3 ? " " : "");
@@ -81,7 +81,9 @@ export default function Completed() {
                     borderRadius: "0 0 8px 8px",
                 }}
             >
-                <Stack alignItems="center">{/* <svg ref={inputRef} /> */}</Stack>
+                <Stack alignItems="center">
+                    <svg ref={inputRef} />
+                </Stack>
             </Paper>
             <main>
                 <Card sx={{ margin: "16px auto", backgroundColor: "white" }}>
@@ -90,9 +92,9 @@ export default function Completed() {
                             完成予定:
                         </Typography>
                         <Typography variant="h2" fontWeight={"bold"} align="center">
-                            {/* {new Date(completeInfo?.completeTime || "0").getHours() +
+                            {new Date(completeInfo?.completeTime || "0").getHours() +
                                 ":" +
-                                new Date(completeInfo?.completeTime || "0").getMinutes()} */}
+                                new Date(completeInfo?.completeTime || "0").getMinutes()}
                         </Typography>
                         <Typography variant="h6" fontWeight={"medium"} align="center">
                             完成状況:{" "}
