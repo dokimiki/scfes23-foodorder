@@ -92,9 +92,9 @@ export default function Completed() {
                             完成予定:
                         </Typography>
                         <Typography variant="h2" fontWeight={"bold"} align="center">
-                            {new Date(completeInfo?.completeTime || "0").getHours() +
+                            {/* {new Date(completeInfo?.completeTime || "0").getHours() +
                                 ":" +
-                                new Date(completeInfo?.completeTime || "0").getMinutes()}
+                                new Date(completeInfo?.completeTime || "0").getMinutes()} */}
                         </Typography>
                         <Typography variant="h6" fontWeight={"medium"} align="center">
                             完成状況:{" "}
