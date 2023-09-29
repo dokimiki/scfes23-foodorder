@@ -33,7 +33,14 @@ export default function Potato() {
                     enqueueSnackbar((res as any).message, { variant: "error" });
                     return;
                 }
-                setOrderedPotatoList(res);
+                const datedRes = res.map((e) => {
+                    return {
+                        ...e,
+                        receptionTime: new Date(e.receptionTime),
+                        completionTime: new Date(e.completionTime),
+                    };
+                });
+                setOrderedPotatoList(datedRes);
             })
             .catch((err) => {
                 enqueueSnackbar(err, { variant: "error" });
