@@ -103,8 +103,8 @@ export default function Confirm() {
                     enqueueSnackbar((res as any).message, { variant: "error" });
                     return;
                 }
-                router.push("/I3/order/completed");
                 window.location.reload();
+                router.push("/I3/order/completed");
             })
             .catch((err) => {
                 enqueueSnackbar(err, { variant: "error" });
