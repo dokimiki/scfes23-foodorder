@@ -82,9 +82,7 @@ export default function Completed() {
                 }}
             >
                 <Stack alignItems="center">
-                    <canvas>
-                        <Barcode value={completeInfo?.barcode || ""} />
-                    </canvas>
+                    <Barcode value={completeInfo?.barcode || ""} />
                 </Stack>
             </Paper>
             <main>
