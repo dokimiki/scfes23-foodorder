@@ -20,41 +20,42 @@ export default function SeasoningPaper({ order, menus, onOpenModal }: { order: O
                             <Bold>No.{order.id}</Bold>
                         </Typography>
                         <Stack direction="row" flexWrap="wrap">
-                            {order.items.map((item, i) => {
-                                const menu: MenuItem = menus.find((menu) => menu.id === item.id) || {
-                                    id: "",
-                                    name: "",
-                                    price: 0,
-                                    image: "",
-                                    isShow: false,
-                                };
-                                return (
-                                    <Box
-                                        sx={{
-                                            borderRadius: "35px",
-                                            background: "rgba(0, 0, 0, 0.08)",
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            alignItems: "center",
-                                            minWidth: "12rem",
-                                            padding: "8px",
-                                            margin: "8px",
-                                            height: "fit-content",
-                                        }}
-                                        key={i}
-                                    >
-                                        <Avatar src={menu.image} sx={{ width: "32px", height: "32px" }} />
-                                        <Typography
+                            {order.items &&
+                                order.items.map((item, i) => {
+                                    const menu: MenuItem = menus.find((menu) => menu.id === item.id) || {
+                                        id: "",
+                                        name: "",
+                                        price: 0,
+                                        image: "",
+                                        isShow: false,
+                                    };
+                                    return (
+                                        <Box
                                             sx={{
-                                                paddingLeft: "0.5rem",
+                                                borderRadius: "35px",
+                                                background: "rgba(0, 0, 0, 0.08)",
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                alignItems: "center",
+                                                minWidth: "12rem",
+                                                padding: "8px",
+                                                margin: "8px",
+                                                height: "fit-content",
                                             }}
+                                            key={i}
                                         >
-                                            {menu.name}
-                                            <Bold>x{item.quantity}</Bold>
-                                        </Typography>
-                                    </Box>
-                                );
-                            })}
+                                            <Avatar src={menu.image} sx={{ width: "32px", height: "32px" }} />
+                                            <Typography
+                                                sx={{
+                                                    paddingLeft: "0.5rem",
+                                                }}
+                                            >
+                                                {menu.name}
+                                                <Bold>x{item.quantity}</Bold>
+                                            </Typography>
+                                        </Box>
+                                    );
+                                })}
                         </Stack>
                     </Stack>
                     <Stack direction="column" alignItems="center" sx={{ minWidth: "9rem" }}>
