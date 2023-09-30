@@ -334,9 +334,9 @@ export default function Confirm() {
                 </Button>
             </Stack>
             <Typography variant="body2" sx={{ marginTop: "8px" }}>
-                ※注文を確定すると、キャンセル・変更をスマホ上から行うことはできません。
+                ※注文を確定すると、変更をスマホ上から行うことはできません。
                 <br />
-                もしも注文をキャンセル・変更したい場合は、店員にお声がけください。
+                もしも注文を変更したい場合は、店員にお声がけください。
             </Typography>
         </main>
     );

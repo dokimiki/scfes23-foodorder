@@ -321,7 +321,7 @@ function SendingDialogContent({
                 </Typography>
                 <Stack direction="row" flexWrap="wrap">
                     <RadioGroup row defaultValue={0} onChange={handleChange}>
-                        {Array(21)
+                        {Array(41)
                             .fill(1)
                             .map((e, i) => {
                                 return (
